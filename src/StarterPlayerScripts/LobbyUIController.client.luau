@@ -12,17 +12,18 @@
 	All game-state mutations go through RemoteEvents to the server.
 	The client never modifies pad state directly.
 	
-	UI hierarchy expected (built in Studio):
+	UI hierarchy (actual Studio structure):
 	  StarterGui
 	    └─ LobbyUI (ScreenGui)
 	         └─ CreateGame (Frame)
-	              ├─ TopBar
-	              │    └─ TextButton   (X / close)
-	              ├─ Before            (ImageButton)
-	              ├─ Next              (ImageButton)
-	              ├─ Difficulty        (TextLabel)
-	              ├─ DifficultyPrompt  (TextLabel)
-	              └─ Create            (TextButton)
+	              ├─ Topbar (Frame)     — note lowercase 'b'
+	              │    └─ TextButton    (X / close)
+	              ├─ Before             (ImageButton)
+	              ├─ Next               (ImageButton)
+	              ├─ Difficulty         (Frame — visual container)
+	              ├─ DifficultyLabel   (TextLabel — shows "Easy"/"Medium"/"Hard")
+	              ├─ DifficultyPrompt  (TextLabel — created programmatically if missing)
+	              └─ Create             (TextButton)
 ]]
 
 local Players           = game:GetService("Players")
@@ -53,18 +54,36 @@ local getUnlocks    = LobbyRemotes.get("GetDifficultyUnlocks")
 local lobbyUI         = playerGui:WaitForChild("LobbyUI")
 local createGameFrame = lobbyUI:WaitForChild("CreateGame")
 
-local topBar          = createGameFrame:WaitForChild("TopBar")
+local topBar          = createGameFrame:WaitForChild("Topbar") -- lowercase 'b' in Studio
 local closeButton     = topBar:FindFirstChildWhichIsA("TextButton")
 	                   or topBar:FindFirstChildWhichIsA("ImageButton")
 
 local beforeButton    = createGameFrame:WaitForChild("Before")
 local nextButton      = createGameFrame:WaitForChild("Next")
-local difficultyLabel = createGameFrame:WaitForChild("Difficulty")
-local difficultyPrompt= createGameFrame:WaitForChild("DifficultyPrompt")
 local createButton    = createGameFrame:WaitForChild("Create")
 
--- Optional: DifficultyLabel ImageLabel (the visual icon the user will add later)
-local difficultyImageLabel = createGameFrame:FindFirstChild("DifficultyLabel")
+-- "Difficulty" in Studio is a Frame (visual container, e.g. stone icon).
+-- "DifficultyLabel" is the actual TextLabel that shows "Easy" / "Medium" / "Hard".
+local difficultyFrame = createGameFrame:WaitForChild("Difficulty")
+local difficultyLabel = createGameFrame:WaitForChild("DifficultyLabel")
+
+-- DifficultyPrompt may not exist in Studio yet — create programmatically if missing
+local difficultyPrompt = createGameFrame:FindFirstChild("DifficultyPrompt")
+if not difficultyPrompt then
+	difficultyPrompt = Instance.new("TextLabel")
+	difficultyPrompt.Name = "DifficultyPrompt"
+	difficultyPrompt.Size = UDim2.new(0.9, 0, 0.08, 0)
+	difficultyPrompt.Position = UDim2.new(0.05, 0, 0.72, 0)
+	difficultyPrompt.BackgroundTransparency = 1
+	difficultyPrompt.Font = Enum.Font.GothamBold
+	difficultyPrompt.TextColor3 = Color3.fromRGB(255, 255, 255)
+	difficultyPrompt.TextStrokeTransparency = 0.3
+	difficultyPrompt.TextScaled = true
+	difficultyPrompt.Text = ""
+	difficultyPrompt.Visible = false
+	difficultyPrompt.ZIndex = 10
+	difficultyPrompt.Parent = createGameFrame
+end
 
 -- Create a Timer label programmatically if it doesn't exist yet
 local timerLabel = createGameFrame:FindFirstChild("Timer")
@@ -140,11 +159,6 @@ local function updateDisplay()
 		createButton.BackgroundColor3 = LobbyConfig.CREATE_BUTTON_UNLOCKED_COLOR
 	else
 		createButton.BackgroundColor3 = LobbyConfig.CREATE_BUTTON_LOCKED_COLOR
-	end
-
-	-- Optional image label
-	if difficultyImageLabel then
-		difficultyImageLabel.Visible = true
 	end
 end
 
