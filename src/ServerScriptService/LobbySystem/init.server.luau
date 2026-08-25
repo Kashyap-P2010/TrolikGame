@@ -66,7 +66,7 @@ local function updateBillboard(padIndex: number, text: string)
 	local billboard = pad:FindFirstChildWhichIsA("BillboardGui", true)
 	if not billboard then return end
 
-	local label = billboard:FindFirstChildWhichIsA("TextLabel")
+	local label = billboard:FindFirstChildWhichIsA("TextLabel", true)
 	if not label then return end
 
 	label.Text = text
@@ -248,15 +248,15 @@ local function onPadTouched(padIndex: number, hit: BasePart)
 	end
 end
 
--- Connect Touched on each pad (handles both BasePart pads and Model pads)
+-- Connect Touched on each pad
 for i = 1, LobbyConfig.PAD_COUNT do
-	local lobbyPads = workspace:FindFirstChild("LobbyPads")
+	local lobbyPads = workspace:WaitForChild("LobbyPads", 10)
 	if not lobbyPads then
 		warn("[LobbySystem] workspace.LobbyPads not found")
-		break
+		continue
 	end
 
-	local pad = lobbyPads:FindFirstChild("Pad" .. i)
+	local pad = lobbyPads:WaitForChild("Pad" .. i, 10)
 	if not pad then
 		warn("[LobbySystem] Pad" .. i .. " not found inside LobbyPads")
 		continue
@@ -264,16 +264,18 @@ for i = 1, LobbyConfig.PAD_COUNT do
 
 	if pad:IsA("BasePart") then
 		pad.Touched:Connect(function(hit) onPadTouched(i, hit) end)
-	elseif pad:IsA("Model") then
-		-- Connect to every child BasePart except the InvisBox
-		for _, child in pad:GetChildren() do
-			if child:IsA("BasePart")
-				and child.Name ~= "invisbox"
-				and child.Name ~= "InvisBox"
-			then
-				child.Touched:Connect(function(hit) onPadTouched(i, hit) end)
-			end
-		end
+	end
+	
+	-- Connect invisbox as well in case the player touches it instead of the floor pad
+	local invisBox = pad:FindFirstChild("invisbox") or pad:FindFirstChild("InvisBox")
+	if not invisBox then
+		invisBox = pad:WaitForChild("invisbox", 5)
+	end
+	
+	if invisBox and invisBox:IsA("BasePart") then
+		invisBox.Touched:Connect(function(hit) onPadTouched(i, hit) end)
+	else
+		warn("[LobbySystem] invisbox not found in Pad" .. i)
 	end
 end
 

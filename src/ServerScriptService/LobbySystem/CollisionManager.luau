@@ -51,14 +51,23 @@ local function setCharacterGroup(character: Model, groupName: string)
 end
 
 local function getInvisBox(padIndex: number): BasePart?
-	local pad = workspace:FindFirstChild("LobbyPads")
+	local pad = workspace:WaitForChild("LobbyPads", 10)
 	if not pad then return nil end
 
-	local padPart = pad:FindFirstChild("Pad" .. padIndex)
+	local padPart = pad:WaitForChild("Pad" .. padIndex, 10)
 	if not padPart then return nil end
 
-	-- Handle both casings
-	return padPart:FindFirstChild("invisbox") or padPart:FindFirstChild("InvisBox")
+	-- Handle both casings and wait if not immediately available
+	local invisBox = padPart:FindFirstChild("invisbox") or padPart:FindFirstChild("InvisBox")
+	if not invisBox then
+		invisBox = padPart:WaitForChild("invisbox", 5)
+	end
+	
+	if not invisBox then
+		warn("[CollisionManager] invisbox not found inside Pad" .. padIndex)
+	end
+	
+	return invisBox
 end
 
 local function cleanupPlayerConnections(player: Player)
