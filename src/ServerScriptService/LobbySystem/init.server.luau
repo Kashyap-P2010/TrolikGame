@@ -33,6 +33,33 @@ local CollisionManager = require(script.CollisionManager)
 local TeleportManager  = require(script.TeleportManager)
 
 ---------------------------------------------------------------------------
+-- Debug & Safety Setup (Added to diagnose invisbox issue)
+---------------------------------------------------------------------------
+task.spawn(function()
+	print("[DEBUG] --- LobbyPads Hierarchy Dump ---")
+	local lp = workspace:WaitForChild("LobbyPads", 5)
+	if not lp then
+		print("[DEBUG] LobbyPads not found in workspace!")
+		return
+	end
+	
+	for _, child in lp:GetChildren() do
+		print("[DEBUG] Found child in LobbyPads: '" .. child.Name .. "' (" .. child.ClassName .. ")")
+		for _, desc in child:GetChildren() do
+			print("    -> Child of " .. child.Name .. ": '" .. desc.Name .. "' (" .. desc.ClassName .. ")")
+			-- Failsafe: Anchor everything to prevent it from falling into the void
+			if desc:IsA("BasePart") then
+				desc.Anchored = true
+			end
+		end
+		if child:IsA("BasePart") then
+			child.Anchored = true
+		end
+	end
+	print("[DEBUG] --------------------------------")
+end)
+
+---------------------------------------------------------------------------
 -- Bootstrap
 ---------------------------------------------------------------------------
 LobbyRemotes.setup()

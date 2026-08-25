@@ -62,28 +62,8 @@ local beforeButton    = createGameFrame:WaitForChild("Before")
 local nextButton      = createGameFrame:WaitForChild("Next")
 local createButton    = createGameFrame:WaitForChild("Create")
 
--- "Difficulty" in Studio is a Frame (visual container, e.g. stone icon).
--- "DifficultyLabel" is the actual TextLabel that shows "Easy" / "Medium" / "Hard".
-local difficultyFrame = createGameFrame:WaitForChild("Difficulty")
-local difficultyLabel = createGameFrame:WaitForChild("DifficultyLabel")
-
--- DifficultyPrompt may not exist in Studio yet — create programmatically if missing
-local difficultyPrompt = createGameFrame:FindFirstChild("DifficultyPrompt")
-if not difficultyPrompt then
-	difficultyPrompt = Instance.new("TextLabel")
-	difficultyPrompt.Name = "DifficultyPrompt"
-	difficultyPrompt.Size = UDim2.new(0.9, 0, 0.08, 0)
-	difficultyPrompt.Position = UDim2.new(0.05, 0, 0.72, 0)
-	difficultyPrompt.BackgroundTransparency = 1
-	difficultyPrompt.Font = Enum.Font.GothamBold
-	difficultyPrompt.TextColor3 = Color3.fromRGB(255, 255, 255)
-	difficultyPrompt.TextStrokeTransparency = 0.3
-	difficultyPrompt.TextScaled = true
-	difficultyPrompt.Text = ""
-	difficultyPrompt.Visible = false
-	difficultyPrompt.ZIndex = 10
-	difficultyPrompt.Parent = createGameFrame
-end
+local difficultyLabel  = createGameFrame:WaitForChild("Difficulty")      -- The text that says "Easy", "Medium", "Hard"
+local difficultyPrompt = createGameFrame:WaitForChild("DifficultyLabel") -- The text that says "Score 70%..."
 
 -- Create a Timer label programmatically if it doesn't exist yet
 local timerLabel = createGameFrame:FindFirstChild("Timer")
