@@ -1,0 +1,28 @@
+{
+	"name": "TrolikGame",
+	"tree": {
+		"$className": "DataModel",
+		"ServerScriptService": {
+			"$className": "ServerScriptService",
+			"LobbySystem": {
+				"$path": "src/ServerScriptService/LobbySystem"
+			}
+		},
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+			"Shared": {
+				"$path": "src/ReplicatedStorage/Shared"
+			}
+		},
+		"StarterPlayer": {
+			"$className": "StarterPlayer",
+			"StarterPlayerScripts": {
+				"$className": "StarterPlayerScripts",
+				"$path": "src/StarterPlayerScripts"
+			}
+		}
+	},
+	"globIgnorePaths": [
+		"**/.git"
+	]
+}
