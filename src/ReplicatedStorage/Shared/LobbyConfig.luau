@@ -15,6 +15,7 @@ LobbyConfig.TARGET_PLACE_ID = 74833272427125
 
 -- Timing
 LobbyConfig.COUNTDOWN_SECONDS = 15
+LobbyConfig.CREATION_TIMEOUT_SECONDS = 30  -- seconds owner has to click Create before AFK-reset
 LobbyConfig.TELEPORT_RETRY_ATTEMPTS = 3
 LobbyConfig.TELEPORT_RETRY_DELAY = 2
 

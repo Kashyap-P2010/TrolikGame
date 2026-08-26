@@ -7,10 +7,13 @@
 	Remotes created:
 	  Events:
 	    RequestCreateLobby  — Client → Server  (difficulty: string)
-	    RequestCancelLobby  — Client → Server  ()
+	    RequestCancelLobby  — Client → Server  ()  ← cancel during Creating state (X button)
+	    RequestLeaveLobby   — Client → Server  ()  ← leave during Active state (Exit button)
 	    ShowLobbyUI         — Server → Client  (show: boolean, padIndex: number?)
+	    ShowExitButton      — Server → Client  (show: boolean)  ← shown when lobby is Active
 	    UpdatePadState      — Server → All     (padIndex, state, data: {})
 	    UpdateTimer         — Server → Client  (padIndex, remaining: number)
+	    UpdateCreationTimer — Server → Client  (padIndex, remaining: number)
 	  Functions:
 	    GetDifficultyUnlocks — Client → Server → {[string]: boolean}
 ]]
@@ -21,11 +24,15 @@ local RunService = game:GetService("RunService")
 local LobbyRemotes = {}
 
 local REMOTE_EVENTS = {
+	"RequestEnterPad",     -- Client → Server: instant client-side pad touch trigger
 	"RequestCreateLobby",
-	"RequestCancelLobby",
+	"RequestCancelLobby",   -- cancel during Creating state (X close button)
+	"RequestLeaveLobby",    -- leave during Active state (Exit Lobby button)
 	"ShowLobbyUI",
+	"ShowExitButton",       -- Server → Client: show/hide the in-lobby Exit button
 	"UpdatePadState",
 	"UpdateTimer",
+	"UpdateCreationTimer",  -- Server → Client: AFK countdown while Creating
 }
 
 local REMOTE_FUNCTIONS = {
