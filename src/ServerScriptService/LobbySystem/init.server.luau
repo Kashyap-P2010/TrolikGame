@@ -100,6 +100,31 @@ local function updateBillboard(padIndex: number, text: string)
 end
 
 ---------------------------------------------------------------------------
+-- Freeze / unfreeze helpers
+---------------------------------------------------------------------------
+
+local DEFAULT_WALKSPEED  = 16
+local DEFAULT_JUMPHEIGHT = 7.2
+
+local function freezePlayer(player: Player)
+	local character = player.Character
+	if not character then return end
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if not humanoid then return end
+	humanoid.WalkSpeed  = 0
+	humanoid.JumpHeight = 0
+end
+
+local function unfreezePlayer(player: Player)
+	local character = player.Character
+	if not character then return end
+	local humanoid = character:FindFirstChildOfClass("Humanoid")
+	if not humanoid then return end
+	humanoid.WalkSpeed  = DEFAULT_WALKSPEED
+	humanoid.JumpHeight = DEFAULT_JUMPHEIGHT
+end
+
+---------------------------------------------------------------------------
 -- Teleport-to-spawn helper
 ---------------------------------------------------------------------------
 
@@ -127,6 +152,13 @@ end
 local function resetPad(padIndex: number)
 	local padState = PadManager.getState(padIndex)
 	if not padState then return end
+
+	-- Unfreeze every player in this lobby before clearing state
+	for _, p in padState.players do
+		if p and p.Parent then
+			unfreezePlayer(p)
+		end
+	end
 
 	-- Reset collision for every player in this lobby
 	CollisionManager.resetPadCollisions(padIndex, padState.players)
@@ -248,6 +280,9 @@ local function onPadTouched(padIndex: number, hit: BasePart)
 
 		if not PadManager.occupy(padIndex, player) then return end
 
+		-- Freeze the owner while they pick a difficulty
+		freezePlayer(player)
+
 		-- Collision: allow owner through, then activate barrier
 		CollisionManager.allowPlayerOnPad(padIndex, player)
 		CollisionManager.activateBarrier(padIndex)
@@ -264,6 +299,9 @@ local function onPadTouched(padIndex: number, hit: BasePart)
 		if #padState.players >= LobbyConfig.MAX_LOBBY_PLAYERS then return end
 
 		if not PadManager.addPlayer(padIndex, player) then return end
+
+		-- Freeze joining players too until countdown ends
+		freezePlayer(player)
 
 		-- If we just hit capacity, re-activate barrier for everyone outside
 		if #padState.players >= LobbyConfig.MAX_LOBBY_PLAYERS then
@@ -342,6 +380,9 @@ remotes.requestCreate.OnServerEvent:Connect(function(player: Player, difficulty:
 
 	-- ── Transition Creating → Active ──
 	if not PadManager.createLobby(padIndex, difficulty) then return end
+
+	-- Unfreeze the owner now that the lobby is live
+	unfreezePlayer(player)
 
 	-- Open barrier so other players can walk in and join
 	CollisionManager.deactivateBarrier(padIndex)
