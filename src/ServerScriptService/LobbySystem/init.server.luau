@@ -381,9 +381,6 @@ remotes.requestCreate.OnServerEvent:Connect(function(player: Player, difficulty:
 	-- ── Transition Creating → Active ──
 	if not PadManager.createLobby(padIndex, difficulty) then return end
 
-	-- Unfreeze the owner now that the lobby is live
-	unfreezePlayer(player)
-
 	-- Open barrier so other players can walk in and join
 	CollisionManager.deactivateBarrier(padIndex)
 
