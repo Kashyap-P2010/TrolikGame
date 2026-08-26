@@ -9,7 +9,7 @@
 	              │    └─ TextButton  (X / close)
 	              ├─ Before          (ImageButton)
 	              ├─ Next            (ImageButton)
-	              ├─ Create          (TextButton)   ← green=clickable, grey=locked
+	              ├─ CreateBtn       (TextButton)   ← green=clickable, grey=locked
 	              ├─ Difficulty      (TextLabel)    ← shows "Easy"/"Medium"/"Hard" + color
 	              └─ DifficultyLabel (TextLabel)    ← shows "Score 70%..." lock prompt
 ]]
@@ -53,7 +53,7 @@ end
 
 local beforeButton    = createGameFrame:WaitForChild("Before")
 local nextButton      = createGameFrame:WaitForChild("Next")
-local createButton    = createGameFrame:WaitForChild("Create")    :: TextButton
+local createButton    = createGameFrame:WaitForChild("CreateBtn") :: TextButton
 local difficultyLabel = createGameFrame:WaitForChild("Difficulty")      -- "Easy"/"Medium"/"Hard"
 local difficultyPrompt= createGameFrame:WaitForChild("DifficultyLabel") -- lock message
 
@@ -114,7 +114,9 @@ local isCurrentlyUnlocked: boolean = false  -- track for hover color logic
 ---------------------------------------------------------------------------
 -- Startup: hide UI
 ---------------------------------------------------------------------------
-lobbyUI.Enabled         = false
+-- LobbyUI.Enabled stays TRUE always — toggling it kills mouse events on buttons
+-- We only toggle the child Frame's Visible to show/hide the UI
+lobbyUI.Enabled         = true
 createGameFrame.Visible = false
 
 ---------------------------------------------------------------------------
@@ -174,7 +176,7 @@ end
 -- Show / hide UI
 ---------------------------------------------------------------------------
 local function showUI(padIndex: number)
-	lobbyUI.Enabled         = true   -- must be true for buttons to receive input
+	-- Only toggle the frame — ScreenGui stays enabled always
 	createGameFrame.Visible = true
 
 	isOnPad          = true
@@ -187,7 +189,7 @@ local function showUI(padIndex: number)
 	nextButton.Visible   = true
 	nextButton.Active    = true
 	createButton.Visible = true
-	createButton.Size    = CREATE_BASE_SIZE  -- reset any press-scale
+	createButton.Size    = CREATE_BASE_SIZE
 
 	timerLabel.Visible = false
 	timerLabel.Text    = ""
@@ -196,13 +198,18 @@ local function showUI(padIndex: number)
 	updateDisplay()
 
 	print("[LobbyUI] Shown for pad", padIndex)
+	print("[LobbyUI] CreateBtn — Visible:", createButton.Visible,
+		"| Active:", createButton.Active,
+		"| AbsoluteSize:", createButton.AbsoluteSize,
+		"| AbsolutePosition:", createButton.AbsolutePosition,
+		"| ZIndex:", createButton.ZIndex)
 end
 
 local function hideUI()
 	createGameFrame.Visible = false
-	lobbyUI.Enabled         = false
-	isOnPad                 = false
-	activePadIndex          = nil
+	-- Do NOT disable lobbyUI here — keeps button events alive
+	isOnPad        = false
+	activePadIndex = nil
 	print("[LobbyUI] Hidden")
 end
 
@@ -211,6 +218,7 @@ end
 -- Only animate when button is unlocked (Active=true, green)
 ---------------------------------------------------------------------------
 createButton.MouseEnter:Connect(function()
+	print("[LobbyUI-DEBUG] MouseEnter | unlocked:", isCurrentlyUnlocked, "| clicked:", hasClickedCreate)
 	if not isCurrentlyUnlocked or hasClickedCreate then return end
 	tweenCreate(TWEEN_HOVER_IN, {
 		BackgroundColor3 = COLOR_HOVER,
@@ -222,6 +230,7 @@ createButton.MouseEnter:Connect(function()
 end)
 
 createButton.MouseLeave:Connect(function()
+	print("[LobbyUI-DEBUG] MouseLeave")
 	if not isCurrentlyUnlocked or hasClickedCreate then return end
 	tweenCreate(TWEEN_HOVER_OUT, {
 		BackgroundColor3 = COLOR_UNLOCKED,
@@ -230,6 +239,7 @@ createButton.MouseLeave:Connect(function()
 end)
 
 createButton.MouseButton1Down:Connect(function()
+	print("[LobbyUI-DEBUG] MouseButton1Down")
 	if not isCurrentlyUnlocked or hasClickedCreate then return end
 	tweenCreate(TWEEN_PRESS, {
 		BackgroundColor3 = COLOR_PRESSED,
@@ -241,8 +251,8 @@ createButton.MouseButton1Down:Connect(function()
 end)
 
 createButton.MouseButton1Up:Connect(function()
+	print("[LobbyUI-DEBUG] MouseButton1Up")
 	if not isCurrentlyUnlocked or hasClickedCreate then return end
-	-- Bounce back to hover color since mouse is still over button
 	tweenCreate(TWEEN_RELEASE, {
 		BackgroundColor3 = COLOR_HOVER,
 		Size = UDim2.new(
