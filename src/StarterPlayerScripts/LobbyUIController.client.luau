@@ -293,7 +293,7 @@ createButton.MouseButton1Click:Connect(function()
 
 	hasClickedCreate = true
 
-	-- Snap button back to normal size/color before hiding it
+	-- Snap button back before closing
 	if activeTween then activeTween:Cancel() end
 	createButton.Size             = CREATE_BASE_SIZE
 	createButton.BackgroundColor3 = COLOR_UNLOCKED
@@ -301,13 +301,8 @@ createButton.MouseButton1Click:Connect(function()
 	requestCreate:FireServer(diff.name)
 	print("[LobbyUI] Fired RequestCreateLobby:", diff.name)
 
-	-- Switch to countdown mode
-	beforeButton.Visible     = false
-	nextButton.Visible       = false
-	createButton.Visible     = false
-	difficultyPrompt.Visible = false
-	timerLabel.Visible       = true
-	timerLabel.Text          = LobbyConfig.COUNTDOWN_SECONDS .. "s"
+	-- Close the UI — countdown is visible on the billboard above the pad
+	hideUI()
 end)
 
 ---------------------------------------------------------------------------
