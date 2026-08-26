@@ -163,7 +163,8 @@ end
 ---------------------------------------------------------------------------
 
 local function setUIVisible(visible: boolean)
-	lobbyUI.Enabled = visible
+	-- NOTE: We do NOT toggle lobbyUI.Enabled — disabling the ScreenGui kills
+	-- the Activated event system on all child buttons even after re-enabling.
 	createGameFrame.Visible = visible
 
 	if visible then
@@ -173,10 +174,13 @@ local function setUIVisible(visible: boolean)
 		timerLabel.Visible = false
 		timerLabel.Text = ""
 
-		-- Restore buttons (may have been hidden from a previous Create)
+		-- Restore buttons and ensure they are interactive
 		beforeButton.Visible = true
-		nextButton.Visible = true
+		beforeButton.Active  = true
+		nextButton.Visible   = true
+		nextButton.Active    = true
 		createButton.Visible = true
+		createButton.Active  = true
 
 		refreshUnlocks()
 		updateDisplay()
@@ -185,8 +189,8 @@ local function setUIVisible(visible: boolean)
 	isOnPad = visible
 end
 
--- Start hidden
-setUIVisible(false)
+-- Start hidden (frame only — ScreenGui stays enabled)
+createGameFrame.Visible = false
 
 ---------------------------------------------------------------------------
 -- Button connections
@@ -202,22 +206,25 @@ closeButton.Activated:Connect(function()
 end)
 
 createButton.Activated:Connect(function()
+	print("[LobbyUI] Create clicked | isOnPad:", isOnPad, "| hasClickedCreate:", hasClickedCreate)
 	if not isOnPad then return end
-	if hasClickedCreate then return end -- Prevent double-click
+	if hasClickedCreate then return end
 
 	local diff = LobbyConfig.DIFFICULTIES[currentDiffIndex]
-	if not diff then return end
+	if not diff then
+		print("[LobbyUI] diff is nil at index", currentDiffIndex)
+		return
+	end
 
-	-- Block if locked
 	local isUnlocked = (diff.name == "Easy") or (unlocks[diff.name] == true)
+	print("[LobbyUI] Difficulty:", diff.name, "| isUnlocked:", isUnlocked)
 	if not isUnlocked then return end
 
 	hasClickedCreate = true
 
-	-- Fire to server
 	requestCreate:FireServer(diff.name)
+	print("[LobbyUI] Fired RequestCreateLobby with difficulty:", diff.name)
 
-	-- Swap UI into "countdown" mode
 	beforeButton.Visible = false
 	nextButton.Visible = false
 	createButton.Visible = false
