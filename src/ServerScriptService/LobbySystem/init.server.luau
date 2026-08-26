@@ -1,21 +1,15 @@
 --[[
 	LobbySystem — Server-authoritative orchestrator.
 	
-	Manages the full lifecycle of lobby pads:
-	  Waiting  →  Creating  →  Active  →  Teleporting  →  Waiting
-	
-	Responsibilities:
-	  • Pad .Touched connections (occupy + join)
-	  • Remote event handlers (Create, Cancel, unlock queries)
-	  • Billboard text updates
-	  • Countdown timer with teleportation
-	  • Player disconnect / death cleanup
-	  • InvisBox barrier coordination via CollisionManager
-	
-	Workspace expectations:
-	  workspace.LobbyPads.Pad1 .. Pad4  — BasePart or Model
-	    each containing:  invisbox (BasePart), BillboardGui > TextLabel
-	  workspace.LobbyPart — SpawnLocation / Part (cancel teleport target)
+	Pad lifecycle:
+	  Waiting → Creating → Active → Teleporting → Waiting
+
+	Workspace requirements:
+	  workspace.LobbyPads
+	    └─ Pad1 .. Pad4  (BasePart)
+	         ├─ invisbox    (BasePart — the barrier wall)
+	         └─ BillboardGui > TextLabel
+	  workspace.LobbyPart  (SpawnLocation — cancel destination)
 ]]
 
 local Players           = game:GetService("Players")
@@ -33,40 +27,12 @@ local CollisionManager = require(script.CollisionManager)
 local TeleportManager  = require(script.TeleportManager)
 
 ---------------------------------------------------------------------------
--- Debug & Safety Setup (Added to diagnose invisbox issue)
----------------------------------------------------------------------------
-task.spawn(function()
-	print("[DEBUG] --- LobbyPads Hierarchy Dump ---")
-	local lp = workspace:WaitForChild("LobbyPads", 5)
-	if not lp then
-		print("[DEBUG] LobbyPads not found in workspace!")
-		return
-	end
-	
-	for _, child in lp:GetChildren() do
-		print("[DEBUG] Found child in LobbyPads: '" .. child.Name .. "' (" .. child.ClassName .. ")")
-		for _, desc in child:GetChildren() do
-			print("    -> Child of " .. child.Name .. ": '" .. desc.Name .. "' (" .. desc.ClassName .. ")")
-			-- Failsafe: Anchor everything to prevent it from falling into the void
-			if desc:IsA("BasePart") then
-				desc.Anchored = true
-			end
-		end
-		if child:IsA("BasePart") then
-			child.Anchored = true
-		end
-	end
-	print("[DEBUG] --------------------------------")
-end)
-
----------------------------------------------------------------------------
 -- Bootstrap
 ---------------------------------------------------------------------------
 LobbyRemotes.setup()
 CollisionManager.init()
 PadManager.init(LobbyConfig.PAD_COUNT)
 
--- Grab remote references (created by setup above)
 local remotes = {
 	requestCreate  = LobbyRemotes.get("RequestCreateLobby"),
 	requestCancel  = LobbyRemotes.get("RequestCancelLobby"),
@@ -76,18 +42,35 @@ local remotes = {
 	getUnlocks     = LobbyRemotes.get("GetDifficultyUnlocks"),
 }
 
--- Per-player touch debounce
 local touchDebounce: { [Player]: boolean } = {}
+
+---------------------------------------------------------------------------
+-- Cache pad references at startup (avoids repeated WaitForChild per call)
+---------------------------------------------------------------------------
+local lobbyPadsFolder = workspace:WaitForChild("LobbyPads", 10)
+assert(lobbyPadsFolder, "[LobbySystem] workspace.LobbyPads not found!")
+
+-- padParts[i] = the Pad BasePart
+local padParts: { [number]: BasePart } = {}
+for i = 1, LobbyConfig.PAD_COUNT do
+	local pad = lobbyPadsFolder:WaitForChild("Pad" .. i, 10)
+	if pad then
+		padParts[i] = pad
+		print("[LobbySystem] Cached Pad" .. i, "| Children:", table.concat((function()
+			local names = {}
+			for _, c in pad:GetChildren() do table.insert(names, c.Name) end
+			return names
+		end)(), ", "))
+	else
+		warn("[LobbySystem] Pad" .. i .. " not found!")
+	end
+end
 
 ---------------------------------------------------------------------------
 -- Billboard helper
 ---------------------------------------------------------------------------
-
 local function updateBillboard(padIndex: number, text: string)
-	local lobbyPads = workspace:FindFirstChild("LobbyPads")
-	if not lobbyPads then return end
-
-	local pad = lobbyPads:FindFirstChild("Pad" .. padIndex)
+	local pad = padParts[padIndex]
 	if not pad then return end
 
 	local billboard = pad:FindFirstChildWhichIsA("BillboardGui", true)
@@ -100,9 +83,8 @@ local function updateBillboard(padIndex: number, text: string)
 end
 
 ---------------------------------------------------------------------------
--- Freeze / unfreeze helpers
+-- Freeze / unfreeze
 ---------------------------------------------------------------------------
-
 local DEFAULT_WALKSPEED  = 16
 local DEFAULT_JUMPHEIGHT = 7.2
 
@@ -125,9 +107,8 @@ local function unfreezePlayer(player: Player)
 end
 
 ---------------------------------------------------------------------------
--- Teleport-to-spawn helper
+-- Teleport to spawn (cancel / teleport failure fallback)
 ---------------------------------------------------------------------------
-
 local function moveToLobbySpawn(player: Player)
 	local lobbyPart = workspace:FindFirstChild("LobbyPart")
 	if not lobbyPart then
@@ -141,37 +122,35 @@ local function moveToLobbySpawn(player: Player)
 	local hrp = character:FindFirstChild("HumanoidRootPart")
 	if not hrp then return end
 
-	-- Slightly above the part to avoid clipping into geometry
 	hrp.CFrame = lobbyPart.CFrame + Vector3.new(0, 5, 0)
 end
 
 ---------------------------------------------------------------------------
--- Full pad reset (state + collision + billboard + UI)
+-- Full pad reset
 ---------------------------------------------------------------------------
-
 local function resetPad(padIndex: number)
 	local padState = PadManager.getState(padIndex)
 	if not padState then return end
 
-	-- Unfreeze every player in this lobby before clearing state
+	-- Unfreeze all players before wiping state
 	for _, p in padState.players do
 		if p and p.Parent then
 			unfreezePlayer(p)
 		end
 	end
 
-	-- Reset collision for every player in this lobby
+	-- Reset collision groups for all lobby players
 	CollisionManager.resetPadCollisions(padIndex, padState.players)
 
-	-- Hide UI for the owner (if still connected)
+	-- Hide UI for the owner (if still in game)
 	if padState.owner and padState.owner.Parent then
 		remotes.showUI:FireClient(padState.owner, false)
 	end
 
-	-- Reset data
+	-- Wipe pad data
 	PadManager.reset(padIndex)
 
-	-- Barrier off, billboard back to idle
+	-- Deactivate barrier and reset billboard
 	CollisionManager.deactivateBarrier(padIndex)
 	updateBillboard(padIndex, "Waiting...")
 	remotes.updatePad:FireAllClients(padIndex, LobbyConfig.PadState.WAITING, {})
@@ -180,24 +159,19 @@ end
 ---------------------------------------------------------------------------
 -- Countdown & teleport
 ---------------------------------------------------------------------------
-
 local function startCountdown(padIndex: number)
 	local thread = task.spawn(function()
 		local padState = PadManager.getState(padIndex)
 
 		for remaining = LobbyConfig.COUNTDOWN_SECONDS, 0, -1 do
-			-- Bail if pad was reset/cancelled externally
 			if padState.state ~= LobbyConfig.PadState.ACTIVE then return end
 
-			-- Build billboard text
-			local ownerName = if padState.owner then padState.owner.Name else "Unknown"
+			local ownerName = padState.owner and padState.owner.Name or "Unknown"
 			local diff      = padState.difficulty or "Easy"
-			updateBillboard(
-				padIndex,
+			updateBillboard(padIndex,
 				ownerName .. "'s Lobby\nDifficulty: " .. diff .. "\n" .. remaining .. "s"
 			)
 
-			-- Send timer tick to ALL players on this pad
 			for _, p in padState.players do
 				if p and p.Parent then
 					remotes.updateTimer:FireClient(p, padIndex, remaining)
@@ -209,20 +183,19 @@ local function startCountdown(padIndex: number)
 			end
 		end
 
-		-- Final state check after loop
+		-- Guard: ensure state still Active after the loop
 		if padState.state ~= LobbyConfig.PadState.ACTIVE then return end
 
 		-- ── Teleporting ──
 		PadManager.setTeleporting(padIndex)
-		updateBillboard(padIndex, "Teleporting Lobby...")
+		updateBillboard(padIndex, "Teleporting...")
 		remotes.updatePad:FireAllClients(padIndex, LobbyConfig.PadState.TELEPORTING, {})
 
-		-- Hide creator UI
+		-- Close UI on owner's screen
 		if padState.owner and padState.owner.Parent then
 			remotes.showUI:FireClient(padState.owner, false)
 		end
 
-		-- Gather valid players
 		local toTeleport: { Player } = {}
 		for _, p in padState.players do
 			if p and p.Parent then
@@ -233,15 +206,15 @@ local function startCountdown(padIndex: number)
 		local ok = TeleportManager.teleportLobby(toTeleport, padState.difficulty or "Easy")
 
 		if not ok then
-			warn("[LobbySystem] Teleport failed for Pad" .. padIndex .. " — returning players to spawn")
+			warn("[LobbySystem] Teleport failed for Pad" .. padIndex .. " — returning to spawn")
 			for _, p in toTeleport do
 				if p and p.Parent then
+					unfreezePlayer(p)    -- unfreeze before moving them back
 					moveToLobbySpawn(p)
 				end
 			end
 		end
 
-		-- Brief delay so "Teleporting Lobby..." is visible
 		task.wait(1.5)
 		resetPad(padIndex)
 	end)
@@ -251,8 +224,10 @@ end
 
 ---------------------------------------------------------------------------
 -- Pad touch handler
+-- NOTE: Only connected to the floor pad (Pad1-4), NOT to invisbox.
+--       The invisbox is a barrier wall; its Touched fires constantly when
+--       a player stands against it which would spam this handler.
 ---------------------------------------------------------------------------
-
 local function onPadTouched(padIndex: number, hit: BasePart)
 	local character = hit.Parent
 	if not character then return end
@@ -263,7 +238,7 @@ local function onPadTouched(padIndex: number, hit: BasePart)
 	local player = Players:GetPlayerFromCharacter(character)
 	if not player then return end
 
-	-- Debounce (0.5 s per player)
+	-- Per-player debounce
 	if touchDebounce[player] then return end
 	touchDebounce[player] = true
 	task.delay(0.5, function()
@@ -275,15 +250,10 @@ local function onPadTouched(padIndex: number, hit: BasePart)
 
 	-- ── Waiting → Creating ──
 	if padState.state == LobbyConfig.PadState.WAITING then
-		-- Reject if player is already associated with another pad
 		if PadManager.getPlayerPad(player) then return end
-
 		if not PadManager.occupy(padIndex, player) then return end
 
-		-- Freeze the owner while they pick a difficulty
 		freezePlayer(player)
-
-		-- Collision: allow owner through, then activate barrier
 		CollisionManager.allowPlayerOnPad(padIndex, player)
 		CollisionManager.activateBarrier(padIndex)
 
@@ -297,13 +267,11 @@ local function onPadTouched(padIndex: number, hit: BasePart)
 	elseif padState.state == LobbyConfig.PadState.ACTIVE then
 		if PadManager.getPlayerPad(player) then return end
 		if #padState.players >= LobbyConfig.MAX_LOBBY_PLAYERS then return end
-
 		if not PadManager.addPlayer(padIndex, player) then return end
 
-		-- Freeze joining players too until countdown ends
 		freezePlayer(player)
 
-		-- If we just hit capacity, re-activate barrier for everyone outside
+		-- Re-activate barrier if lobby is now full
 		if #padState.players >= LobbyConfig.MAX_LOBBY_PLAYERS then
 			for _, p in padState.players do
 				CollisionManager.allowPlayerOnPad(padIndex, p)
@@ -313,43 +281,19 @@ local function onPadTouched(padIndex: number, hit: BasePart)
 	end
 end
 
--- Connect Touched on each pad
+-- Connect Touched only to the floor pad (not invisbox)
 for i = 1, LobbyConfig.PAD_COUNT do
-	local lobbyPads = workspace:WaitForChild("LobbyPads", 10)
-	if not lobbyPads then
-		warn("[LobbySystem] workspace.LobbyPads not found")
-		continue
-	end
-
-	local pad = lobbyPads:WaitForChild("Pad" .. i, 10)
-	if not pad then
-		warn("[LobbySystem] Pad" .. i .. " not found inside LobbyPads")
-		continue
-	end
-
-	if pad:IsA("BasePart") then
+	local pad = padParts[i]
+	if pad and pad:IsA("BasePart") then
 		pad.Touched:Connect(function(hit) onPadTouched(i, hit) end)
-	end
-	
-	-- Connect invisbox as well in case the player touches it instead of the floor pad
-	local invisBox = pad:FindFirstChild("invisbox") or pad:FindFirstChild("InvisBox")
-	if not invisBox then
-		invisBox = pad:WaitForChild("invisbox", 5)
-	end
-	
-	if invisBox and invisBox:IsA("BasePart") then
-		invisBox.Touched:Connect(function(hit) onPadTouched(i, hit) end)
-	else
-		warn("[LobbySystem] invisbox not found in Pad" .. i)
 	end
 end
 
 ---------------------------------------------------------------------------
--- Remote: player clicked "Create"
+-- Remote: Create lobby
 ---------------------------------------------------------------------------
-
 remotes.requestCreate.OnServerEvent:Connect(function(player: Player, difficulty: string)
-	-- Validate difficulty name
+	-- Validate difficulty
 	local diffEntry = nil
 	for _, d in LobbyConfig.DIFFICULTIES do
 		if d.name == difficulty then
@@ -362,7 +306,6 @@ remotes.requestCreate.OnServerEvent:Connect(function(player: Player, difficulty:
 		return
 	end
 
-	-- Validate player is on a pad in Creating state and is the owner
 	local padIndex = PadManager.getPlayerPad(player)
 	if not padIndex then return end
 
@@ -370,7 +313,7 @@ remotes.requestCreate.OnServerEvent:Connect(function(player: Player, difficulty:
 	if padState.state ~= LobbyConfig.PadState.CREATING then return end
 	if padState.owner ~= player then return end
 
-	-- Enforce unlock requirement
+	-- Server-side unlock check
 	if diffEntry.unlockRequirement then
 		if player:GetAttribute(diffEntry.unlockRequirement) ~= true then
 			warn("[LobbySystem]", player.Name, "attempted locked difficulty:", difficulty)
@@ -378,10 +321,9 @@ remotes.requestCreate.OnServerEvent:Connect(function(player: Player, difficulty:
 		end
 	end
 
-	-- ── Transition Creating → Active ──
 	if not PadManager.createLobby(padIndex, difficulty) then return end
 
-	-- Open barrier so other players can walk in and join
+	-- Open barrier for joiners
 	CollisionManager.deactivateBarrier(padIndex)
 
 	updateBillboard(padIndex, player.Name .. "'s Lobby\nDifficulty: " .. difficulty)
@@ -394,16 +336,13 @@ remotes.requestCreate.OnServerEvent:Connect(function(player: Player, difficulty:
 end)
 
 ---------------------------------------------------------------------------
--- Remote: player clicked "X" (cancel)
+-- Remote: Cancel lobby
 ---------------------------------------------------------------------------
-
 remotes.requestCancel.OnServerEvent:Connect(function(player: Player)
 	local padIndex = PadManager.getPlayerPad(player)
 	if not padIndex then return end
 
 	local padState = PadManager.getState(padIndex)
-
-	-- Only the owner can cancel, and only during Creating
 	if padState.state ~= LobbyConfig.PadState.CREATING then return end
 	if padState.owner ~= player then return end
 
@@ -412,9 +351,8 @@ remotes.requestCancel.OnServerEvent:Connect(function(player: Player)
 end)
 
 ---------------------------------------------------------------------------
--- Remote: difficulty unlock query
+-- Remote: Difficulty unlock query
 ---------------------------------------------------------------------------
-
 remotes.getUnlocks.OnServerInvoke = function(player: Player)
 	local unlocks: { [string]: boolean } = {}
 	for _, diff in LobbyConfig.DIFFICULTIES do
@@ -428,35 +366,31 @@ remotes.getUnlocks.OnServerInvoke = function(player: Player)
 end
 
 ---------------------------------------------------------------------------
--- Player lifecycle: death & disconnect cleanup
+-- Player lifecycle: death / disconnect
 ---------------------------------------------------------------------------
-
 local function setupPlayerCleanup(player: Player)
-	-- Character removed (death / respawn)
 	player.CharacterRemoving:Connect(function()
 		local padIndex = PadManager.getPlayerPad(player)
 		if not padIndex then return end
 
 		local padState = PadManager.getState(padIndex)
-		-- Don't interfere during teleport
 		if padState.state == LobbyConfig.PadState.TELEPORTING then return end
 
 		if padState.owner == player then
 			resetPad(padIndex)
 		else
+			unfreezePlayer(player)
 			PadManager.removePlayer(padIndex, player)
 			CollisionManager.resetPlayerCollision(player)
 		end
 	end)
 end
 
--- Handle existing players (in case script loads late) + new joins
 for _, player in Players:GetPlayers() do
 	setupPlayerCleanup(player)
 end
 Players.PlayerAdded:Connect(setupPlayerCleanup)
 
--- Player fully leaving the game
 Players.PlayerRemoving:Connect(function(player: Player)
 	local padIndex = PadManager.getPlayerPad(player)
 	if padIndex then
@@ -470,14 +404,12 @@ Players.PlayerRemoving:Connect(function(player: Player)
 			end
 		end
 	end
-
 	touchDebounce[player] = nil
 end)
 
 ---------------------------------------------------------------------------
--- Initialise billboards & barriers on server start
+-- Init: set billboard text and ensure barriers are off
 ---------------------------------------------------------------------------
-
 for i = 1, LobbyConfig.PAD_COUNT do
 	updateBillboard(i, "Waiting...")
 	CollisionManager.deactivateBarrier(i)
