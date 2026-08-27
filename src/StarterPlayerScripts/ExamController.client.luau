@@ -9,18 +9,19 @@
 	        NameLabel  (TextLabel)              — player Nickname
 	      Question     (Frame/Container)
 	        Question_Field (TextLabel)          — question text
+	        QuestionNo     (TextLabel)          — e.g. "Q: 10/20"
 	      A            (TextButton)             — option A unselected
 	        Option_A   (TextLabel)              — option A text
 	      B            (TextButton)
 	        Option_B   (TextLabel)
 	      C            (TextButton)
 	        Option_C   (TextLabel)
-	      A_Selected   (Frame/Button)           — option A selected state
+	      A_Selected   (Frame/Button)           — option A selected overlay
 	      B_Selected   (Frame/Button)
 	      C_Selected   (Frame/Button)
-	      ChooseAnswer (TextButton)             — red → green → locked
-	      NextQuestion (TextButton)             — hidden until answer locked
-	      TimerLabel   (TextLabel, CREATED HERE) — "8:00" countdown, center-top
+	      ChooseAnswer (TextButton)             — hidden by default; green when option selected
+	      NextQuestion (TextButton)             — shown by default; flashes red warn if skipped unanswered
+	      TimerLabel   (TextLabel, CREATED HERE) — "8:00" countdown, screen center-top
 ]]
 
 local Players           = game:GetService("Players")
@@ -83,9 +84,10 @@ if not examFrame then error("[ExamController] Exam frame not found — aborting!
 local nameContainer = waitFor(examFrame, "Name",     8) :: Instance?
 local nameLabel     = nameContainer and waitFor(nameContainer, "NameLabel", 5) :: TextLabel?
 
--- Question > Question_Field
+-- Question > Question_Field & QuestionNo
 local questionContainer = waitFor(examFrame, "Question",       8) :: Instance?
 local questionField     = questionContainer and waitFor(questionContainer, "Question_Field", 5) :: TextLabel?
+local questionNoLabel   = questionContainer and waitFor(questionContainer, "QuestionNo",     5) :: TextLabel?
 
 -- Option buttons (direct children of Exam)
 local btnA = waitFor(examFrame, "A", 8) :: TextButton?
@@ -126,6 +128,7 @@ if not btnBSelected    then table.insert(missing, "B_Selected") end
 if not btnCSelected    then table.insert(missing, "C_Selected") end
 if not chooseAnswerBtn then table.insert(missing, "ChooseAnswer") end
 if not nextQuestionBtn then table.insert(missing, "NextQuestion") end
+if not questionNoLabel then table.insert(missing, "Question > QuestionNo") end
 
 if #missing > 0 then
 	warn("[ExamController] MISSING UI ELEMENTS — exam may not work correctly:")
@@ -164,14 +167,15 @@ print("[ExamUI] ✓ TimerLabel created (center-top, UIStroke 1.9)")
 ---------------------------------------------------------------------------
 type Question = {q: string, a: string, b: string, c: string, correct: string}
 
-local examActive:    boolean    = false
-local questions:     {Question} = {}
-local currentIndex:  number     = 1
-local selectedAns:   string?    = nil   -- "A", "B", or "C"
-local answerLocked:  boolean    = false
-local score:         number     = 0
-local timerThread:   thread?    = nil
-local examOpenGuard: boolean    = false
+local examActive:     boolean    = false
+local questions:      {Question} = {}
+local currentIndex:   number     = 1
+local selectedAns:    string?    = nil   -- "A", "B", or "C"
+local answerLocked:   boolean    = false
+local score:          number     = 0
+local timerThread:    thread?    = nil
+local examOpenGuard:  boolean    = false
+local warnInProgress: boolean    = false  -- prevents skip-warn spam
 
 ---------------------------------------------------------------------------
 -- Helpers
@@ -207,14 +211,23 @@ local function applySelection(letter: string)
 	if letter == "C" then setOptionSelected(btnC, btnCSelected, true) end
 end
 
-local function refreshChooseAnswerColor()
-	if not chooseAnswerBtn then return end
+-- Sync ChooseAnswer / NextQuestion visibility to current selection state.
+-- Rule:
+--   No selection  → NextQuestion visible,  ChooseAnswer hidden
+--   Option chosen → ChooseAnswer GREEN+active, NextQuestion hidden
+--   Answer locked → neither (handled in ChooseAnswer click)
+local function refreshButtonState()
+	if answerLocked then return end
 	if selectedAns ~= nil then
-		chooseAnswerBtn.BackgroundColor3 = COLOR_GREEN
-		chooseAnswerBtn.Active           = true
+		if chooseAnswerBtn then
+			chooseAnswerBtn.BackgroundColor3 = COLOR_GREEN
+			chooseAnswerBtn.Active           = true
+			chooseAnswerBtn.Visible          = true
+		end
+		setVisible(nextQuestionBtn, false)
 	else
-		chooseAnswerBtn.BackgroundColor3 = COLOR_RED
-		chooseAnswerBtn.Active           = false
+		setVisible(chooseAnswerBtn, false)
+		setVisible(nextQuestionBtn, true)
 	end
 end
 
@@ -226,22 +239,25 @@ local function displayQuestion(index: number)
 	local q = questions[index]
 	print(string.format("[ExamUI] Displaying Q%d/%d: %s", index, #questions, q.q))
 
-	answerLocked = false
+	answerLocked  = false
+	warnInProgress = false
 	clearAllSelections()
 
-	if chooseAnswerBtn then
-		chooseAnswerBtn.BackgroundColor3 = COLOR_RED
-		chooseAnswerBtn.Active           = false
-		chooseAnswerBtn.Visible          = true
-	end
-	setVisible(nextQuestionBtn, false)
+	-- Default state: NextQuestion shown, ChooseAnswer hidden
+	setVisible(chooseAnswerBtn, false)
+	setVisible(nextQuestionBtn, true)
 
-	-- Question text
+	-- Question counter "Q: X/Y"
+	if questionNoLabel then
+		questionNoLabel.Text = string.format("Q: %d/%d", index, #questions)
+	end
+
+	-- Question text (no number prefix — QuestionNo handles that)
 	if questionField then
-		questionField.Text = string.format("Q%d. %s", index, q.q)
+		questionField.Text = q.q
 	end
 
-	-- Option texts (set in both unselected button and selected container if available)
+	-- Option texts
 	if fieldA then fieldA.Text = q.a end
 	if fieldB then fieldB.Text = q.b end
 	if fieldC then fieldC.Text = q.c end
@@ -363,6 +379,33 @@ if openExamBtn then
 	openExamBtn.MouseButton1Click:Connect(startExam)
 end
 
+-- Darken a color by reducing HSV value component
+local function darkenColor(c: Color3, factor: number): Color3
+	local h, s, v = Color3.toHSV(c)
+	return Color3.fromHSV(h, s, math.max(0, v * factor))
+end
+
+-- Attach hover-darken effect to an option button
+local function addHoverEffect(btn: TextButton?)
+	if not btn then return end
+	local origColor = btn.BackgroundColor3
+	local origTransp = btn.BackgroundTransparency
+	btn.MouseEnter:Connect(function()
+		btn.BackgroundColor3       = darkenColor(origColor, 0.78)
+		if origTransp < 0.9 then
+			btn.BackgroundTransparency = math.max(0, origTransp - 0.08)
+		end
+	end)
+	btn.MouseLeave:Connect(function()
+		btn.BackgroundColor3       = origColor
+		btn.BackgroundTransparency = origTransp
+	end)
+end
+
+addHoverEffect(btnA)
+addHoverEffect(btnB)
+addHoverEffect(btnC)
+
 -- Generic option handler (letter = "A"/"B"/"C")
 local function onOptionClicked(letter: string)
 	if not examActive or answerLocked then return end
@@ -371,7 +414,7 @@ local function onOptionClicked(letter: string)
 	else
 		applySelection(letter)
 	end
-	refreshChooseAnswerColor()
+	refreshButtonState()
 end
 
 -- A button (unselected state)
@@ -387,7 +430,7 @@ if btnASelected then
 		(target :: TextButton).MouseButton1Click:Connect(function()
 			if not examActive or answerLocked then return end
 			clearAllSelections()
-			refreshChooseAnswerColor()
+			refreshButtonState()
 		end)
 	end
 end
@@ -403,7 +446,7 @@ if btnBSelected then
 		(target :: TextButton).MouseButton1Click:Connect(function()
 			if not examActive or answerLocked then return end
 			clearAllSelections()
-			refreshChooseAnswerColor()
+			refreshButtonState()
 		end)
 	end
 end
@@ -419,32 +462,31 @@ if btnCSelected then
 		(target :: TextButton).MouseButton1Click:Connect(function()
 			if not examActive or answerLocked then return end
 			clearAllSelections()
-			refreshChooseAnswerColor()
+			refreshButtonState()
 		end)
 	end
 end
 
--- ChooseAnswer — locks the selected answer in
+-- ChooseAnswer — only visible when an option is selected (GREEN); locks the answer in
 if chooseAnswerBtn then
 	chooseAnswerBtn.MouseButton1Click:Connect(function()
 		if not examActive or answerLocked then return end
-		if selectedAns == nil then return end
+		if selectedAns == nil then return end  -- shouldn't happen (button hidden when no selection)
 
 		answerLocked = true
 
 		local q = questions[currentIndex]
 		if q and selectedAns == q.correct then
 			score = score + 1
-			print(string.format("[ExamUI] Q%d CORRECT (answer: %s)", currentIndex, selectedAns))
+			print(string.format("[ExamUI] Q%d CORRECT (%s)", currentIndex, selectedAns))
 		else
 			print(string.format("[ExamUI] Q%d WRONG (selected: %s, correct: %s)",
 				currentIndex, tostring(selectedAns), q and q.correct or "?"))
 		end
 
-		-- Lock UI state
+		-- Lock: hide ChooseAnswer, show NextQuestion to advance
 		chooseAnswerBtn.Active  = false
 		chooseAnswerBtn.Visible = false
-
 		if nextQuestionBtn then
 			nextQuestionBtn.Visible = true
 			nextQuestionBtn.Text    = (currentIndex >= #questions) and "Finish Exam" or "Next Question"
@@ -453,9 +495,35 @@ if chooseAnswerBtn then
 end
 
 -- NextQuestion
+--   • answerLocked = false → player tried to skip; flash ChooseAnswer RED for 2s as a warning
+--   • answerLocked = true  → advance to next question / finish
 if nextQuestionBtn then
 	nextQuestionBtn.MouseButton1Click:Connect(function()
 		if not examActive then return end
+
+		if not answerLocked then
+			-- Guard against spam-clicking during the 2s warning
+			if warnInProgress then return end
+			warnInProgress = true
+
+			-- Flash ChooseAnswer RED (non-interactable) for 2 seconds
+			setVisible(nextQuestionBtn, false)
+			if chooseAnswerBtn then
+				chooseAnswerBtn.BackgroundColor3 = COLOR_RED
+				chooseAnswerBtn.Active           = false
+				chooseAnswerBtn.Visible          = true
+			end
+
+			task.delay(2, function()
+				if not examActive then return end  -- exam may have ended during the 2s
+				setVisible(chooseAnswerBtn, false)
+				setVisible(nextQuestionBtn, true)
+				warnInProgress = false
+			end)
+			return
+		end
+
+		-- Answer was locked — advance
 		currentIndex += 1
 		if currentIndex > #questions then
 			endExam()
