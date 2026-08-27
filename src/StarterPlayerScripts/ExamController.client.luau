@@ -227,9 +227,9 @@ local function displayQuestion(index: number)
 	setVisible(chooseAnswerBtn, false)
 	setVisible(nextQuestionBtn, true)
 
-	-- Question counter "Q: X/Y"
+	-- Question counter "Question: X/Y"
 	if questionNoLabel then
-		questionNoLabel.Text = string.format("Q: %d/%d", index, #questions)
+		questionNoLabel.Text = string.format("Question: %d/%d", index, #questions)
 	end
 
 	-- Question text (no number prefix — QuestionNo handles that)
@@ -362,20 +362,36 @@ local function darkenColor(c: Color3, factor: number): Color3
 	return Color3.fromHSV(h, s, math.max(0, v * factor))
 end
 
--- Attach hover-darken effect to an option button
+-- Attach hover effect to an option button (and its inner option text)
 local function addHoverEffect(btn: TextButton?)
 	if not btn then return end
-	local origColor = btn.BackgroundColor3
-	local origTransp = btn.BackgroundTransparency
+	local origBgColor    = btn.BackgroundColor3
+	local origBgTransp   = btn.BackgroundTransparency
+	local origTextColor  = btn.TextColor3
+	
+	local optLabel       = btn:FindFirstChildWhichIsA("TextLabel")
+	local origOptColor   = optLabel and optLabel.TextColor3
+
+	local hoverBgColor   = Color3.fromHex("#d9d9d9")
+	local hoverTextColor = Color3.fromRGB(255, 255, 255)
+
 	btn.MouseEnter:Connect(function()
-		btn.BackgroundColor3       = darkenColor(origColor, 0.78)
-		if origTransp < 0.9 then
-			btn.BackgroundTransparency = math.max(0, origTransp - 0.08)
+		btn.BackgroundColor3       = hoverBgColor
+		btn.TextColor3             = hoverTextColor
+		if origBgTransp < 0.9 then
+			btn.BackgroundTransparency = math.max(0, origBgTransp - 0.08)
+		end
+		if optLabel then
+			optLabel.TextColor3 = hoverTextColor
 		end
 	end)
 	btn.MouseLeave:Connect(function()
-		btn.BackgroundColor3       = origColor
-		btn.BackgroundTransparency = origTransp
+		btn.BackgroundColor3       = origBgColor
+		btn.TextColor3             = origTextColor
+		btn.BackgroundTransparency = origBgTransp
+		if optLabel and origOptColor then
+			optLabel.TextColor3 = origOptColor
+		end
 	end)
 end
 
