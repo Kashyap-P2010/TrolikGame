@@ -9,7 +9,7 @@
 	        NameLabel  (TextLabel)              — player Nickname
 	      Question     (Frame/Container)
 	        Question_Field (TextLabel)          — question text
-	        QuestionNo     (TextLabel)          — e.g. "Q: 10/20"
+	      QuestionNo     (TextLabel)            — e.g. "Q: 10/20" (direct child of Exam)
 	      A            (TextButton)             — option A unselected
 	        Option_A   (TextLabel)              — option A text
 	      B            (TextButton)
@@ -84,10 +84,12 @@ if not examFrame then error("[ExamController] Exam frame not found — aborting!
 local nameContainer = waitFor(examFrame, "Name",     8) :: Instance?
 local nameLabel     = nameContainer and waitFor(nameContainer, "NameLabel", 5) :: TextLabel?
 
--- Question > Question_Field & QuestionNo
+-- Question > Question_Field
 local questionContainer = waitFor(examFrame, "Question",       8) :: Instance?
 local questionField     = questionContainer and waitFor(questionContainer, "Question_Field", 5) :: TextLabel?
-local questionNoLabel   = questionContainer and waitFor(questionContainer, "QuestionNo",     5) :: TextLabel?
+
+-- QuestionNo is a direct child of Exam (not inside Question)
+local questionNoLabel   = waitFor(examFrame, "QuestionNo", 8) :: TextLabel?
 
 -- Option buttons (direct children of Exam)
 local btnA = waitFor(examFrame, "A", 8) :: TextButton?
