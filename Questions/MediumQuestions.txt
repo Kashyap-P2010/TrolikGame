@@ -1,0 +1,1201 @@
+MEDIUM:
+
+1. Which country is famous for Machu Picchu?
+A) Peru
+B) Egypt
+C) India
+Correct: A
+
+2. Which invention is credited to the Wright brothers?
+A) Telephone
+B) Airplane
+C) Light bulb
+Correct: B
+
+3. Which language has the most native speakers in the world?
+A) Spanish
+B) English
+C) Mandarin Chinese
+Correct: C
+
+4. What is the process where rocks are worn away by water and wind called?
+A) Crystallization
+B) Erosion
+C) Condensation
+Correct: B
+
+5. What is the period when dinosaurs lived called?
+A) Ice Age
+B) Mesozoic Era
+C) Middle Ages
+Correct: B
+
+6. Which gas causes most human-made greenhouse effect?
+A) Oxygen
+B) Nitrogen
+C) Carbon dioxide
+Correct: C
+
+7. Who painted "The Starry Night"?
+A) Vincent van Gogh
+B) Leonardo da Vinci
+C) Pablo Picasso
+Correct: A
+
+8. What is the highest mountain in Africa?
+A) Mount Everest
+B) Mount Kilimanjaro
+C) Mont Blanc
+Correct: B
+
+9. Which computer part performs most calculations?
+A) Graphics card
+B) Mouse
+C) Processor
+Correct: C
+
+10. Which Greek hero was known for his strength and twelve labors?
+A) Achilles
+B) Hercules
+C) Zeus
+Correct: B
+
+11. Which record is measured in athletics competitions?
+A) Longest jump
+B) Most books owned
+C) Largest building
+Correct: A
+
+12. What is the science that studies earthquakes called?
+A) Oceanography
+B) Meteorology
+C) Seismology
+Correct: C
+
+13. Which country is known for inventing paper?
+A) China
+B) France
+C) Brazil
+Correct: A
+
+14. What is the capital of Australia?
+A) Sydney
+B) Canberra
+C) Melbourne
+Correct: B
+
+15. Which Greek hero had a famous weak spot in his heel?
+A) Hercules
+B) Theseus
+C) Achilles
+Correct: C
+
+16. What is the science that studies animals called?
+A) Botany
+B) Zoology
+C) Geology
+Correct: B
+
+17. Which sport is played on ice with stones and brushes?
+A) Curling
+B) Hockey
+C) Ice skating
+Correct: A
+
+18. What is the most famous football tournament for national teams?
+A) FIFA World Cup
+B) Tour de France
+C) Wimbledon
+Correct: A
+
+19. Which country created the first paper money?
+A) Egypt
+B) China
+C) Italy
+Correct: B
+
+20. What is the science that studies living organisms?
+A) Physics
+B) Chemistry
+C) Biology
+Correct: C
+
+21. Which landmark is a symbol of New York?
+A) Statue of Liberty
+B) Eiffel Tower
+C) Big Ben
+Correct: A
+
+22. What is the line dividing Earth into Northern and Southern Hemispheres?
+A) Equator
+B) Tropic of Cancer
+C) Prime Meridian
+Correct: A
+
+23. Which company created Photoshop?
+A) Microsoft
+B) Adobe
+C) Nintendo
+Correct: B
+
+24. What ancient writing system was used by Egyptians?
+A) Runes
+B) Cyrillic
+C) Hieroglyphs
+Correct: C
+
+25. Which instrument measures air humidity?
+A) Hygrometer
+B) Barometer
+C) Thermometer
+Correct: A
+
+26. What is the largest island in the world?
+A) Madagascar
+B) Greenland
+C) Iceland
+Correct: B
+
+27. Which scientist created the laws of motion and gravity?
+A) Tesla
+B) Darwin
+C) Newton
+Correct: C
+
+28. What is the process of creating new species in nature?
+A) Fermentation
+B) Evolution
+C) Distillation
+Correct: B
+
+29. Which country is known for windmills and tulips?
+A) Switzerland
+B) Austria
+C) Netherlands
+Correct: C
+
+30. Which computer part is responsible for displaying images?
+A) Graphics card
+B) Hard drive
+C) Power supply
+Correct: A
+
+31. Which sport uses a racket and a shuttlecock?
+A) Squash
+B) Table tennis
+C) Badminton
+Correct: C
+
+32. What is the layer of the atmosphere where we live?
+A) Troposphere
+B) Stratosphere
+C) Ionosphere
+Correct: A
+
+33. Which ancient people created democracy in Athens?
+A) Romans
+B) Greeks
+C) Persians
+Correct: B
+
+34. What is the capital of Spain?
+A) Barcelona
+B) Madrid
+C) Valencia
+Correct: B
+
+35. Which mythical creature had a lion's body and a human head?
+A) Minotaur
+B) Centaur
+C) Sphinx
+Correct: C
+
+36. Which layer of Earth is directly below the crust?
+A) Mantle
+B) Core
+C) Atmosphere
+Correct: A
+
+37. Which animal is the largest land predator?
+A) Lion
+B) Tiger
+C) Polar bear
+Correct: C
+
+38. What is the science that studies fossils?
+A) Paleontology
+B) Ecology
+C) Meteorology
+Correct: A
+
+39. Which country is famous for watches and the Alps?
+A) Austria
+B) Switzerland
+C) Denmark
+Correct: B
+
+40. Which continent is the smallest by area?
+A) Europe
+B) Antarctica
+C) Australia
+Correct: C
+
+41. What is the science that studies insects called?
+A) Entomology
+B) Zoology
+C) Botany
+Correct: A
+
+42. Where does sushi come from?
+A) China
+B) Japan
+C) Korea
+Correct: B
+
+43. How is a rainbow created?
+A) By moving clouds
+B) By wind
+C) By light bending through water drops
+Correct: C
+
+44. What does an archaeologist study?
+A) Remains of ancient civilizations
+B) Human health
+C) Computer design
+Correct: A
+
+45. What is the myth of Daedalus and Icarus about?
+A) The creation of the world
+B) Trying to escape using wings
+C) A war between gods
+Correct: B
+
+46. Which gas is used in balloons to make them float?
+A) Oxygen
+B) Nitrogen
+C) Helium
+Correct: C
+
+47. Who was Ludwig van Beethoven?
+A) Scientist
+B) Composer
+C) Athlete
+Correct: B
+
+48. Where is the Great Barrier Reef located?
+A) Near the coast of Australia
+B) Near the coast of Canada
+C) Near the coast of Norway
+Correct: A
+
+49. Why can airplanes stay in the air?
+A) Because wings create lift
+B) Because of heavy engines
+C) Because of magnets
+Correct: A
+
+50. What is paper made from?
+A) Metal
+B) Plant fibers
+C) Glass
+Correct: B
+
+51. What causes waves on water?
+A) Sunlight
+B) Temperature
+C) Mainly wind movement
+Correct: C
+
+52. Where does the traditional dish paella come from?
+A) Italy
+B) Spain
+C) Greece
+Correct: B
+
+53. What causes an echo?
+A) Changes in air temperature
+B) Movement of ocean waves
+C) Reflection of sound waves
+Correct: C
+
+54. When did the first human Moon landing happen?
+A) 1959
+B) 1969
+C) 1979
+Correct: B
+
+55. Why are plants green?
+A) Because chlorophyll reflects green light
+B) Because they contain oxygen
+C) Because they absorb all colors
+Correct: A
+
+56. What is the book "Alice in Wonderland" about?
+A) A girl's journey to a strange world
+B) A history of war
+C) Exploring space
+Correct: A
+
+57. What are most coins made from?
+A) Metals
+B) Wood
+C) Glass
+Correct: A
+
+58. Where is Stonehenge located?
+A) Ireland
+B) England
+C) Norway
+Correct: B
+
+59. Who was Albert Einstein?
+A) Painter
+B) Musician
+C) Physicist
+Correct: C
+
+60. Where does karate come from?
+A) China
+B) Japan
+C) Korea
+Correct: B
+
+61. What causes lightning?
+A) Wind
+B) Rain
+C) Electrical discharges
+Correct: C
+
+62. What does a meteorologist study?
+A) Weather
+B) Animals
+C) Rocks
+Correct: A
+
+63. Who was Julius Caesar?
+A) Composer
+B) Scientist
+C) Emperor
+Correct: C
+
+64. What is a car battery used for?
+A) Cooling
+B) Providing power
+C) Braking
+Correct: B
+
+65. What is magma?
+A) Gas
+B) Melted rock
+C) Crystal
+Correct: B
+
+66. Why does the Moon shine?
+A) It reflects sunlight
+B) It produces fire
+C) It creates its own light
+Correct: A
+
+67. Where do giant pandas live?
+A) India
+B) China
+C) Japan
+Correct: B
+
+68. How does a magnet work?
+A) Through heat
+B) Through light
+C) Through a magnetic field
+Correct: C
+
+69. What is popcorn made from?
+A) Rice
+B) Corn
+C) Wheat
+Correct: B
+
+70. What is radar used for?
+A) Cooking
+B) Medical treatment
+C) Detecting objects
+Correct: C
+
+71. How do bees communicate with each other?
+A) Singing
+B) Dancing
+C) Changing colors
+Correct: B
+
+72. Why do people see optical illusions?
+A) The brain interprets images
+B) Eyes stop working
+C) Light disappears
+Correct: A
+
+73. Where is the Colosseum located?
+A) Greece
+B) Italy
+C) Egypt
+Correct: B
+
+74. What is chocolate made from?
+A) Salt
+B) Rice
+C) Cocoa
+Correct: C
+
+75. Where does pizza come from?
+A) France
+B) Italy
+C) Germany
+Correct: B
+
+76. How are diamonds formed?
+A) By freezing water
+B) By sunlight
+C) By high pressure
+Correct: C
+
+77. What is a map used for?
+A) Finding places
+B) Measuring temperature
+C) Taking photos
+Correct: A
+
+78. What is a whale shark?
+A) A freshwater fish
+B) A marine mammal
+C) The largest fish in the world
+Correct: C
+
+79. Why do dreams happen?
+A) Because of Earth's movement
+B) Because of brain activity during sleep
+C) Because of room temperature
+Correct: B
+
+80. What helps birds stay in the air?
+A) Scales
+B) Fins
+C) Wings
+Correct: C
+
+81. What happens to a shadow when the Sun changes position?
+A) It changes length
+B) It disappears forever
+C) It becomes colorful
+Correct: A
+
+82. How can you recognize a metal?
+A) It is soft like paper
+B) It conducts electricity
+C) It floats on water
+Correct: B
+
+83. What causes rock erosion?
+A) Silence
+B) Darkness
+C) Wind and water
+Correct: C
+
+84. Where are magnets used in everyday life?
+A) In speakers
+B) In plants
+C) In food
+Correct: A
+
+85. What do whales and dolphins have in common?
+A) They are fish
+B) They are mammals
+C) They have gills
+Correct: B
+
+86. What helps an airplane rise into the air?
+A) Wheels
+B) Turned-off engines
+C) Lift from wings
+Correct: C
+
+87. Why does salt dissolve in water?
+A) Water molecules separate it
+B) Water turns it into gas
+C) Salt starts glowing
+Correct: A
+
+88. What is at the center of the Solar System?
+A) Moon
+B) Sun
+C) Earth
+Correct: B
+
+89. What happens when you blink?
+A) You stop seeing
+B) Your eyes change color
+C) Your eyes become moist
+Correct: C
+
+90. What do diamonds and graphite have in common?
+A) They are liquids
+B) They are forms of carbon
+C) They are metals
+Correct: B
+
+91. What can cause earthquakes?
+A) Movement of tectonic plates
+B) Falling snow
+C) Moonlight
+Correct: A
+
+92. What happens to sound in a vacuum?
+A) It becomes louder
+B) It changes color
+C) It does not travel
+Correct: C
+
+93. What happens to metal left in rain for a long time?
+A) It rusts
+B) It disappears
+C) It turns into glass
+Correct: A
+
+94. How can you recognize a nocturnal animal?
+A) It only lives in water
+B) It is active after dark
+C) It has no eyes
+Correct: B
+
+95. What protects Earth from some space radiation?
+A) Ocean
+B) Moon
+C) Atmosphere
+Correct: C
+
+96. What is a wrench used for?
+A) Unscrewing bolts
+B) Writing
+C) Measuring temperature
+Correct: A
+
+97. What do camels and cacti have in common?
+A) They live in forests
+B) They are adapted to deserts
+C) They are plants
+Correct: B
+
+98. What creates the sound of a guitar?
+A) Light
+B) Heat
+C) String vibrations
+Correct: C
+
+99. How can you identify a mineral?
+A) By taste
+B) By its properties
+C) By smell
+Correct: B
+
+100. What makes a ship float on water?
+A) Magnetism
+B) Buoyancy
+C) Electricity
+Correct: B
+
+101. What is a 3D printer used for?
+A) Creating objects
+B) Taking photos
+C) Measuring temperature
+Correct: A
+
+102. What does inflation mean?
+A) Fewer people
+B) Rising prices
+C) Weather changes
+Correct: B
+
+103. Who was Johannes Gutenberg?
+A) An astronaut
+B) A doctor
+C) The inventor of the printing press
+Correct: C
+
+104. What helps an architect create a building?
+A) A design plan
+B) A recipe
+C) A weather map
+Correct: A
+
+105. Where did samba originate?
+A) Japan
+B) Italy
+C) Brazil
+Correct: C
+
+106. What do Spanish and Italian have in common?
+A) They are Asian languages
+B) They come from Latin
+C) They use Cyrillic
+Correct: B
+
+107. What is a topographic map used for?
+A) Showing terrain
+B) Showing prices
+C) Showing movies
+Correct: A
+
+108. What does a speedometer measure in a car?
+A) Temperature
+B) Speed
+C) Fuel level
+Correct: B
+
+109. Who was William Shakespeare?
+A) A scientist
+B) An athlete
+C) A writer
+Correct: C
+
+110. What makes a battery work?
+A) Chemical reactions
+B) Wind
+C) Sound
+Correct: A
+
+111. What helps divers breathe underwater?
+A) A vest
+B) A mask
+C) An air tank
+Correct: C
+
+112. Why do airplanes have wings?
+A) They create lift
+B) They add weight
+C) They cool the engine
+Correct: A
+
+113. What does CPU stand for?
+A) Phone memory
+B) Processor
+C) Screen
+Correct: B
+
+114. What are most pencils made from?
+A) Plastic
+B) Iron
+C) Graphite
+Correct: C
+
+115. What does the color white symbolize in many cultures?
+A) Strength
+B) Peace
+C) Anger
+Correct: B
+
+116. What helps find a location on a map?
+A) Color
+B) Coordinates
+C) Sound
+Correct: B
+
+117. How does a combustion engine work?
+A) With water
+B) With magnets
+C) By burning fuel
+Correct: C
+
+118. What causes the blue color of the sky?
+A) Light scattering
+B) Ocean reflection
+C) Water vapor
+Correct: A
+
+119. Why is metal used in electrical wires?
+A) It is light
+B) It conducts electricity well
+C) It never heats up
+Correct: B
+
+120. What do bats and dolphins have in common?
+A) They only live on land
+B) They breathe with gills
+C) They use echolocation
+Correct: C
+
+121. What causes the northern lights?
+A) Moonlight
+B) Ice clouds
+C) Particles from the Sun
+Correct: C
+
+122. What is the job of a car cooling system?
+A) Control temperature
+B) Increase weight
+C) Change fuel
+Correct: A
+
+123. What does the Richter scale measure?
+A) Wind strength
+B) Earthquake strength
+C) Temperature
+Correct: B
+
+124. What allows an airplane to turn?
+A) Changing wing colors
+B) Adding more fuel
+C) Moving control surfaces
+Correct: C
+
+125. What causes the sour taste of a lemon?
+A) Citric acid
+B) Salt
+C) Sugar
+Correct: A
+
+126. Why does ice float on water?
+A) It is heavier
+B) It has lower density
+C) It is warmer
+Correct: B
+
+127. What makes a cut apple turn brown?
+A) Freezing
+B) Drying
+C) Oxidation
+Correct: C
+
+128. Why does a mirror show a reflection?
+A) It lets light pass through
+B) It reflects light
+C) It creates light
+Correct: B
+
+129. What causes tears when cutting onions?
+A) Heat
+B) Smell
+C) Chemical compounds
+Correct: C
+
+130. Why does a phone battery drain faster while gaming?
+A) High energy usage
+B) No screen
+C) Less memory
+Correct: A
+
+131. What protects teeth from cavities?
+A) Sugar
+B) Fluoride
+C) Caffeine
+Correct: B
+
+132. What makes bread fluffy?
+A) Salt
+B) Water
+C) Yeast
+Correct: C
+
+133. Why is a metal spoon colder than a wooden one?
+A) It transfers heat better
+B) It has less mass
+C) It is always wet
+Correct: A
+
+134. What creates the smell of fresh flowers?
+A) Color
+B) Scent compounds
+C) Temperature
+Correct: B
+
+135. Why does a banana turn brown over time?
+A) It freezes
+B) It loses water
+C) It ripens
+Correct: C
+
+136. Why do clothes dry faster in the sun?
+A) They become heavier
+B) They have more water
+C) Water evaporates faster
+Correct: C
+
+137. What helps a fridge stay cold?
+A) Refrigerant
+B) Light
+C) Room fan
+Correct: A
+
+138. Why does salt help with icy roads?
+A) It heats the road
+B) It lowers the freezing point
+C) It removes snow by itself
+Correct: B
+
+139. What happens to pasta while cooking?
+A) It becomes salty
+B) It freezes
+C) It absorbs water
+Correct: C
+
+140. What is the main ingredient of fries?
+A) Rice
+B) Potatoes
+C) Corn
+Correct: B
+
+141. What is found in large amounts in carrots?
+A) Iron
+B) Beta-carotene
+C) Caffeine
+Correct: B
+
+142. What makes broccoli a healthy vegetable?
+A) It contains fiber
+B) It contains caffeine
+C) It is a fruit
+Correct: A
+
+143. What is the main ingredient in most soft drinks?
+A) Vitamins
+B) Flour
+C) Water
+Correct: C
+
+144. What gives coffee its bitter taste?
+A) Salt
+B) Compounds in coffee beans
+C) Water
+Correct: B
+
+145. What happens to an egg when it is cooked?
+A) It freezes
+B) It completely evaporates
+C) The protein hardens
+Correct: C
+
+146. Why does a phone heat up while gaming?
+A) It loses color
+B) It gets bigger
+C) The processor works hard
+Correct: C
+
+147. What makes chips crispy?
+A) Low water content
+B) High sugar content
+C) Low temperature
+Correct: A
+
+148. What do honey and flower nectar have in common?
+A) They are fruits
+B) They come from plants
+C) They are minerals
+Correct: B
+
+149. Why do people have different eye colors?
+A) Because of diet
+B) Because of weather
+C) Because of genes
+Correct: C
+
+150. What helps airplanes find their flight route?
+A) Navigation systems
+B) Mirrors
+C) Brakes
+Correct: A
+
+151. Where is the Grand Canyon located?
+A) USA
+B) Canada
+C) Mexico
+Correct: A
+
+152. Which planet rotates the fastest on its axis?
+A) Venus
+B) Jupiter
+C) Saturn
+Correct: B
+
+153. What is steel made from?
+A) Copper
+B) Aluminum
+C) Iron
+Correct: C
+
+154. What does a barometer measure?
+A) Humidity
+B) Atmospheric pressure
+C) Wind speed
+Correct: B
+
+155. Which gas is most common in Earth's atmosphere?
+A) Oxygen
+B) Nitrogen
+C) Carbon dioxide
+Correct: B
+
+156. What state of matter is glass in?
+A) Gas
+B) Liquid
+C) Solid
+Correct: C
+
+157. What mostly affects the length of a shadow on a sunny day?
+A) Position of the Sun
+B) Color of the ground
+C) Wind direction
+Correct: A
+
+158. Why do passenger airplanes fly at high altitudes?
+A) There is more oxygen there
+B) Air resistance is lower
+C) It is easier to avoid mountains
+Correct: B
+
+159. What phenomenon gives a rainbow many colors?
+A) Reflection of light
+B) Refraction of light
+C) Dispersion of light
+Correct: C
+
+160. What makes a magnet attract iron?
+A) Magnetic field
+B) Electric charge
+C) Friction
+Correct: A
+
+161. Why do most ships have a darker color below the waterline?
+A) It is cheaper
+B) It hides dirt and marine growth better
+C) It improves speed
+Correct: B
+
+162. What is the hardest natural substance?
+A) Granite
+B) Quartz
+C) Diamond
+Correct: C
+
+163. What happens to atmospheric pressure when climbing a high mountain?
+A) It decreases
+B) It increases
+C) It stays the same
+Correct: A
+
+164. Which component of air is needed for burning?
+A) Nitrogen
+B) Oxygen
+C) Argon
+Correct: B
+
+165. Who was James Watt?
+A) Explorer of America
+B) Mathematician
+C) Engineer
+Correct: C
+
+166. What do solar panels use to produce energy?
+A) Sunlight
+B) Wind
+C) Rain
+Correct: A
+
+167. Why do car tires have tread?
+A) For appearance
+B) To increase grip
+C) To reduce engine noise
+Correct: B
+
+168. Why does a stick in water appear bent?
+A) Reflection of light
+B) Refraction of light
+C) Scattering of light
+Correct: B
+
+169. Where is the greatest pressure in the ocean?
+A) At the surface
+B) Halfway down
+C) At the bottom
+Correct: C
+
+170. What was the first zipper used for?
+A) Joining materials
+B) Opening doors
+C) Holding papers together
+Correct: A
+
+171. Which structure was the tallest in the world for thousands of years?
+A) Eiffel Tower
+B) Great Pyramid of Giza
+C) Big Ben
+Correct: B
+
+172. Why do some road signs have reflective surfaces?
+A) They are easier to see at night
+B) They are cheaper to produce
+C) They resist rain better
+Correct: A
+
+173. What mostly causes ocean tides?
+A) Wind
+B) The Moon's gravity
+C) Ocean currents
+Correct: B
+
+174. What is in the center of the eye and controls incoming light?
+A) Retina
+B) Lens
+C) Pupil
+Correct: C
+
+175. Which invention allowed food to be stored for a long time without refrigeration?
+A) Microwave oven
+B) Canned food
+C) Blender
+Correct: B
+
+176. Where does the tradition of wearing kimono come from?
+A) China
+B) Korea
+C) Japan
+Correct: C
+
+177. Why do windows in skyscrapers often not open?
+A) For safety reasons
+B) They are too heavy
+C) They have no handles
+Correct: A
+
+178. What most often causes waves in the sea?
+A) Tides
+B) Wind
+C) Ships
+Correct: B
+
+179. Where did the tradition of Halloween originate?
+A) France
+B) Spain
+C) Ireland
+Correct: C
+
+180. What powers most electric cars?
+A) Electric motor
+B) Steam engine
+C) Jet engine
+Correct: A
+
+181. Which part of a car controls the direction of driving?
+A) Clutch
+B) Steering wheel
+C) Muffler
+Correct: B
+
+182. What do bees collect from flowers?
+A) Nectar
+B) Sand
+C) Gravel
+Correct: A
+
+183. Which insect undergoes complete metamorphosis?
+A) Grasshopper
+B) Butterfly
+C) Dragonfly
+Correct: B
+
+184. What do fireflies use to glow?
+A) Reflection of light
+B) Solar energy
+C) Chemical reaction
+Correct: C
+
+185. What causes the phases of the Moon?
+A) Changes in the visible illuminated part from Earth
+B) Change in the Moon's color
+C) Earth's rotation
+Correct: A
+
+186. About how many days does the Moon take to orbit Earth?
+A) 7
+B) 27
+C) 365
+Correct: B
+
+187. What is found in large amounts on the Moon's surface?
+A) Forests
+B) Oceans
+C) Craters
+Correct: C
+
+188. What separates Europe from Africa?
+A) Mediterranean Sea
+B) Baltic Sea
+C) Black Sea
+Correct: A
+
+189. What causes wind?
+A) Movement of the Moon
+B) Earth's rotation
+C) Differences in air pressure
+Correct: C
+
+190. Why do airplanes sometimes leave white trails?
+A) Due to condensation of water vapor
+B) Due to burning wings
+C) Due to smoke from the cabin
+Correct: A
+
+191. Which invention allowed quick transmission of voice over distance?
+A) Television
+B) Telephone
+C) Camera
+Correct: B
+
+192. Which continent has no permanent residents?
+A) Asia
+B) Antarctica
+C) Europe
+Correct: B
+
+193. Why do some animals hibernate?
+A) Lack of fur
+B) Too much food
+C) Adaptation to difficult conditions
+Correct: C
+
+194. Why does the Moon appear to shine?
+A) It reflects sunlight
+B) It produces its own light
+C) It is hot like a star
+Correct: A
+
+195. Which substance causes the spicy taste of chili peppers?
+A) Caffeine
+B) Capsaicin
+C) Glucose
+Correct: B
+
+196. What does archaeology study?
+A) Weather
+B) Planetary systems
+C) Ancient civilizations through discoveries
+Correct: C
+
+197. Why do car windows have special protective layers?
+A) For greater safety
+B) To make them heavier
+C) To change their color
+Correct: A
+
+198. What are most electrical cables made from?
+A) Wood
+B) Glass
+C) Copper
+Correct: C
+
+199. What does the Beaufort scale measure?
+A) Wind strength
+B) Water temperature
+C) Ocean depth
+Correct: A
+
+200. Where is the highest mountain in the world located?
+A) Europe
+B) Africa
+C) Asia
+Correct: C

@@ -1,0 +1,1201 @@
+EASY:
+
+1. Which planet is closest to the Sun?
+A) Earth
+B) Mercury
+C) Mars
+Correct: B
+
+2. How many days are in a week?
+A) 5
+B) 10
+C) 7
+Correct: C
+
+3. What is the capital of Poland?
+A) Krakow
+B) Warsaw
+C) Gdansk
+Correct: B
+
+4. How many legs does a dog have?
+A) 4
+B) 2
+C) 6
+Correct: A
+
+5. What color do you get by mixing blue and yellow?
+A) Green
+B) Red
+C) Purple
+Correct: A
+
+6. Which is the largest ocean?
+A) Atlantic Ocean
+B) Pacific Ocean
+C) Indian Ocean
+Correct: B
+
+7. What is 5 + 5?
+A) 10
+B) 15
+C) 20
+Correct: A
+
+8. What is the largest mammal in the world?
+A) Elephant
+B) Giraffe
+C) Blue whale
+Correct: C
+
+9. How many planets are in the Solar System?
+A) 7
+B) 8
+C) 9
+Correct: B
+
+10. Which animal says "meow"?
+A) Dog
+B) Rabbit
+C) Cat
+Correct: C
+
+11. What is the official language of Poland?
+A) English
+B) Polish
+C) German
+Correct: B
+
+12. Which season comes after summer?
+A) Autumn
+B) Winter
+C) Spring
+Correct: A
+
+13. How many minutes are in an hour?
+A) 30
+B) 60
+C) 100
+Correct: B
+
+14. What is the process plants use to make food?
+A) Fermentation
+B) Respiration
+C) Photosynthesis
+Correct: C
+
+15. Which is the largest continent?
+A) Europe
+B) Asia
+C) Africa
+Correct: B
+
+16. Which gas do humans need to breathe?
+A) Carbon dioxide
+B) Helium
+C) Oxygen
+Correct: C
+
+17. How many sides does a triangle have?
+A) 3
+B) 4
+C) 5
+Correct: A
+
+18. What do we use to see?
+A) Eyes
+B) Ears
+C) Hands
+Correct: A
+
+19. Which of these is a fruit?
+A) Carrot
+B) Apple
+C) Potato
+Correct: B
+
+20. How many months are in a year?
+A) 12
+B) 10
+C) 15
+Correct: A
+
+21. Which planet do humans live on?
+A) Saturn
+B) Earth
+C) Neptune
+Correct: B
+
+22. What is frozen water called?
+A) Ice
+B) Steam
+C) Rain
+Correct: A
+
+23. What is the opposite of "hot"?
+A) Cold
+B) Warm
+C) Dry
+Correct: A
+
+24. Which organ helps people think?
+A) Heart
+B) Brain
+C) Stomach
+Correct: B
+
+25. What do fish use to breathe underwater?
+A) Fins
+B) Wings
+C) Gills
+Correct: C
+
+26. Which country is the Eiffel Tower in?
+A) France
+B) Japan
+C) Italy
+Correct: A
+
+27. What is 10 × 2?
+A) 30
+B) 15
+C) 20
+Correct: C
+
+28. Which animal is the fastest in the ocean?
+A) Shark
+B) Sailfish
+C) Dolphin
+Correct: B
+
+29. What is a baby dog called?
+A) Calf
+B) Kitten
+C) Puppy
+Correct: C
+
+30. Which superhero is known as the Dark Knight?
+A) Superman
+B) Batman
+C) Spider-Man
+Correct: B
+
+31. What device is used to take photos?
+A) Camera
+B) Microphone
+C) Speaker
+Correct: A
+
+32. What is the closest star to Earth?
+A) Moon
+B) Sun
+C) Mars
+Correct: B
+
+33. Which sport uses a ball and a hoop?
+A) Basketball
+B) Tennis
+C) Swimming
+Correct: A
+
+34. What do you call someone who creates computer programs?
+A) Doctor
+B) Pilot
+C) Programmer
+Correct: C
+
+35. Which item is used to measure time?
+A) Clock
+B) Ruler
+C) Thermometer
+Correct: A
+
+36. What is a popular internet search engine?
+A) Excel
+B) Paint
+C) Google
+Correct: C
+
+37. Which animal is known for changing color to hide?
+A) Chameleon
+B) Horse
+C) Dolphin
+Correct: A
+
+38. Which planet is famous for its rings?
+A) Saturn
+B) Venus
+C) Earth
+Correct: A
+
+39. Which computer part stores your files?
+A) Mouse
+B) Hard drive
+C) Keyboard
+Correct: B
+
+40. Which country is famous for the Pyramids of Giza?
+A) Egypt
+B) Canada
+C) Brazil
+Correct: A
+
+41. What is the name of the galaxy that Earth is in?
+A) Andromeda
+B) Red Dragon Galaxy
+C) Milky Way
+Correct: C
+
+42. Which language is most commonly used to build websites?
+A) HTML
+B) Music
+C) History
+Correct: A
+
+43. According to many sources, which is the world's longest river?
+A) Amazon River
+B) Nile River
+C) Danube River
+Correct: B
+
+44. Which of these stores electrical energy?
+A) Battery
+B) Spoon
+C) Book
+Correct: A
+
+45. What currency is used in the United States?
+A) Euro
+B) Pound
+C) Dollar
+Correct: C
+
+46. Which animal is known as the "King of the Jungle"?
+A) Lion
+B) Panda
+C) Goat
+Correct: A
+
+47. Where do people watch movies on a big screen?
+A) Stadium
+B) Museum
+C) Movie theater
+Correct: C
+
+48. Which item helps you find your way?
+A) Compass
+B) Clock
+C) Camera
+Correct: A
+
+49. Which animal has black-and-white fur and eats bamboo?
+A) Koala
+B) Panda
+C) Zebra
+Correct: B
+
+50. What is most commonly used to control a character in a video game?
+A) Controller
+B) Stove
+C) Watch
+Correct: A
+
+51. Which country is famous for sushi?
+A) Italy
+B) Mexico
+C) Japan
+Correct: C
+
+52. What device measures temperature?
+A) Thermometer
+B) Barometer
+C) Microscope
+Correct: A
+
+53. Which sport is played on ice with a puck?
+A) Soccer
+B) Basketball
+C) Hockey
+Correct: C
+
+54. What is the place where you can borrow books?
+A) Library
+B) Restaurant
+C) Pharmacy
+Correct: A
+
+55. What is the capital of France?
+A) London
+B) Rome
+C) Paris
+Correct: C
+
+56. Which food is usually used to make sandwiches?
+A) Bread
+B) Ice
+C) Sand
+Correct: A
+
+57. What do you call someone who designs buildings?
+A) Driver
+B) Architect
+C) Teacher
+Correct: B
+
+58. Which of these is usually found in a bathroom?
+A) Bathtub
+B) TV
+C) Stove
+Correct: A
+
+59. Which country is famous for pizza?
+A) China
+B) Canada
+C) Italy
+Correct: C
+
+60. Which computer part displays the image?
+A) Monitor
+B) Keyboard
+C) Speaker
+Correct: A
+
+61. Which metal is commonly used to make cans?
+A) Gold
+B) Silver
+C) Aluminum
+Correct: C
+
+62. What vehicle travels into space?
+A) Rocket
+B) Boat
+C) Train
+Correct: A
+
+63. Which sport uses a board and ocean waves?
+A) Skiing
+B) Surfing
+C) Boxing
+Correct: B
+
+64. Who painted the Mona Lisa?
+A) Leonardo da Vinci
+B) Pablo Picasso
+C) Vincent van Gogh
+Correct: A
+
+65. Which country is shaped like a boot?
+A) Greece
+B) Italy
+C) Spain
+Correct: B
+
+66. Which popular dance comes from Argentina?
+A) Waltz
+B) Flamenco
+C) Tango
+Correct: C
+
+67. Which holiday is celebrated on October 31?
+A) Halloween
+B) Easter
+C) Valentine's Day
+Correct: A
+
+68. Which athlete is famous for basketball and jersey number 23?
+A) Lionel Messi
+B) Michael Jordan
+C) Usain Bolt
+Correct: B
+
+69. What currency is used in Japan?
+A) Won
+B) Yuan
+C) Yen
+Correct: C
+
+70. Which invention is associated with Thomas Edison?
+A) Light bulb
+B) Car
+C) Airplane
+Correct: A
+
+71. Which language is spoken in Spain?
+A) French
+B) Spanish
+C) Portuguese
+Correct: B
+
+72. What is the process of making a movie from drawings called?
+A) Cooking
+B) Photography
+C) Animation
+Correct: C
+
+73. Which sport uses clubs and small balls?
+A) Golf
+B) Boxing
+C) Swimming
+Correct: A
+
+74. What is 15 + 10?
+A) 35
+B) 30
+C) 25
+Correct: C
+
+75. Which planet is known as the Red Planet?
+A) Venus
+B) Mars
+C) Jupiter
+Correct: B
+
+76. Which chemical element has the symbol O?
+A) Gold
+B) Hydrogen
+C) Oxygen
+Correct: C
+
+77. How many sides does a hexagon have?
+A) 6
+B) 5
+C) 8
+Correct: A
+
+78. Which organ is responsible for breathing?
+A) Heart
+B) Brain
+C) Lungs
+Correct: C
+
+79. Who wrote "Romeo and Juliet"?
+A) William Shakespeare
+B) Adam Mickiewicz
+C) J.R.R. Tolkien
+Correct: A
+
+80. Which temperature unit is most commonly used worldwide?
+A) Kilogram
+B) Degrees Celsius
+C) Meter
+Correct: B
+
+81. What is the square root of 9?
+A) 2
+B) 4
+C) 3
+Correct: C
+
+82. What is the study of planets and stars called?
+A) Astronomy
+B) Biology
+C) Geology
+Correct: A
+
+83. Which computer part performs calculations?
+A) Monitor
+B) Processor
+C) Keyboard
+Correct: B
+
+84. What is the longest bone in the human body?
+A) Femur
+B) Skull bone
+C) Hand bone
+Correct: A
+
+85. Which country is the largest by land area?
+A) Canada
+B) Russia
+C) China
+Correct: B
+
+86. What is the chemical symbol for iron?
+A) Mg
+B) H
+C) Fe
+Correct: C
+
+87. How many degrees are in a full circle?
+A) 90°
+B) 180°
+C) 360°
+Correct: C
+
+88. Which tool is used to measure weight?
+A) Scale
+B) Ruler
+C) Clock
+Correct: A
+
+89. What do you call someone who designs clothes?
+A) Photographer
+B) Fashion designer
+C) Architect
+Correct: B
+
+90. Which symbol is on Japan's flag?
+A) Star
+B) Cross
+C) Red circle
+Correct: C
+
+91. What is the study of rocks called?
+A) Geology
+B) Zoology
+C) Astronomy
+Correct: A
+
+92. Which invention lets people talk over long distances?
+A) Thermometer
+B) Telephone
+C) Compass
+Correct: B
+
+93. What do you call someone who studies the past through excavations?
+A) Car mechanic
+B) Doctor
+C) Archaeologist
+Correct: C
+
+94. Which material is transparent and commonly used in windows?
+A) Wood
+B) Stone
+C) Glass
+Correct: C
+
+95. What is the place where airplanes take off and land?
+A) Harbor
+B) Train station
+C) Airport
+Correct: C
+
+96. Which part of a book usually shows the title and author's name?
+A) Cover
+B) Blank page
+C) Bookmark
+Correct: A
+
+97. Which science studies substances and their reactions?
+A) History
+B) Geography
+C) Chemistry
+Correct: C
+
+98. What do you call someone who creates paintings?
+A) Painter
+B) Driver
+C) Astronaut
+Correct: A
+
+99. Which device is used to heat a house?
+A) Refrigerator
+B) Radiator
+C) Freezer
+Correct: B
+
+100. Which metal is attracted to a magnet?
+A) Aluminum
+B) Silver
+C) Iron
+Correct: C
+
+101. What device measures earthquakes?
+A) Seismograph
+B) Thermometer
+C) Barometer
+Correct: A
+
+102. Which musical instrument usually has six strings?
+A) Flute
+B) Guitar
+C) Trumpet
+Correct: B
+
+103. What is the name of the ancient amphitheater in Rome?
+A) Parthenon
+B) Acropolis
+C) Colosseum
+Correct: C
+
+104. Which invention helps people travel on water?
+A) Boat
+B) Telephone
+C) Car
+Correct: A
+
+105. What do you call someone who writes books?
+A) Actor
+B) Author
+C) Painter
+Correct: B
+
+106. Which material is commonly used to make clothes?
+A) Cotton
+B) Concrete
+C) Glass
+Correct: A
+
+107. What was the oldest known writing system used in Mesopotamia?
+A) Hieroglyphs
+B) Alphabet
+C) Cuneiform
+Correct: C
+
+108. Which sport uses a bow and arrows?
+A) Fencing
+B) Archery
+C) Gymnastics
+Correct: B
+
+109. Which planet is known for its extremely hot surface?
+A) Saturn
+B) Uranus
+C) Venus
+Correct: C
+
+110. What is the study of human society and behavior called?
+A) Physics
+B) Sociology
+C) Mathematics
+Correct: B
+
+111. Which tool shows the cardinal directions?
+A) Compass
+B) Magnifying glass
+C) Flashlight
+Correct: A
+
+112. What is the study of numbers and calculations called?
+A) Chemistry
+B) Mathematics
+C) Biology
+Correct: B
+
+113. Which gas is the most common in Earth's atmosphere?
+A) Oxygen
+B) Carbon dioxide
+C) Nitrogen
+Correct: C
+
+114. Which sport is played on a court?
+A) Baseball
+B) Tennis
+C) Hockey
+Correct: B
+
+115. Which is the largest desert in the world?
+A) Sahara
+B) Gobi
+C) Antarctica
+Correct: C
+
+116. Which sense lets you smell?
+A) Smell
+B) Sight
+C) Hearing
+Correct: A
+
+117. What is the process of ice turning into water called?
+A) Evaporation
+B) Melting
+C) Condensation
+Correct: B
+
+118. Which continent is crossed by both the Equator and the Tropic of Capricorn?
+A) Asia
+B) Europe
+C) Africa
+Correct: C
+
+119. What vehicle travels on rails?
+A) Train
+B) Bus
+C) Car
+Correct: A
+
+120. Which element has the symbol Na?
+A) Nitrogen
+B) Sodium
+C) Nickel
+Correct: B
+
+121. What device is used to observe distant stars?
+A) Telescope
+B) Microscope
+C) Binoculars
+Correct: A
+
+122. Which ocean lies between Africa and Australia?
+A) Atlantic Ocean
+B) Arctic Ocean
+C) Indian Ocean
+Correct: C
+
+123. What is the largest species of wild cat?
+A) Leopard
+B) Cheetah
+C) Tiger
+Correct: C
+
+124. What do you call the person who leads an orchestra?
+A) Conductor
+B) Guitarist
+C) Singer
+Correct: A
+
+125. Which of these countries is in South America?
+A) Mexico
+B) Canada
+C) Argentina
+Correct: C
+
+126. Which language is most commonly spoken in the United Kingdom?
+A) Spanish
+B) English
+C) Italian
+Correct: B
+
+127. Which of these birds cannot fly?
+A) Eagle
+B) Sparrow
+C) Penguin
+Correct: C
+
+128. Which sense lets you hear sounds?
+A) Hearing
+B) Smell
+C) Taste
+Correct: A
+
+129. What do you call someone who bakes bread?
+A) Chef
+B) Baker
+C) Butcher
+Correct: B
+
+130. What should you do before eating?
+A) Wash your hands
+B) Watch TV
+C) Go for a run
+Correct: A
+
+131. Which part of a plant absorbs water from the soil?
+A) Leaf
+B) Root
+C) Stem
+Correct: B
+
+132. Which product is made from milk?
+A) Rice
+B) Pasta
+C) Cheese
+Correct: C
+
+133. Which continent is France in?
+A) Europe
+B) Asia
+C) Africa
+Correct: A
+
+134. Which vitamin is produced in the skin by sunlight?
+A) Vitamin C
+B) Vitamin D
+C) Vitamin K
+Correct: B
+
+135. What usually grows from a seed?
+A) Fruit
+B) Flower
+C) Plant
+Correct: C
+
+136. Which ingredient is most commonly used to make bread?
+A) Flour
+B) Rice
+C) Sugar
+Correct: A
+
+137. What is the capital of Germany?
+A) Munich
+B) Berlin
+C) Hamburg
+Correct: B
+
+138. Which drink is best for staying hydrated?
+A) Cola
+B) Juice
+C) Water
+Correct: C
+
+139. Which part of a flower often attracts insects with its color?
+A) Petals
+B) Root
+C) Stem
+Correct: A
+
+140. At what temperature does water boil at sea level?
+A) 80°C
+B) 100°C
+C) 120°C
+Correct: B
+
+141. Which of these countries is in Europe?
+A) Brazil
+B) Japan
+C) Spain
+Correct: C
+
+142. How many teeth does an adult usually have?
+A) 32
+B) 28
+C) 36
+Correct: A
+
+143. What do plants need for photosynthesis?
+A) Sand
+B) Sunlight
+C) Snow
+Correct: B
+
+144. Which seasoning makes food taste salty?
+A) Pepper
+B) Sugar
+C) Salt
+Correct: C
+
+145. Which device most commonly connects a computer to the internet wirelessly?
+A) Monitor
+B) Keyboard
+C) Wi-Fi router
+Correct: C
+
+146. Which animal can sleep while standing?
+A) Horse
+B) Cat
+C) Rabbit
+Correct: A
+
+147. What is important for staying hydrated?
+A) Sugary drinks
+B) Drinking water regularly
+C) Eating only fruit
+Correct: B
+
+148. Which traffic light means you can go?
+A) Green
+B) Red
+C) Yellow
+Correct: A
+
+149. What is the force that pulls objects toward Earth?
+A) Friction
+B) Magnetism
+C) Gravity
+Correct: C
+
+150. Which nutrient helps build muscles?
+A) Fat
+B) Protein
+C) Sugar
+Correct: B
+
+151. Where does Santa Claus live in popular stories?
+A) Lapland
+B) Brazil
+C) Egypt
+Correct: A
+
+152. What do bees make?
+A) Milk
+B) Honey
+C) Wool
+Correct: B
+
+153. What do you call the person who flies an airplane?
+A) Driver
+B) Captain
+C) Pilot
+Correct: C
+
+154. What is a refrigerator used for?
+A) Keeping food cold
+B) Washing clothes
+C) Washing dishes
+Correct: A
+
+155. Where does milk come from?
+A) Birds
+B) Cows
+C) Sheep
+Correct: B
+
+156. What does a turtle carry on its back?
+A) Fur
+B) Wings
+C) Shell
+Correct: C
+
+157. Why do people use an umbrella?
+A) To stay dry
+B) To stay warm
+C) To make light
+Correct: A
+
+158. Where do birds sleep?
+A) In caves
+B) In burrows
+C) In nests
+Correct: C
+
+159. What shines in the sky during the day?
+A) The Sun
+B) The Moon
+C) Stars
+Correct: A
+
+160. What animal is Simba in "The Lion King"?
+A) Tiger
+B) Wolf
+C) Lion
+Correct: C
+
+161. What is most often added to tea to make it sweeter?
+A) Sugar
+B) Salt
+C) Pepper
+Correct: A
+
+162. Where do polar bears live in the wild?
+A) Antarctica
+B) The Arctic
+C) Greenland
+Correct: B
+
+163. What do penguins use to swim underwater?
+A) Legs
+B) Tail
+C) Flippers
+Correct: C
+
+164. What is a seat belt used for?
+A) Protecting passengers
+B) Making the car faster
+C) Saving fuel
+Correct: A
+
+165. What is inside a peach?
+A) Pit
+B) Nut
+C) Loose seeds
+Correct: A
+
+166. Why are sunglasses useful?
+A) They magnify objects
+B) They protect your eyes from sunlight
+C) They improve hearing
+Correct: B
+
+167. What do dolphins breathe with?
+A) Gills
+B) Fins
+C) Lungs
+Correct: C
+
+168. Where do bees store honey?
+A) Nest
+B) Hive
+C) Burrow
+Correct: B
+
+169. What is most commonly found in a salad?
+A) Meat
+B) Vegetables
+C) Pasta
+Correct: B
+
+170. Where does wheat flour come from?
+A) Corn
+B) Rice
+C) Wheat
+Correct: C
+
+171. Why should you wear a helmet while riding a bike?
+A) It protects your head
+B) It makes you faster
+C) It improves balance
+Correct: A
+
+172. What do pandas mainly eat?
+A) Leaves
+B) Bamboo
+C) Fruit
+Correct: B
+
+173. What is usually inside an egg?
+A) Only the yolk
+B) Only the egg white
+C) Both yolk and egg white
+Correct: C
+
+174. What is a trash can used for?
+A) Throwing away waste
+B) Storing clothes
+C) Washing dishes
+Correct: A
+
+175. Where do bananas grow?
+A) On bushes
+B) On banana plants
+C) Underground
+Correct: B
+
+176. What is 15 + 27?
+A) 42
+B) 41
+C) 43
+Correct: A
+
+177. What is 9 × 8?
+A) 64
+B) 72
+C) 81
+Correct: B
+
+178. What is 81 ÷ 9?
+A) 8
+B) 10
+C) 9
+Correct: C
+
+179. What is 12²?
+A) 144
+B) 124
+C) 132
+Correct: A
+
+180. What is 7 × 6 − 10?
+A) 30
+B) 32
+C) 36
+Correct: B
+
+181. What is 5³?
+A) 25
+B) 15
+C) 125
+Correct: C
+
+182. What is 100 − 48?
+A) 52
+B) 58
+C) 48
+Correct: A
+
+183. What do koalas mainly eat?
+A) Bamboo
+B) Eucalyptus leaves
+C) Grass
+Correct: B
+
+184. Where is the human heart located?
+A) On the right side
+B) Exactly in the middle
+C) Slightly to the left
+Correct: C
+
+185. Where does rain come from?
+A) Rivers
+B) Clouds
+C) Oceans
+Correct: B
+
+186. What grows on an oak tree?
+A) Pine cones
+B) Chestnuts
+C) Acorns
+Correct: C
+
+187. What is a flashlight used for?
+A) Providing light
+B) Heating
+C) Cooling
+Correct: A
+
+188. What is most commonly found in a hamburger?
+A) Rice
+B) Patty
+C) Pasta
+Correct: B
+
+189. How do adult frogs breathe?
+A) Only with gills
+B) Only with their tail
+C) With lungs and skin
+Correct: C
+
+190. Why do people wear gloves in winter?
+A) To keep their hands warm
+B) To become stronger
+C) To improve eyesight
+Correct: A
+
+191. What is most often added to cake to make it sweeter?
+A) Salt
+B) Sugar
+C) Vinegar
+Correct: B
+
+192. According to legend, what is at the end of a rainbow?
+A) A castle
+B) Rain
+C) Treasure
+Correct: C
+
+193. What do you use to play tennis?
+A) A ball and a racket
+B) A stick and a puck
+C) Shoes
+Correct: A
+
+194. Where are sports competitions usually held?
+A) City center
+B) Library
+C) Stadium
+Correct: C
+
+195. What is a world map used for?
+A) Showing countries
+B) Counting money
+C) Writing stories
+Correct: A
+
+196. What do people usually wear on their head in winter?
+A) Glasses
+B) A hat
+C) Gloves
+Correct: B
+
+197. What is found in the ocean?
+A) Clouds
+B) Salt water
+C) Desert sand
+Correct: B
+
+198. How do people usually travel between countries by air?
+A) Train
+B) Ship
+C) Airplane
+Correct: C
+
+199. Where did pizza originate?
+A) Italy
+B) France
+C) Canada
+Correct: A
+
+200. What are boxing gloves used for?
+A) Protecting your hands during a fight
+B) Making punches stronger
+C) Helping with balance
+Correct: A
