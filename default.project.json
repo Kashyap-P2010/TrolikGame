@@ -6,6 +6,9 @@
 			"$className": "ServerScriptService",
 			"LobbySystem": {
 				"$path": "src/ServerScriptService/LobbySystem"
+			},
+			"ExamSystem": {
+				"$path": "src/ServerScriptService/ExamSystem"
 			}
 		},
 		"ReplicatedStorage": {
