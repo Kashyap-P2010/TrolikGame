@@ -184,9 +184,10 @@ local function setVisible(inst: Instance?, v: boolean)
 	if inst then (inst :: any).Visible = v end
 end
 
--- Show/hide unselected vs selected state for one option row
+-- Toggle selected overlay (A/B/C buttons NEVER get hidden — text stays visible)
 local function setOptionSelected(btn: Instance?, btnSel: Instance?, selected: boolean)
-	setVisible(btn,    not selected)
+	-- `btn` (A/B/C) is always visible so Option_A/B/C text is never hidden.
+	-- `btnSel` (A_Selected etc.) overlays on top as the selection indicator.
 	setVisible(btnSel, selected)
 end
 
