@@ -148,7 +148,8 @@ timerLabel.TextColor3             = Color3.fromRGB(255, 255, 255)
 timerLabel.TextScaled             = true
 timerLabel.Text                   = "8:00"
 timerLabel.ZIndex                 = 10
-timerLabel.Parent                 = examFrame
+timerLabel.Parent                 = examUI
+timerLabel.Visible                = false
 
 local timerStroke          = Instance.new("UIStroke")
 timerStroke.Thickness      = 1.9
@@ -281,6 +282,7 @@ local function endExam()
 	-- Hide after 3 seconds
 	task.delay(3, function()
 		examFrame.Visible = false
+		timerLabel.Visible = false
 		examOpenGuard     = false
 	end)
 end
@@ -303,6 +305,7 @@ local function startExam()
 
 	-- Show frame with loading state
 	examFrame.Visible = true
+	timerLabel.Visible = true
 	if questionField   then questionField.Text              = "Loading questions..." end
 	if timerLabel      then timerLabel.Text                 = "8:00" end
 	if fieldA          then fieldA.Text                     = "" end
@@ -466,4 +469,5 @@ end
 -- Initial state
 ---------------------------------------------------------------------------
 examFrame.Visible = false
+timerLabel.Visible = false
 print("[ExamController] Initialized ✓")
