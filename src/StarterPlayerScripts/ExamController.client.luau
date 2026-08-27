@@ -19,8 +19,8 @@
 	      A_Selected   (Frame/Button)           — option A selected overlay
 	      B_Selected   (Frame/Button)
 	      C_Selected   (Frame/Button)
-	      ChooseAnswer (TextButton)             — hidden by default; green when option selected
-	      NextQuestion (TextButton)             — shown by default; flashes red warn if skipped unanswered
+	      ChooseAnswer (TextButton)             — red warning flash only (never interactive)
+	      NextQuestion (TextButton)             — always visible; records answer and advances
 	      TimerLabel   (TextLabel, CREATED HERE) — "8:00" countdown, screen center-top
 ]]
 
@@ -43,8 +43,7 @@ local saveExamResult   = ExamRemotes.get("SaveExamResult")   :: RemoteEvent
 -- Constants
 ---------------------------------------------------------------------------
 local EXAM_DURATION_SECONDS = 8 * 60
-local COLOR_RED              = Color3.fromRGB(221, 58,  61)
-local COLOR_GREEN            = Color3.fromRGB(149, 255, 65)
+local COLOR_RED              = Color3.fromRGB(221, 58, 61)
 
 ---------------------------------------------------------------------------
 -- UI discovery helpers
@@ -173,11 +172,10 @@ local examActive:     boolean    = false
 local questions:      {Question} = {}
 local currentIndex:   number     = 1
 local selectedAns:    string?    = nil   -- "A", "B", or "C"
-local answerLocked:   boolean    = false
 local score:          number     = 0
 local timerThread:    thread?    = nil
 local examOpenGuard:  boolean    = false
-local warnInProgress: boolean    = false  -- prevents skip-warn spam
+local warnInProgress: boolean    = false  -- prevents spam during 2s red flash
 
 ---------------------------------------------------------------------------
 -- Helpers
@@ -213,25 +211,6 @@ local function applySelection(letter: string)
 	if letter == "C" then setOptionSelected(btnC, btnCSelected, true) end
 end
 
--- Sync ChooseAnswer / NextQuestion visibility to current selection state.
--- Rule:
---   No selection  → NextQuestion visible,  ChooseAnswer hidden
---   Option chosen → ChooseAnswer GREEN+active, NextQuestion hidden
---   Answer locked → neither (handled in ChooseAnswer click)
-local function refreshButtonState()
-	if answerLocked then return end
-	if selectedAns ~= nil then
-		if chooseAnswerBtn then
-			chooseAnswerBtn.BackgroundColor3 = COLOR_GREEN
-			chooseAnswerBtn.Active           = true
-			chooseAnswerBtn.Visible          = true
-		end
-		setVisible(nextQuestionBtn, false)
-	else
-		setVisible(chooseAnswerBtn, false)
-		setVisible(nextQuestionBtn, true)
-	end
-end
 
 ---------------------------------------------------------------------------
 -- Display a question
@@ -241,11 +220,10 @@ local function displayQuestion(index: number)
 	local q = questions[index]
 	print(string.format("[ExamUI] Displaying Q%d/%d: %s", index, #questions, q.q))
 
-	answerLocked  = false
 	warnInProgress = false
 	clearAllSelections()
 
-	-- Default state: NextQuestion shown, ChooseAnswer hidden
+	-- ChooseAnswer always hidden; NextQuestion always shown
 	setVisible(chooseAnswerBtn, false)
 	setVisible(nextQuestionBtn, true)
 
@@ -287,7 +265,7 @@ local function endExam()
 
 	saveExamResult:FireServer(score, total)
 
-	if chooseAnswerBtn then chooseAnswerBtn.Active = false; chooseAnswerBtn.Visible = false end
+	if chooseAnswerBtn then chooseAnswerBtn.Visible = false end
 	setVisible(nextQuestionBtn, false)
 
 	if questionField then
@@ -324,15 +302,12 @@ local function startExam()
 	-- Show frame with loading state
 	examFrame.Visible = true
 	timerLabel.Visible = true
-	if questionField   then questionField.Text              = "Loading questions..." end
-	if timerLabel      then timerLabel.Text                 = "8:00" end
-	if fieldA          then fieldA.Text                     = "" end
-	if fieldB          then fieldB.Text                     = "" end
-	if fieldC          then fieldC.Text                     = "" end
-	if chooseAnswerBtn then
-		chooseAnswerBtn.Active           = false
-		chooseAnswerBtn.BackgroundColor3 = COLOR_RED
-	end
+	if questionField   then questionField.Text = "Loading questions..." end
+	if timerLabel      then timerLabel.Text    = "8:00" end
+	if fieldA          then fieldA.Text        = "" end
+	if fieldB          then fieldB.Text        = "" end
+	if fieldC          then fieldC.Text        = "" end
+	setVisible(chooseAnswerBtn, false)
 	setVisible(nextQuestionBtn, false)
 	clearAllSelections()
 
@@ -408,15 +383,14 @@ addHoverEffect(btnA)
 addHoverEffect(btnB)
 addHoverEffect(btnC)
 
--- Generic option handler (letter = "A"/"B"/"C")
+-- Generic option handler — just toggle selection, no button state change needed
 local function onOptionClicked(letter: string)
-	if not examActive or answerLocked then return end
+	if not examActive then return end
 	if selectedAns == letter then
 		clearAllSelections()   -- deselect (toggle off)
 	else
 		applySelection(letter)
 	end
-	refreshButtonState()
 end
 
 -- A button (unselected state)
@@ -430,9 +404,8 @@ if btnASelected then
 	local target: Instance? = (btnASelected:IsA("TextButton") and btnASelected) or btn
 	if target then
 		(target :: TextButton).MouseButton1Click:Connect(function()
-			if not examActive or answerLocked then return end
+			if not examActive then return end
 			clearAllSelections()
-			refreshButtonState()
 		end)
 	end
 end
@@ -446,9 +419,8 @@ if btnBSelected then
 	local target: Instance? = (btnBSelected:IsA("TextButton") and btnBSelected) or btn
 	if target then
 		(target :: TextButton).MouseButton1Click:Connect(function()
-			if not examActive or answerLocked then return end
+			if not examActive then return end
 			clearAllSelections()
-			refreshButtonState()
 		end)
 	end
 end
@@ -462,21 +434,46 @@ if btnCSelected then
 	local target: Instance? = (btnCSelected:IsA("TextButton") and btnCSelected) or btn
 	if target then
 		(target :: TextButton).MouseButton1Click:Connect(function()
-			if not examActive or answerLocked then return end
+			if not examActive then return end
 			clearAllSelections()
-			refreshButtonState()
 		end)
 	end
 end
 
--- ChooseAnswer — only visible when an option is selected (GREEN); locks the answer in
+-- ChooseAnswer — no click handler. It is ONLY used as a 2-second red warning flash.
+-- (Setting Active=false and never hooking up a click handler is sufficient.)
 if chooseAnswerBtn then
-	chooseAnswerBtn.MouseButton1Click:Connect(function()
-		if not examActive or answerLocked then return end
-		if selectedAns == nil then return end  -- shouldn't happen (button hidden when no selection)
+	chooseAnswerBtn.Active = false
+end
 
-		answerLocked = true
+-- NextQuestion
+--   • No selection → flash ChooseAnswer RED for 2s as a "you must pick an option" warning
+--   • Option selected → record answer, advance to next question / finish
+if nextQuestionBtn then
+	nextQuestionBtn.MouseButton1Click:Connect(function()
+		if not examActive then return end
 
+		-- No option selected — warn the player
+		if selectedAns == nil then
+			if warnInProgress then return end
+			warnInProgress = true
+
+			setVisible(nextQuestionBtn, false)
+			if chooseAnswerBtn then
+				chooseAnswerBtn.BackgroundColor3 = COLOR_RED
+				chooseAnswerBtn.Active           = false
+				chooseAnswerBtn.Visible          = true
+			end
+			task.delay(2, function()
+				if not examActive then return end
+				setVisible(chooseAnswerBtn, false)
+				setVisible(nextQuestionBtn, true)
+				warnInProgress = false
+			end)
+			return
+		end
+
+		-- Option was selected — record and advance
 		local q = questions[currentIndex]
 		if q and selectedAns == q.correct then
 			score = score + 1
@@ -486,46 +483,6 @@ if chooseAnswerBtn then
 				currentIndex, tostring(selectedAns), q and q.correct or "?"))
 		end
 
-		-- Lock: hide ChooseAnswer, show NextQuestion to advance
-		chooseAnswerBtn.Active  = false
-		chooseAnswerBtn.Visible = false
-		if nextQuestionBtn then
-			nextQuestionBtn.Visible = true
-			nextQuestionBtn.Text    = (currentIndex >= #questions) and "Finish Exam" or "Next Question"
-		end
-	end)
-end
-
--- NextQuestion
---   • answerLocked = false → player tried to skip; flash ChooseAnswer RED for 2s as a warning
---   • answerLocked = true  → advance to next question / finish
-if nextQuestionBtn then
-	nextQuestionBtn.MouseButton1Click:Connect(function()
-		if not examActive then return end
-
-		if not answerLocked then
-			-- Guard against spam-clicking during the 2s warning
-			if warnInProgress then return end
-			warnInProgress = true
-
-			-- Flash ChooseAnswer RED (non-interactable) for 2 seconds
-			setVisible(nextQuestionBtn, false)
-			if chooseAnswerBtn then
-				chooseAnswerBtn.BackgroundColor3 = COLOR_RED
-				chooseAnswerBtn.Active           = false
-				chooseAnswerBtn.Visible          = true
-			end
-
-			task.delay(2, function()
-				if not examActive then return end  -- exam may have ended during the 2s
-				setVisible(chooseAnswerBtn, false)
-				setVisible(nextQuestionBtn, true)
-				warnInProgress = false
-			end)
-			return
-		end
-
-		-- Answer was locked — advance
 		currentIndex += 1
 		if currentIndex > #questions then
 			endExam()
