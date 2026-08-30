@@ -52,11 +52,10 @@ for _, desc in ipairs(teacher:GetDescendants()) do
 end
 rootPart.Anchored = false
 
--- Custom rigs often have HipHeight = 0 by default, causing them to get stuck in the floor
+-- Custom rigs often have HipHeight = 0 by default, causing them to get stuck in the floor.
+-- The user will tune this in Studio manually.
 if humanoid.HipHeight <= 0 then
 	warn("[TeacherAI_WARNING] Teacher's HipHeight is 0! If he gets stuck in the floor, please manually increase Humanoid.HipHeight in the model.")
-	-- Attempt a safe default just in case
-	humanoid.HipHeight = 2
 end
 
 local waypointsFolder = Workspace:WaitForChild("TeacherWaypoints", 60)
@@ -292,8 +291,8 @@ local function patrolLoop()
 			if currentState == "PATROLLING" and patrolSessionId == currentSession then
 				local nodeName = targetNode.Name
 				if LOOK_NODES[nodeName] then
-					debugLog(string.format("Reached LookNode '%s'. Rolling for look animation (40%% chance)...", nodeName))
-					if math.random() <= 0.40 then
+					debugLog(string.format("Reached LookNode '%s'. Rolling for look animation (20%% chance)...", nodeName))
+					if math.random() <= 0.20 then
 						debugLog("Roll successful! Teacher is looking around.")
 						setState("LOOKING_AROUND")
 						local lookTime = math.random(TeacherSettings.IDLE_LOOK_TIME_MIN, TeacherSettings.IDLE_LOOK_TIME_MAX)
