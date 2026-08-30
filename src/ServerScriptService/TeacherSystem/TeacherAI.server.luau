@@ -64,28 +64,22 @@ end
 -- Since the builder's rig has the HumanoidRootPart rotated sideways relative to the mesh, 
 -- Humanoid.AutoRotate will make him walk sideways. This overrides AutoRotate and manually 
 -- aligns the rig correctly based on the offset in TeacherSettings.
-local currentWalkTarget: Vector3? = nil
-
 local function fixCrabWalking()
-	debugLog("Applying script-side crabwalking fix (CFrame Override)...")
-	humanoid.AutoRotate = false
+	debugLog("Applying script-side crabwalking fix (Motor6D Offset)...")
+	humanoid.AutoRotate = true -- Let Roblox handle natural turning
 	
-	RunService.Heartbeat:Connect(function()
-		if not rootPart or not rootPart.Parent then return end
-		
-		if currentState == "PATROLLING" and currentWalkTarget then
-			local dir = (currentWalkTarget - rootPart.Position)
-			local flatDir = Vector3.new(dir.X, 0, dir.Z)
-			
-			if flatDir.Magnitude > 0.1 then
-				local targetLook = flatDir.Unit
-				local targetRotation = CFrame.lookAt(Vector3.zero, targetLook) * CFrame.Angles(0, math.rad(TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
-				
-				-- Forcefully interpolate the rotation without relying on physics constraints
-				rootPart.CFrame = rootPart.CFrame:Lerp(CFrame.new(rootPart.Position) * targetRotation, 0.15)
+	-- Find the Motor6D connecting the HumanoidRootPart to the body and rotate its offset
+	for _, obj in ipairs(teacher:GetDescendants()) do
+		if obj:IsA("Motor6D") and (obj.Part0 == rootPart or obj.Part1 == rootPart) then
+			debugLog("Found Root Motor6D: " .. obj.Name .. ". Applying rotation offset of " .. TeacherSettings.RIG_ROTATION_OFFSET_Y .. " degrees.")
+			if obj.Part0 == rootPart then
+				obj.C0 = obj.C0 * CFrame.Angles(0, math.rad(TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
+			else
+				obj.C1 = obj.C1 * CFrame.Angles(0, math.rad(-TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
 			end
+			break
 		end
-	end)
+	end
 end
 task.spawn(fixCrabWalking)
 
@@ -180,7 +174,13 @@ if waypointsFolder then
 		end
 	end
 	table.sort(waypointsList, function(a, b) return a.index < b.index end)
-	debugLog(string.format("Registered and sorted %d numerical waypoints.", #waypointsList))
+	
+	-- Debug print the exact order so the user can verify no waypoints were skipped
+	local orderStr = ""
+	for i, wp in ipairs(waypointsList) do
+		orderStr = orderStr .. wp.index .. (i < #waypointsList and " -> " or "")
+	end
+	debugLog(string.format("Registered and sorted %d numerical waypoints. Order: %s", #waypointsList, orderStr))
 end
 
 -- Used for race-condition prevention (cancelling tweens if state changes)
@@ -224,8 +224,8 @@ local LOOK_NODES = {
 local function getNextWaypoint(): Instance?
 	if #waypointsList == 0 then return nil end
 	
-	-- 8% chance to randomly flip direction, as long as we aren't at the very edge
-	if math.random() <= 0.08 and currentWaypointIndex > 1 and currentWaypointIndex < #waypointsList then
+	-- 1% chance to randomly flip direction, as long as we aren't at the very edge (for testing)
+	if math.random() <= 0.01 and currentWaypointIndex > 1 and currentWaypointIndex < #waypointsList then
 		patrolDirection = -patrolDirection
 		debugLog("Randomly flipping patrol direction!")
 	end
@@ -264,7 +264,6 @@ local function walkToTarget(targetPosition: Vector3, sessionId: number)
 			return false 
 		end
 		
-		currentWalkTarget = pos
 		humanoid:MoveTo(pos)
 		
 		local completed = false
