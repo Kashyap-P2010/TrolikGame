@@ -219,8 +219,8 @@ end
 local function walkToTarget(targetPosition: Vector3, sessionId: number)
 	debugLog(string.format("Computing path to target: %.1f, %.1f, %.1f", targetPosition.X, targetPosition.Y, targetPosition.Z))
 	local path = PathfindingService:CreatePath({
-		AgentRadius = 2,
-		AgentHeight = 5,
+		AgentRadius = TeacherSettings.AGENT_RADIUS,
+		AgentHeight = TeacherSettings.AGENT_HEIGHT,
 		AgentCanJump = false,
 	})
 	
