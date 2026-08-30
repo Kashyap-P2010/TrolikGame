@@ -1,55 +1,121 @@
 --[[
 	TeacherAI.server.luau
 	Controls the state machine, pathfinding, and vision checks for the Teacher.
+	Includes extensive debugging and race condition prevention.
 ]]
 
 local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
 local PathfindingService = game:GetService("PathfindingService")
 local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+local ContentProvider = game:GetService("ContentProvider")
 
 local TeacherSettings = require(script.Parent:WaitForChild("TeacherSettings"))
-local TweenService = game:GetService("TweenService")
+
+---------------------------------------------------------------------------
+-- Debugging Setup
+---------------------------------------------------------------------------
+local DEBUG_MODE = true
+local function debugLog(...)
+	if DEBUG_MODE then
+		print("[TeacherAI_DEBUG]", ...)
+	end
+end
+
+debugLog("Initializing TeacherAI script...")
 
 ---------------------------------------------------------------------------
 -- References & Setup
 ---------------------------------------------------------------------------
-local teacher = Workspace:WaitForChild("Teacher", 60)
-if not teacher then error("[TeacherAI] Teacher model not found!") end
+local teacher = Workspace:WaitForChild("Teacher_Rig", 60)
+if not teacher then 
+	warn("[TeacherAI_ERROR] Teacher_Rig model not found after 60s!") 
+	return 
+end
 
--- The rig uses an AnimationController instead of a Humanoid
+debugLog("Found Teacher_Rig. Waiting for core parts...")
 local animController = teacher:WaitForChild("AnimationController", 10) :: AnimationController
-local head = teacher:WaitForChild("Head") :: Part
-local rootPart = teacher:WaitForChild("RootPart") :: Part
+local head = teacher:WaitForChild("Head", 10) :: Part
+local rootPart = teacher:WaitForChild("RootPart", 10) :: Part
+
+if not animController or not head or not rootPart then
+	warn("[TeacherAI_ERROR] Missing critical rig components (AnimationController, Head, or RootPart).")
+	return
+end
+debugLog("Core parts loaded successfully.")
 
 local waypointsFolder = Workspace:WaitForChild("TeacherWaypoints", 60)
-if not waypointsFolder then warn("[TeacherAI] TeacherWaypoints folder not found!") end
+if not waypointsFolder then 
+	warn("[TeacherAI_ERROR] TeacherWaypoints folder not found in Workspace!") 
+end
 
--- Animations
-local IDLE_ANIM_ID = "rbxassetid://98820429377987"
-local WALK_ANIM_ID = "rbxassetid://75525743234669"
-local LOOK_ANIM_ID = "rbxassetid://88647926841758"
+---------------------------------------------------------------------------
+-- Asset Loading & Animations
+---------------------------------------------------------------------------
+local ANIMATIONS = {
+	IDLE = "rbxassetid://98820429377987",
+	WALK = "rbxassetid://75525743234669",
+	LOOK = "rbxassetid://88647926841758" -- arms_crossed
+}
 
--- Create an Animator if one doesn't exist
 local animator = animController:FindFirstChildOfClass("Animator")
 if not animator then
+	debugLog("No Animator found in AnimationController. Creating one...")
 	animator = Instance.new("Animator")
 	animator.Parent = animController
 end
 
--- Placeholder loaded animations (we wrap in pcall in case IDs are invalid)
-local function loadAnimation(id: string): AnimationTrack?
-	if id == "rbxassetid://0" or id == "" then return nil end
-	local anim = Instance.new("Animation")
-	anim.AnimationId = id
-	local success, track = pcall(function() return animator:LoadAnimation(anim) end)
-	if success then return track end
-	return nil
+local loadedTracks: {[string]: AnimationTrack} = {}
+
+local function loadAnimations()
+	debugLog("Starting animation preload sequence...")
+	local assetsToPreload = {}
+	
+	for name, id in pairs(ANIMATIONS) do
+		local anim = Instance.new("Animation")
+		anim.AnimationId = id
+		table.insert(assetsToPreload, anim)
+		
+		local success, track = pcall(function() return animator:LoadAnimation(anim) end)
+		if success and track then
+			loadedTracks[name] = track
+			debugLog(string.format("Successfully loaded track: %s (%s)", name, id))
+		else
+			warn(string.format("[TeacherAI_ERROR] Failed to load animation: %s (%s)", name, id))
+		end
+	end
+	
+	-- Preload assets to ensure clients see them immediately (Optional but good practice)
+	task.spawn(function()
+		local success, err = pcall(function()
+			ContentProvider:PreloadAsync(assetsToPreload)
+		end)
+		if success then
+			debugLog("All animations successfully preloaded via ContentProvider.")
+		else
+			warn("[TeacherAI_WARNING] ContentProvider failed to preload some animations:", err)
+		end
+	end)
 end
 
-local idleTrack = loadAnimation(IDLE_ANIM_ID)
-local walkTrack = loadAnimation(WALK_ANIM_ID)
-local lookTrack = loadAnimation(LOOK_ANIM_ID)
+loadAnimations()
+
+local function playTrack(name: string)
+	local track = loadedTracks[name]
+	if track and not track.IsPlaying then 
+		debugLog("Playing animation:", name)
+		track:Play() 
+	end
+end
+
+local function stopTrack(name: string)
+	local track = loadedTracks[name]
+	if track and track.IsPlaying then 
+		debugLog("Stopping animation:", name)
+		track:Stop() 
+	end
+end
 
 ---------------------------------------------------------------------------
 -- State Machine & Pathfinding Variables
@@ -61,61 +127,59 @@ local waypointsList: {Instance} = {}
 
 if waypointsFolder then
 	waypointsList = waypointsFolder:GetChildren()
+	debugLog(string.format("Registered %d waypoints.", #waypointsList))
 end
 
-local function playTrack(track: AnimationTrack?)
-	if not track then return end
-	if not track.IsPlaying then track:Play() end
-end
-
-local function stopTrack(track: AnimationTrack?)
-	if not track then return end
-	if track.IsPlaying then track:Stop() end
-end
+-- Used for race-condition prevention (cancelling tweens if state changes)
+local patrolSessionId = 0
 
 local function setState(newState: AIState)
-	print("[TeacherAI] State changed to:", newState)
+	if currentState == newState then return end
+	debugLog(string.format("--- STATE CHANGE: %s -> %s ---", currentState, newState))
 	currentState = newState
+	patrolSessionId += 1 -- Invalidate any running tweens/loops for the old state
 	
 	if newState == "WAITING" then
-		stopTrack(walkTrack)
-		stopTrack(lookTrack)
-		playTrack(idleTrack)
+		stopTrack("WALK")
+		stopTrack("LOOK")
+		playTrack("IDLE")
 		
 	elseif newState == "PATROLLING" then
-		stopTrack(idleTrack)
-		stopTrack(lookTrack)
-		playTrack(walkTrack)
+		stopTrack("IDLE")
+		stopTrack("LOOK")
+		playTrack("WALK")
 		
 	elseif newState == "LOOKING_AROUND" then
-		stopTrack(walkTrack)
-		stopTrack(idleTrack)
-		playTrack(lookTrack)
+		stopTrack("WALK")
+		stopTrack("IDLE")
+		playTrack("LOOK")
 	end
 end
 
 ---------------------------------------------------------------------------
 -- Pathfinding Logic
 ---------------------------------------------------------------------------
-local function getNextWaypoint(): Instance?
-	if #waypointsList == 0 then return nil end
-	-- Randomly pick a new waypoint that isn't the current one
-	local nextIdx = currentWaypointIndex
-	while nextIdx == currentWaypointIndex and #waypointsList > 1 do
-		nextIdx = math.random(1, #waypointsList)
-	end
-	currentWaypointIndex = nextIdx
-	return waypointsList[currentWaypointIndex]
-end
-
--- Specific waypoints where the teacher is allowed to stop and look around
 local LOOK_NODES = {
 	["8"] = true, ["9"] = true, ["10"] = true, ["11"] = true, ["12"] = true,
 	["13"] = true, ["14"] = true, ["17"] = true, ["22"] = true, ["23"] = true,
 	["24"] = true, ["25"] = true, ["27"] = true
 }
 
-local function walkToTarget(targetPosition: Vector3)
+local function getNextWaypoint(): Instance?
+	if #waypointsList == 0 then return nil end
+	-- Randomly pick a new waypoint that isn't the current one (allow reversing)
+	local nextIdx = currentWaypointIndex
+	while nextIdx == currentWaypointIndex and #waypointsList > 1 do
+		nextIdx = math.random(1, #waypointsList)
+	end
+	currentWaypointIndex = nextIdx
+	local node = waypointsList[currentWaypointIndex]
+	debugLog(string.format("Selected next waypoint: %s (Index %d)", node.Name, nextIdx))
+	return node
+end
+
+local function walkToTarget(targetPosition: Vector3, sessionId: number)
+	debugLog(string.format("Computing path to target: %.1f, %.1f, %.1f", targetPosition.X, targetPosition.Y, targetPosition.Z))
 	local path = PathfindingService:CreatePath({
 		AgentRadius = 2,
 		AgentHeight = 5,
@@ -127,64 +191,107 @@ local function walkToTarget(targetPosition: Vector3)
 	end)
 	
 	local function moveToPoint(pos: Vector3)
-		-- Calculate duration based on distance and WalkSpeed
+		-- Race condition check: Did the state change while we were waiting/computing?
+		if patrolSessionId ~= sessionId or currentState ~= "PATROLLING" then 
+			debugLog("Movement aborted: State changed during path execution.")
+			return false 
+		end
+		
 		local distance = (rootPart.Position - pos).Magnitude
 		local duration = distance / TeacherSettings.PATROL_WALK_SPEED
 		
-		-- Look at the target (ignore Y axis so he doesn't tilt up/down)
+		-- Look at the target (ignore Y axis)
 		local lookAt = Vector3.new(pos.X, rootPart.Position.Y, pos.Z)
 		local targetCFrame = CFrame.lookAt(rootPart.Position, lookAt)
-		-- Immediately snap rotation
 		rootPart.CFrame = targetCFrame
 		
 		if duration > 0.05 then
 			local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear)
 			local tween = TweenService:Create(rootPart, tweenInfo, {CFrame = targetCFrame + (pos - targetCFrame.Position)})
+			
+			local completed = false
+			local conn
+			conn = tween.Completed:Connect(function()
+				completed = true
+				if conn then conn:Disconnect() end
+			end)
+			
 			tween:Play()
-			tween.Completed:Wait()
+			
+			-- Wait for completion or interruption
+			while not completed do
+				if patrolSessionId ~= sessionId or currentState ~= "PATROLLING" then
+					debugLog("Tween cancelled mid-movement due to state change.")
+					tween:Cancel()
+					if conn then conn:Disconnect() end
+					return false
+				end
+				task.wait(0.05)
+			end
+			return true
 		else
 			rootPart.Position = pos
 			task.wait()
+			return true
 		end
 	end
 
 	if success and path.Status == Enum.PathStatus.Success then
 		local points = path:GetWaypoints()
+		debugLog(string.format("Path computed successfully with %d waypoints.", #points))
+		
 		-- Skip the first waypoint as it is usually the current position
 		for i = 2, #points do
-			if currentState ~= "PATROLLING" then break end
-			moveToPoint(points[i].Position)
+			local moveSuccess = moveToPoint(points[i].Position)
+			if not moveSuccess then break end
 		end
 	else
-		warn("[TeacherAI] Pathfinding failed:", err or path.Status, "- walking direct")
+		warn("[TeacherAI_WARNING] Pathfinding failed:", err or path.Status, "- attempting direct walk")
 		moveToPoint(targetPosition)
 	end
 end
 
 local function patrolLoop()
+	debugLog("Patrol loop started.")
 	while task.wait() do
 		if currentState == "PATROLLING" then
 			local targetNode = getNextWaypoint()
 			if not targetNode then 
+				warn("[TeacherAI_WARNING] No valid waypoints found, retrying in 1s...")
 				task.wait(1)
 				continue 
 			end
 			
-			walkToTarget((targetNode :: BasePart).Position)
+			local currentSession = patrolSessionId
+			walkToTarget((targetNode :: BasePart).Position, currentSession)
 			
-			-- Reached the node. Should we look around?
-			if currentState == "PATROLLING" then
+			-- Ensure we are still patrolling and this wasn't interrupted by a catch/suspect event
+			if currentState == "PATROLLING" and patrolSessionId == currentSession then
 				local nodeName = targetNode.Name
 				if LOOK_NODES[nodeName] then
-					-- E.g. 40% chance to stop and look around when hitting a designated chair node
+					debugLog(string.format("Reached LookNode '%s'. Rolling for look animation (40%% chance)...", nodeName))
 					if math.random() <= 0.40 then
+						debugLog("Roll successful! Teacher is looking around.")
 						setState("LOOKING_AROUND")
 						local lookTime = math.random(TeacherSettings.IDLE_LOOK_TIME_MIN, TeacherSettings.IDLE_LOOK_TIME_MAX)
-						task.wait(lookTime)
-						setState("PATROLLING")
+						
+						-- Hold state, but check if we got interrupted
+						local waitStart = os.clock()
+						while os.clock() - waitStart < lookTime do
+							if currentState ~= "LOOKING_AROUND" then break end
+							task.wait(0.1)
+						end
+						
+						-- If we weren't interrupted, resume patrolling
+						if currentState == "LOOKING_AROUND" then
+							debugLog("Finished looking around. Resuming patrol.")
+							setState("PATROLLING")
+						end
+					else
+						debugLog("Roll failed. Continuing patrol.")
 					end
 				else
-					-- Even at normal nodes, maybe a tiny pause
+					-- Even at normal nodes, a tiny pause makes the robot-like movement feel more natural
 					task.wait(math.random() * 0.5)
 				end
 			end
@@ -195,7 +302,6 @@ end
 ---------------------------------------------------------------------------
 -- Vision (FOV) Detection Loop
 ---------------------------------------------------------------------------
--- Raycast parameters to ignore the Teacher and FOV cone itself
 local rayParams = RaycastParams.new()
 rayParams.FilterDescendantsInstances = {teacher}
 rayParams.FilterType = Enum.RaycastFilterType.Exclude
@@ -203,7 +309,6 @@ rayParams.FilterType = Enum.RaycastFilterType.Exclude
 local function checkFOV()
 	local fovAngle = TeacherSettings.FOV_ANGLE_DEGREES
 	local range = TeacherSettings.FOV_RANGE_STUDS
-	-- The minimum dot product for our cone angle
 	local minDot = math.cos(math.rad(fovAngle / 2))
 	
 	for _, plr in ipairs(Players:GetPlayers()) do
@@ -215,17 +320,13 @@ local function checkFOV()
 			
 			if distance <= range then
 				local normalizedDir = dirToPlayer.Unit
-				-- Teacher Head looks along -Z natively, but Head CFrame LookVector is standard forward.
-				-- We will use the Head's LookVector.
 				local dot = head.CFrame.LookVector:Dot(normalizedDir)
 				
 				if dot >= minDot then
-					-- Player is inside the cone! Now check line of sight.
 					local rayResult = Workspace:Raycast(head.Position, dirToPlayer, rayParams)
 					if rayResult and rayResult.Instance:IsDescendantOf(char) then
-						-- Player is fully visible!
 						-- TODO: Check if player is cheating.
-						-- print("[TeacherAI] Sees player:", plr.Name)
+						-- debugLog(string.format("Player %s is currently within line of sight!", plr.Name))
 					end
 				end
 			end
@@ -234,7 +335,6 @@ local function checkFOV()
 end
 
 RunService.Heartbeat:Connect(function()
-	-- Only check vision if the teacher is actually active (patrolling or looking around)
 	if currentState == "PATROLLING" or currentState == "LOOKING_AROUND" then
 		checkFOV()
 	end
@@ -244,20 +344,19 @@ end)
 -- Initialization Flow
 ---------------------------------------------------------------------------
 local function startUp()
+	debugLog("Startup sequence initiated.")
 	setState("WAITING")
 	
-	-- Wait for at least 1 player to join (or game loop to signal start)
 	while #Players:GetPlayers() == 0 do
 		task.wait(1)
 	end
 	
-	print("[TeacherAI] Players found. Waiting 5 seconds before starting patrol...")
+	debugLog("Players detected. Waiting 5 seconds before initializing patrols...")
 	task.wait(5)
 	
-	print("[TeacherAI] Starting patrols!")
+	print("[TeacherAI] System fully loaded and starting patrols!")
 	setState("PATROLLING")
 end
 
--- Begin loops
 task.spawn(startUp)
 task.spawn(patrolLoop)
