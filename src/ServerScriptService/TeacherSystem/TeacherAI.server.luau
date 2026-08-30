@@ -64,32 +64,26 @@ end
 -- Since the builder's rig has the HumanoidRootPart rotated sideways relative to the mesh, 
 -- Humanoid.AutoRotate will make him walk sideways. This overrides AutoRotate and manually 
 -- aligns the rig correctly based on the offset in TeacherSettings.
+local currentWalkTarget: Vector3? = nil
+
 local function fixCrabWalking()
-	debugLog("Applying script-side crabwalking fix...")
-	
-	local gyro = rootPart:FindFirstChild("CrabwalkGyro") or Instance.new("BodyGyro", rootPart)
-	gyro.Name = "CrabwalkGyro"
-	-- Only apply torque on the Y axis, so we don't accidentally tilt or flip him over!
-	gyro.MaxTorque = Vector3.new(0, 1000000, 0)
-	gyro.P = 10000
-	gyro.D = 500
-	
+	debugLog("Applying script-side crabwalking fix (CFrame Override)...")
 	humanoid.AutoRotate = false
-	
-	-- Default to where he's currently facing
-	local currentLookDir = rootPart.CFrame.LookVector
 	
 	RunService.Heartbeat:Connect(function()
 		if not rootPart or not rootPart.Parent then return end
 		
-		-- Update look direction only if he's actually trying to walk somewhere
-		if humanoid.MoveDirection.Magnitude > 0.05 then
-			currentLookDir = Vector3.new(humanoid.MoveDirection.X, 0, humanoid.MoveDirection.Z).Unit
-		end
-		
-		if currentLookDir.Magnitude > 0.05 then
-			local offset = CFrame.Angles(0, math.rad(TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
-			gyro.CFrame = CFrame.lookAt(Vector3.zero, currentLookDir) * offset
+		if currentState == "PATROLLING" and currentWalkTarget then
+			local dir = (currentWalkTarget - rootPart.Position)
+			local flatDir = Vector3.new(dir.X, 0, dir.Z)
+			
+			if flatDir.Magnitude > 0.1 then
+				local targetLook = flatDir.Unit
+				local targetRotation = CFrame.lookAt(Vector3.zero, targetLook) * CFrame.Angles(0, math.rad(TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
+				
+				-- Forcefully interpolate the rotation without relying on physics constraints
+				rootPart.CFrame = rootPart.CFrame:Lerp(CFrame.new(rootPart.Position) * targetRotation, 0.15)
+			end
 		end
 	end)
 end
@@ -270,6 +264,7 @@ local function walkToTarget(targetPosition: Vector3, sessionId: number)
 			return false 
 		end
 		
+		currentWalkTarget = pos
 		humanoid:MoveTo(pos)
 		
 		local completed = false
