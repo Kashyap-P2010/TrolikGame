@@ -63,7 +63,12 @@ local function initializeFOV()
 	weld.Name = "FOVWeld"
 	weld.Part0 = head
 	weld.Part1 = fovPart
-	weld.C0 = CFrame.Angles(math.rad(-90), 0, 0) * CFrame.new(0, range / 2, 0)
+	
+	-- If the cone is too far or too close to the face, adjust this OFFSET_FORWARD number!
+	-- Positive numbers push it further away from his face, negative pulls it in.
+	local OFFSET_FORWARD = 0 
+	
+	weld.C0 = CFrame.new(0, 0, -OFFSET_FORWARD) * CFrame.Angles(math.rad(-90), 0, 0)
 	weld.Parent = fovPart
 
 	print("[TeacherFOV] Visualizer initialized and successfully welded to Head.")

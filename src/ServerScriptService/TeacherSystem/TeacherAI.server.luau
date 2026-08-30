@@ -194,8 +194,8 @@ local LOOK_NODES = {
 local function getNextWaypoint(): Instance?
 	if #waypointsList == 0 then return nil end
 	
-	-- 20% chance to randomly flip direction, as long as we aren't at the very edge
-	if math.random() <= 0.20 and currentWaypointIndex > 1 and currentWaypointIndex < #waypointsList then
+	-- 8% chance to randomly flip direction, as long as we aren't at the very edge
+	if math.random() <= 0.08 and currentWaypointIndex > 1 and currentWaypointIndex < #waypointsList then
 		patrolDirection = -patrolDirection
 		debugLog("Randomly flipping patrol direction!")
 	end
