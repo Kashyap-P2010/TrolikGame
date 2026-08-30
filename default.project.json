@@ -9,6 +9,9 @@
 			},
 			"ExamSystem": {
 				"$path": "src/ServerScriptService/ExamSystem"
+			},
+			"TeacherSystem": {
+				"$path": "src/ServerScriptService/TeacherSystem"
 			}
 		},
 		"ReplicatedStorage": {
