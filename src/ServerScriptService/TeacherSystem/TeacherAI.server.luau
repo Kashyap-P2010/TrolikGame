@@ -8,7 +8,6 @@ local Players = game:GetService("Players")
 local Workspace = game:GetService("Workspace")
 local PathfindingService = game:GetService("PathfindingService")
 local RunService = game:GetService("RunService")
-local TweenService = game:GetService("TweenService")
 local ContentProvider = game:GetService("ContentProvider")
 
 local TeacherSettings = require(script.Parent:WaitForChild("TeacherSettings"))
@@ -35,12 +34,12 @@ if not teacher then
 end
 
 debugLog("Found Teacher_Rig. Waiting for core parts...")
-local animController = teacher:WaitForChild("AnimationController", 10) :: AnimationController
+local humanoid = teacher:WaitForChild("Humanoid", 10) :: Humanoid
 local head = teacher:WaitForChild("Head", 10) :: Part
 local rootPart = teacher:WaitForChild("RootPart", 10) :: Part
 
-if not animController or not head or not rootPart then
-	warn("[TeacherAI_ERROR] Missing critical rig components (AnimationController, Head, or RootPart).")
+if not humanoid or not head or not rootPart then
+	warn("[TeacherAI_ERROR] Missing critical rig components (Humanoid, Head, or RootPart).")
 	return
 end
 debugLog("Core parts loaded successfully.")
@@ -59,11 +58,11 @@ local ANIMATIONS = {
 	LOOK = "rbxassetid://88647926841758" -- arms_crossed
 }
 
-local animator = animController:FindFirstChildOfClass("Animator")
+local animator = humanoid:FindFirstChildOfClass("Animator")
 if not animator then
-	debugLog("No Animator found in AnimationController. Creating one...")
+	debugLog("No Animator found in Humanoid. Creating one...")
 	animator = Instance.new("Animator")
-	animator.Parent = animController
+	animator.Parent = humanoid
 end
 
 local loadedTracks: {[string]: AnimationTrack} = {}
@@ -122,12 +121,21 @@ end
 ---------------------------------------------------------------------------
 type AIState = "WAITING" | "PATROLLING" | "LOOKING_AROUND" | "CATCHING"
 local currentState: AIState = "WAITING"
-local currentWaypointIndex = 1
-local waypointsList: {Instance} = {}
+local currentWaypointIndex = 0
+local patrolDirection = 1
+local waypointsList: {any} = {}
 
 if waypointsFolder then
-	waypointsList = waypointsFolder:GetChildren()
-	debugLog(string.format("Registered %d waypoints.", #waypointsList))
+	for _, child in ipairs(waypointsFolder:GetChildren()) do
+		local num = tonumber(child.Name)
+		if num then
+			table.insert(waypointsList, {node = child, index = num})
+		else
+			debugLog("Ignoring non-numerical waypoint:", child.Name)
+		end
+	end
+	table.sort(waypointsList, function(a, b) return a.index < b.index end)
+	debugLog(string.format("Registered and sorted %d numerical waypoints.", #waypointsList))
 end
 
 -- Used for race-condition prevention (cancelling tweens if state changes)
@@ -143,16 +151,19 @@ local function setState(newState: AIState)
 		stopTrack("WALK")
 		stopTrack("LOOK")
 		playTrack("IDLE")
+		humanoid.WalkSpeed = 0
 		
 	elseif newState == "PATROLLING" then
 		stopTrack("IDLE")
 		stopTrack("LOOK")
 		playTrack("WALK")
+		humanoid.WalkSpeed = TeacherSettings.PATROL_WALK_SPEED
 		
 	elseif newState == "LOOKING_AROUND" then
 		stopTrack("WALK")
 		stopTrack("IDLE")
 		playTrack("LOOK")
+		humanoid.WalkSpeed = 0
 	end
 end
 
@@ -167,15 +178,19 @@ local LOOK_NODES = {
 
 local function getNextWaypoint(): Instance?
 	if #waypointsList == 0 then return nil end
-	-- Randomly pick a new waypoint that isn't the current one (allow reversing)
-	local nextIdx = currentWaypointIndex
-	while nextIdx == currentWaypointIndex and #waypointsList > 1 do
-		nextIdx = math.random(1, #waypointsList)
+	
+	currentWaypointIndex = currentWaypointIndex + patrolDirection
+	if currentWaypointIndex > #waypointsList then
+		currentWaypointIndex = math.max(1, #waypointsList - 1)
+		patrolDirection = -1
+	elseif currentWaypointIndex < 1 then
+		currentWaypointIndex = math.min(#waypointsList, 2)
+		patrolDirection = 1
 	end
-	currentWaypointIndex = nextIdx
-	local node = waypointsList[currentWaypointIndex]
-	debugLog(string.format("Selected next waypoint: %s (Index %d)", node.Name, nextIdx))
-	return node
+	
+	local nextNode = waypointsList[currentWaypointIndex].node
+	debugLog(string.format("Selected next sequential waypoint: %s", nextNode.Name))
+	return nextNode
 end
 
 local function walkToTarget(targetPosition: Vector3, sessionId: number)
@@ -191,49 +206,31 @@ local function walkToTarget(targetPosition: Vector3, sessionId: number)
 	end)
 	
 	local function moveToPoint(pos: Vector3)
-		-- Race condition check: Did the state change while we were waiting/computing?
 		if patrolSessionId ~= sessionId or currentState ~= "PATROLLING" then 
 			debugLog("Movement aborted: State changed during path execution.")
 			return false 
 		end
 		
-		local distance = (rootPart.Position - pos).Magnitude
-		local duration = distance / TeacherSettings.PATROL_WALK_SPEED
+		humanoid:MoveTo(pos)
 		
-		-- Look at the target (ignore Y axis)
-		local lookAt = Vector3.new(pos.X, rootPart.Position.Y, pos.Z)
-		local targetCFrame = CFrame.lookAt(rootPart.Position, lookAt)
-		rootPart.CFrame = targetCFrame
+		local completed = false
+		local conn
+		conn = humanoid.MoveToFinished:Connect(function(reached)
+			completed = true
+			if conn then conn:Disconnect() end
+		end)
 		
-		if duration > 0.05 then
-			local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear)
-			local tween = TweenService:Create(rootPart, tweenInfo, {CFrame = targetCFrame + (pos - targetCFrame.Position)})
-			
-			local completed = false
-			local conn
-			conn = tween.Completed:Connect(function()
-				completed = true
+		-- Wait for completion or interruption
+		while not completed do
+			if patrolSessionId ~= sessionId or currentState ~= "PATROLLING" then
+				debugLog("Movement cancelled mid-path due to state change.")
+				humanoid:MoveTo(rootPart.Position) -- Stop instantly
 				if conn then conn:Disconnect() end
-			end)
-			
-			tween:Play()
-			
-			-- Wait for completion or interruption
-			while not completed do
-				if patrolSessionId ~= sessionId or currentState ~= "PATROLLING" then
-					debugLog("Tween cancelled mid-movement due to state change.")
-					tween:Cancel()
-					if conn then conn:Disconnect() end
-					return false
-				end
-				task.wait(0.05)
+				return false
 			end
-			return true
-		else
-			rootPart.Position = pos
-			task.wait()
-			return true
+			task.wait(0.05)
 		end
+		return true
 	end
 
 	if success and path.Status == Enum.PathStatus.Success then
@@ -242,6 +239,9 @@ local function walkToTarget(targetPosition: Vector3, sessionId: number)
 		
 		-- Skip the first waypoint as it is usually the current position
 		for i = 2, #points do
+			if points[i].Action == Enum.PathWaypointAction.Jump then
+				humanoid.Jump = true
+			end
 			local moveSuccess = moveToPoint(points[i].Position)
 			if not moveSuccess then break end
 		end

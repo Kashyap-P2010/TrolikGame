@@ -52,7 +52,8 @@ local function initializeFOV()
 	
 	-- Add the actual cone mesh
 	local mesh = Instance.new("SpecialMesh")
-	mesh.MeshType = Enum.MeshType.Cone
+	mesh.MeshType = Enum.MeshType.FileMesh
+	mesh.MeshId = "rbxassetid://1033714" -- Standard Roblox Cone Mesh
 	mesh.Parent = fovPart
 	
 	fovPart.Parent = teacher
