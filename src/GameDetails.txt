@@ -1,0 +1,86 @@
+Lobby:
+A standard lobby system where the player chooses the difficulty level they want to play on: EASY, MEDIUM, or HARD. Once the lobby is created, players have 15 seconds to join.
+
+Game Concept:
+The game is about cheating on an exam in different ways, while being careful of the teacher, who walks around the classroom and monitors the students to make sure nobody is cheating.
+
+Robux Shop:
+- Smart Glasses — The player can see which answer is correct for the next 3 questions.
+- Choice Eraser — Removes one incorrect answer, so instead of choosing between A/B/C, for example, the player only has to choose between A/B.
+- Phone Upgrade — The phone used for cheating provides answers 2x faster.
+- Invisible Cheater — When activated, the teacher cannot catch the player cheating for the next minute.
+- Explode Teacher — Unlocks the Teacher Prank. When used, a land mine appears on the floor. The teacher steps on it and gets blown into the air.
+- 2x Cash — The player receives twice as many coins for completing an exam.
+
+Exam Cheats:
+- Phone — The player can pull out a phone. They have to click it 15 times before the correct answer to the current question appears. (I will try to send a recording showing roughly how this should look.)
+- Toilet Notes — The player leaves their desk and follows arrows leading to the bathroom, where they find a notebook containing the answer to the question.
+- Neighbor Cheats — The player leaves their desk and has around 12 seconds to check another player's test for the answer and return to their desk.
+- Radio Answer — When the player uses this method, the camera moves to a radio located in the classroom. The radio starts "talking," a speech bubble appears above it, and after a moment the answer appears inside the bubble.
+- Choice Eraser — One incorrect answer disappears, leaving only options such as A and B.
+- Smart Glasses — The correct answers for the next 3 questions are highlighted.
+- Teacher's Desk — The player gets up from their desk and follows arrows leading to the teacher's desk. Once there, they can open a drawer and check the answer to the question. They have 15 seconds to do this. If they don't return to their desk in time, the teacher gives them a warning.
+- Genius Potion — The player drinks a potion and can see the answers to the next 2 questions. Similar to Smart Glasses.
+- Nerd Help — The player throws a paper ball at a nerd NPC. The nerd throws a paper airplane back. The player unfolds it and sees the answer to the question.
+- Friend's Sign — The camera moves to the window, where the player's friend appears outside (a random Roblox friend) and shows the correct answer on a sign.
+
+Teacher Pranks:
+- Fire Alarm — The player activates the prank and a fire appears in the doorway. The teacher grabs a fire extinguisher and tries to put out the fire. During this time, the teacher doesn't monitor the players for around 20 seconds.
+- Explode Teacher — The player places a land mine on the floor. When the teacher steps on it, they get launched slightly into the air and ragdoll. This gives the player around 15 seconds to cheat.
+- Time Freeze — The teacher freezes in place and the word "PAUSED" appears above them. The player has around 15 seconds to cheat without worrying about the teacher.
+- Fake Knock — A knocking sound is heard and the words "KNOCK KNOCK" appear on the door. The teacher goes to check who is knocking, opens the door, and realizes nobody is there. The teacher gets angry. The player has around 12 seconds to cheat.
+- TV Glitch — The player pulls out a remote, points it at the TV, and presses a button. The TV starts displaying glitches. The teacher notices it and tries to fix the TV until eventually succeeding. This gives the player around 17 seconds to cheat.
+- Break the Window — A ball hits the window and breaks the glass. The teacher walks over to the window and starts yelling at the kids who broke it. This gives the player around 12 seconds to cheat.
+- Cabinet Crash — A cabinet falls over, startling the teacher because of the loud noise. The teacher approaches it and puts it back up. This gives the player around 14 seconds to cheat.
+- Bee Delivery — A delivery person enters the classroom and leaves a package. The teacher approaches the package and opens it, causing a swarm of bees to fly out. The teacher waves their arms around until the bees eventually disappear. This gives the player around 18 seconds to cheat.
+
+Lobby Features:
+- Exam Cheats Shop
+- Teacher Pranks Shop — Similar to the Exam Cheats Shop, but when the player clicks on an item, instead of showing an icon, a video plays demonstrating how that specific prank works.
+
+Leaderboards:
+- MOST EXAMS PASSED
+- TOP EXAM CHEATERS
+
+- Badges — Players can earn achievements for performing specific actions in the game.
+- A board showing when the NEXT UPDATE will be released.
+- At the top of the screen, the GUI will display Best Score: followed by the highest percentage score the player has achieved.
+- Weekly Rewards
+
+Game Introduction:
+At the beginning, there will be a short animation using the teacher's morph. It should be 10 seconds maximum, but preferably shorter. There will also be a Skip option. If there are, for example, 6 players, 3 votes should be enough to skip the animation.
+The game will be first-person, while the lobby will be third-person.
+Players start in the hallway next to the classroom and have to follow the teacher, who leads them into the classroom.
+Players have to sit on the chairs. If they don't sit down, a script will automatically move them into their seats.
+Once everyone is seated, an animation plays for each player where the teacher walks up to them with an exam, places it on their desk, and tells the student that they have to pass.
+
+Gameplay:
+The player has a limited amount of time to complete the exam, for example 8 minutes.
+The player has a test in front of them. They have to press E to open it. When they do, the camera moves above the desk, as if the player is looking directly down at the paper. The paper itself will be a GUI.
+At the bottom of the screen there will be the Exam Cheats menu, which can be opened using F. Once opened, the player can move their mouse around the screen and select which cheating method they want to use.
+At the beginning, the player has 2 cheating methods unlocked: Phone and Toilet Notes. They can also see all the other methods, but they are locked and can be unlocked using coins. There will also be 2 methods that can be purchased with Robux.
+After using an Exam Cheat, the player has to wait for a cooldown before they can use that specific cheat again. During the cooldown, they can still use other cheats.
+There will also be a Teacher Pranks panel. Players can use pranks such as Fire Alarm to create a short period of time during which they can cheat safely.
+One prank will be unlocked from the beginning, while the others can be unlocked by completing exams. For example: "Pass 3 Exams to Unlock."
+Explode Teacher will be available for Robux.
+Using each individual prank will cost a specific amount of coins.
+Teacher / Catching System
+During the exam, the teacher walks around the classroom and tries to catch players who are cheating.
+If a player who is currently cheating enters the teacher's field of vision, the player has 3 seconds to stop cheating.
+If the player doesn't hide the cheat in time, the teacher runs over and gives them a warning, with an animation playing.
+If the teacher catches the player cheating a second time, they receive a final warning.
+If the teacher catches them a third time, the screen turns black and the player loses the game, unless they purchase a revive.
+Exam Results
+When the time runs out, players who haven't been caught approach the teacher's desk and line up.
+The teacher checks their exams one by one and gives them their grades.
+If the player performed well, they receive a good grade and the teacher is happy.
+If the player performed poorly, the teacher gives them a bad grade and becomes angry.
+There will be several different animations depending on the score. For example:
+0–15% — The teacher hits the player with a ruler.
+16–39% — The teacher is simply angry/disappointed.
+The higher the player's exam score, the more coins they receive.
+To pass the exam and unlock the next difficulty level, the player must score at least 70%.
+After the teacher finishes grading the exam, a black screen appears with an option to teleport back to the Lobby, along with information such as:
+Score: the percentage achieved
+Coins Earned: the number of coins received
+Level: the difficulty played, e.g. EASY
