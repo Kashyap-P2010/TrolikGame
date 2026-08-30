@@ -68,17 +68,30 @@ local function fixCrabWalking()
 	debugLog("Applying script-side crabwalking fix (Motor6D Offset)...")
 	humanoid.AutoRotate = true -- Let Roblox handle natural turning
 	
-	-- Find the Motor6D connecting the HumanoidRootPart to the body and rotate its offset
+	-- Find the Motor6D/Weld/WeldConstraint connecting the HumanoidRootPart to the body
+	local foundConnection = false
 	for _, obj in ipairs(teacher:GetDescendants()) do
-		if obj:IsA("Motor6D") and (obj.Part0 == rootPart or obj.Part1 == rootPart) then
-			debugLog("Found Root Motor6D: " .. obj.Name .. ". Applying rotation offset of " .. TeacherSettings.RIG_ROTATION_OFFSET_Y .. " degrees.")
+		if (obj:IsA("Motor6D") or obj:IsA("Weld")) and (obj.Part0 == rootPart or obj.Part1 == rootPart) then
+			debugLog("Found Root Connection ("..obj.ClassName.."): " .. obj.Name .. ". Applying C0/C1 offset.")
 			if obj.Part0 == rootPart then
 				obj.C0 = obj.C0 * CFrame.Angles(0, math.rad(TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
 			else
 				obj.C1 = obj.C1 * CFrame.Angles(0, math.rad(-TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
 			end
+			foundConnection = true
+			break
+		elseif obj:IsA("WeldConstraint") and (obj.Part0 == rootPart or obj.Part1 == rootPart) then
+			debugLog("Found Root WeldConstraint: " .. obj.Name .. ". Rotating RootPart directly to fix offset.")
+			obj.Enabled = false
+			rootPart.CFrame = rootPart.CFrame * CFrame.Angles(0, math.rad(TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
+			obj.Enabled = true
+			foundConnection = true
 			break
 		end
+	end
+	
+	if not foundConnection then
+		warn("[TeacherAI_WARNING] Could not find any Weld, Motor6D, or WeldConstraint connecting the HumanoidRootPart! Crabwalk fix failed.")
 	end
 end
 task.spawn(fixCrabWalking)
