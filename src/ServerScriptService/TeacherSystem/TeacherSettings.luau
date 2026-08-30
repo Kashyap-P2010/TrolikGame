@@ -17,7 +17,7 @@ local TeacherSettings = {
 	AGENT_HEIGHT      = 8,        -- How tall the teacher is
 	
 	-- Rig Fixes
-	RIG_ROTATION_OFFSET_Y = -90,  -- Fixes sideways crabwalking (in degrees, usually -90, 90, or 180)
+	RIG_ROTATION_OFFSET_Y = 90,  -- Fixes sideways crabwalking (in degrees, usually -90, 90, or 180)
 	
 	-- Timings
 	IDLE_LOOK_TIME_MIN = 3,       -- Minimum seconds to spend looking around at a LookNode
