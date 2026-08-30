@@ -44,6 +44,21 @@ if not humanoid or not head or not rootPart then
 end
 debugLog("Core parts loaded successfully.")
 
+-- IMPORTANT: Unanchor everything so the Humanoid can physically move!
+for _, desc in ipairs(teacher:GetDescendants()) do
+	if desc:IsA("BasePart") then
+		desc.Anchored = false
+	end
+end
+rootPart.Anchored = false
+
+-- Custom rigs often have HipHeight = 0 by default, causing them to get stuck in the floor
+if humanoid.HipHeight <= 0 then
+	warn("[TeacherAI_WARNING] Teacher's HipHeight is 0! If he gets stuck in the floor, please manually increase Humanoid.HipHeight in the model.")
+	-- Attempt a safe default just in case
+	humanoid.HipHeight = 2
+end
+
 local waypointsFolder = Workspace:WaitForChild("TeacherWaypoints", 60)
 if not waypointsFolder then 
 	warn("[TeacherAI_ERROR] TeacherWaypoints folder not found in Workspace!") 
