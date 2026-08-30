@@ -34,38 +34,15 @@ if not teacher then
 end
 
 debugLog("Found Teacher_Rig. Waiting for core parts...")
-local animController = teacher:WaitForChild("AnimationController", 10) :: AnimationController
+local humanoid = teacher:WaitForChild("Humanoid", 10) :: Humanoid
 local head = teacher:WaitForChild("Head", 10) :: Part
-local rootPart = teacher:WaitForChild("RootPart", 10) :: Part
+local rootPart = teacher:WaitForChild("HumanoidRootPart", 10) :: Part
 
-if not animController or not head or not rootPart then
-	warn("[TeacherAI_ERROR] Missing critical rig components (AnimationController, Head, or RootPart).")
+if not humanoid or not head or not rootPart then
+	warn("[TeacherAI_ERROR] Missing critical rig components (Humanoid, Head, or HumanoidRootPart).")
 	return
 end
 debugLog("Core parts loaded successfully.")
-
--- Create physical constraints to move the rig without a Humanoid
-local attachment = rootPart:FindFirstChild("MoveAttachment") or Instance.new("Attachment", rootPart)
-attachment.Name = "MoveAttachment"
-
-local alignPos = rootPart:FindFirstChild("MovePos") or Instance.new("AlignPosition", rootPart)
-alignPos.Name = "MovePos"
-alignPos.Mode = Enum.PositionAlignmentMode.OneAttachment
-alignPos.Attachment0 = attachment
-alignPos.MaxForce = 100000
-alignPos.MaxVelocity = TeacherSettings.PATROL_WALK_SPEED
-alignPos.Responsiveness = 50
-
-local alignOri = rootPart:FindFirstChild("MoveOri") or Instance.new("AlignOrientation", rootPart)
-alignOri.Name = "MoveOri"
-alignOri.Mode = Enum.OrientationAlignmentMode.OneAttachment
-alignOri.Attachment0 = attachment
-alignOri.MaxTorque = 100000
-alignOri.Responsiveness = 50
-alignOri.MaxAngularVelocity = 15
-
--- Enable physics for the RootPart so constraints work
-rootPart.Anchored = false
 
 local waypointsFolder = Workspace:WaitForChild("TeacherWaypoints", 60)
 if not waypointsFolder then 
@@ -81,11 +58,11 @@ local ANIMATIONS = {
 	LOOK = "rbxassetid://88647926841758" -- arms_crossed
 }
 
-local animator = animController:FindFirstChildOfClass("Animator")
+local animator = humanoid:FindFirstChildOfClass("Animator")
 if not animator then
-	debugLog("No Animator found in AnimationController. Creating one...")
+	debugLog("No Animator found in Humanoid. Creating one...")
 	animator = Instance.new("Animator")
-	animator.Parent = animController
+	animator.Parent = humanoid
 end
 
 local loadedTracks: {[string]: AnimationTrack} = {}
@@ -174,19 +151,19 @@ local function setState(newState: AIState)
 		stopTrack("WALK")
 		stopTrack("LOOK")
 		playTrack("IDLE")
-		alignPos.MaxVelocity = 0
+		humanoid.WalkSpeed = 0
 		
 	elseif newState == "PATROLLING" then
 		stopTrack("IDLE")
 		stopTrack("LOOK")
 		playTrack("WALK")
-		alignPos.MaxVelocity = TeacherSettings.PATROL_WALK_SPEED
+		humanoid.WalkSpeed = TeacherSettings.PATROL_WALK_SPEED
 		
 	elseif newState == "LOOKING_AROUND" then
 		stopTrack("WALK")
 		stopTrack("IDLE")
 		playTrack("LOOK")
-		alignPos.MaxVelocity = 0
+		humanoid.WalkSpeed = 0
 	end
 end
 
@@ -242,25 +219,24 @@ local function walkToTarget(targetPosition: Vector3, sessionId: number)
 			return false 
 		end
 		
-		-- Use AlignPosition to physically move the part
-		alignPos.Position = pos
+		humanoid:MoveTo(pos)
 		
-		-- Look at the target (ignore Y axis so he doesn't tilt up/down)
-		local flatLook = Vector3.new(pos.X, rootPart.Position.Y, pos.Z)
-		if (flatLook - rootPart.Position).Magnitude > 0.1 then
-			alignOri.CFrame = CFrame.lookAt(rootPart.Position, flatLook)
-		end
+		local completed = false
+		local conn
+		conn = humanoid.MoveToFinished:Connect(function(reached)
+			completed = true
+			if conn then conn:Disconnect() end
+		end)
 		
-		-- Wait until physical position matches the target
-		local timeout = 0
-		while (rootPart.Position - pos).Magnitude > 2 and timeout < 15 do
+		-- Wait for completion or interruption
+		while not completed do
 			if patrolSessionId ~= sessionId or currentState ~= "PATROLLING" then
 				debugLog("Movement cancelled mid-path due to state change.")
-				alignPos.Position = rootPart.Position -- Stop instantly
+				humanoid:MoveTo(rootPart.Position) -- Stop instantly
+				if conn then conn:Disconnect() end
 				return false
 			end
-			task.wait(0.1)
-			timeout += 0.1
+			task.wait(0.05)
 		end
 		return true
 	end
@@ -271,8 +247,9 @@ local function walkToTarget(targetPosition: Vector3, sessionId: number)
 		
 		-- Skip the first waypoint as it is usually the current position
 		for i = 2, #points do
-			-- For an AnimationController rig, we can't do jump easily without a Humanoid.
-			-- So we just proceed to moveToPoint.
+			if points[i].Action == Enum.PathWaypointAction.Jump then
+				humanoid.Jump = true
+			end
 			local moveSuccess = moveToPoint(points[i].Position)
 			if not moveSuccess then break end
 		end
