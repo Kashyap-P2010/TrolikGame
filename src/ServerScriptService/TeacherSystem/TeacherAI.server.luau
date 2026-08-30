@@ -66,15 +66,13 @@ end
 -- aligns the rig correctly based on the offset in TeacherSettings.
 local function fixCrabWalking()
 	debugLog("Applying script-side crabwalking fix...")
-	local attachment = rootPart:FindFirstChild("CrabwalkAtt") or Instance.new("Attachment", rootPart)
-	attachment.Name = "CrabwalkAtt"
 	
-	local alignOri = rootPart:FindFirstChild("CrabwalkOri") or Instance.new("AlignOrientation", rootPart)
-	alignOri.Name = "CrabwalkOri"
-	alignOri.Mode = Enum.OrientationAlignmentMode.OneAttachment
-	alignOri.Attachment0 = attachment
-	alignOri.MaxTorque = 10000000
-	alignOri.Responsiveness = 40
+	local gyro = rootPart:FindFirstChild("CrabwalkGyro") or Instance.new("BodyGyro", rootPart)
+	gyro.Name = "CrabwalkGyro"
+	-- Only apply torque on the Y axis, so we don't accidentally tilt or flip him over!
+	gyro.MaxTorque = Vector3.new(0, 1000000, 0)
+	gyro.P = 10000
+	gyro.D = 500
 	
 	humanoid.AutoRotate = false
 	
@@ -91,7 +89,7 @@ local function fixCrabWalking()
 		
 		if currentLookDir.Magnitude > 0.05 then
 			local offset = CFrame.Angles(0, math.rad(TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
-			alignOri.CFrame = CFrame.lookAt(Vector3.zero, currentLookDir) * offset
+			gyro.CFrame = CFrame.lookAt(Vector3.zero, currentLookDir) * offset
 		end
 	end)
 end
