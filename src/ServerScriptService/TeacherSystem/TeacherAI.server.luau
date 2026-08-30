@@ -58,6 +58,45 @@ if humanoid.HipHeight <= 0 then
 	warn("[TeacherAI_WARNING] Teacher's HipHeight is 0! If he gets stuck in the floor, please manually increase Humanoid.HipHeight in the model.")
 end
 
+---------------------------------------------------------------------------
+-- Script-Side Rig Orientation Fix (Crabwalking Fix)
+---------------------------------------------------------------------------
+-- Since the builder's rig has the HumanoidRootPart rotated sideways relative to the mesh, 
+-- Humanoid.AutoRotate will make him walk sideways. This overrides AutoRotate and manually 
+-- aligns the rig correctly based on the offset in TeacherSettings.
+local function fixCrabWalking()
+	debugLog("Applying script-side crabwalking fix...")
+	local attachment = rootPart:FindFirstChild("CrabwalkAtt") or Instance.new("Attachment", rootPart)
+	attachment.Name = "CrabwalkAtt"
+	
+	local alignOri = rootPart:FindFirstChild("CrabwalkOri") or Instance.new("AlignOrientation", rootPart)
+	alignOri.Name = "CrabwalkOri"
+	alignOri.Mode = Enum.OrientationAlignmentMode.OneAttachment
+	alignOri.Attachment0 = attachment
+	alignOri.MaxTorque = 10000000
+	alignOri.Responsiveness = 40
+	
+	humanoid.AutoRotate = false
+	
+	-- Default to where he's currently facing
+	local currentLookDir = rootPart.CFrame.LookVector
+	
+	RunService.Heartbeat:Connect(function()
+		if not rootPart or not rootPart.Parent then return end
+		
+		-- Update look direction only if he's actually trying to walk somewhere
+		if humanoid.MoveDirection.Magnitude > 0.05 then
+			currentLookDir = Vector3.new(humanoid.MoveDirection.X, 0, humanoid.MoveDirection.Z).Unit
+		end
+		
+		if currentLookDir.Magnitude > 0.05 then
+			local offset = CFrame.Angles(0, math.rad(TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
+			alignOri.CFrame = CFrame.lookAt(Vector3.zero, currentLookDir) * offset
+		end
+	end)
+end
+task.spawn(fixCrabWalking)
+
 local waypointsFolder = Workspace:WaitForChild("TeacherWaypoints", 60)
 if not waypointsFolder then 
 	warn("[TeacherAI_ERROR] TeacherWaypoints folder not found in Workspace!") 
