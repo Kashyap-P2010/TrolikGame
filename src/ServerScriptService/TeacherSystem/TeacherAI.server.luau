@@ -9,6 +9,7 @@ local PathfindingService = game:GetService("PathfindingService")
 local RunService = game:GetService("RunService")
 
 local TeacherSettings = require(script.Parent:WaitForChild("TeacherSettings"))
+local TweenService = game:GetService("TweenService")
 
 ---------------------------------------------------------------------------
 -- References & Setup
@@ -16,19 +17,25 @@ local TeacherSettings = require(script.Parent:WaitForChild("TeacherSettings"))
 local teacher = Workspace:WaitForChild("Teacher", 60)
 if not teacher then error("[TeacherAI] Teacher model not found!") end
 
-local humanoid = teacher:WaitForChild("Humanoid") :: Humanoid
+-- The rig uses an AnimationController instead of a Humanoid
+local animController = teacher:WaitForChild("AnimationController", 10) :: AnimationController
 local head = teacher:WaitForChild("Head") :: Part
-local hrp = teacher:WaitForChild("HumanoidRootPart") :: Part
+local rootPart = teacher:WaitForChild("RootPart") :: Part
 
 local waypointsFolder = Workspace:WaitForChild("TeacherWaypoints", 60)
 if not waypointsFolder then warn("[TeacherAI] TeacherWaypoints folder not found!") end
 
--- Animations (Placeholders until user provides Asset IDs)
-local IDLE_ANIM_ID = "rbxassetid://0"
-local WALK_ANIM_ID = "rbxassetid://0"
-local LOOK_ANIM_ID = "rbxassetid://0"
+-- Animations
+local IDLE_ANIM_ID = "rbxassetid://98820429377987"
+local WALK_ANIM_ID = "rbxassetid://75525743234669"
+local LOOK_ANIM_ID = "rbxassetid://88647926841758"
 
-local animator = humanoid:FindFirstChildOfClass("Animator") or Instance.new("Animator", humanoid)
+-- Create an Animator if one doesn't exist
+local animator = animController:FindFirstChildOfClass("Animator")
+if not animator then
+	animator = Instance.new("Animator")
+	animator.Parent = animController
+end
 
 -- Placeholder loaded animations (we wrap in pcall in case IDs are invalid)
 local function loadAnimation(id: string): AnimationTrack?
@@ -74,19 +81,16 @@ local function setState(newState: AIState)
 		stopTrack(walkTrack)
 		stopTrack(lookTrack)
 		playTrack(idleTrack)
-		humanoid.WalkSpeed = 0
 		
 	elseif newState == "PATROLLING" then
 		stopTrack(idleTrack)
 		stopTrack(lookTrack)
 		playTrack(walkTrack)
-		humanoid.WalkSpeed = TeacherSettings.PATROL_WALK_SPEED
 		
 	elseif newState == "LOOKING_AROUND" then
 		stopTrack(walkTrack)
 		stopTrack(idleTrack)
 		playTrack(lookTrack)
-		humanoid.WalkSpeed = 0
 	end
 end
 
@@ -104,6 +108,13 @@ local function getNextWaypoint(): Instance?
 	return waypointsList[currentWaypointIndex]
 end
 
+-- Specific waypoints where the teacher is allowed to stop and look around
+local LOOK_NODES = {
+	["8"] = true, ["9"] = true, ["10"] = true, ["11"] = true, ["12"] = true,
+	["13"] = true, ["14"] = true, ["17"] = true, ["22"] = true, ["23"] = true,
+	["24"] = true, ["25"] = true, ["27"] = true
+}
+
 local function walkToTarget(targetPosition: Vector3)
 	local path = PathfindingService:CreatePath({
 		AgentRadius = 2,
@@ -112,26 +123,41 @@ local function walkToTarget(targetPosition: Vector3)
 	})
 	
 	local success, err = pcall(function()
-		path:ComputeAsync(hrp.Position, targetPosition)
+		path:ComputeAsync(rootPart.Position, targetPosition)
 	end)
 	
+	local function moveToPoint(pos: Vector3)
+		-- Calculate duration based on distance and WalkSpeed
+		local distance = (rootPart.Position - pos).Magnitude
+		local duration = distance / TeacherSettings.PATROL_WALK_SPEED
+		
+		-- Look at the target (ignore Y axis so he doesn't tilt up/down)
+		local lookAt = Vector3.new(pos.X, rootPart.Position.Y, pos.Z)
+		local targetCFrame = CFrame.lookAt(rootPart.Position, lookAt)
+		-- Immediately snap rotation
+		rootPart.CFrame = targetCFrame
+		
+		if duration > 0.05 then
+			local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear)
+			local tween = TweenService:Create(rootPart, tweenInfo, {CFrame = targetCFrame + (pos - targetCFrame.Position)})
+			tween:Play()
+			tween.Completed:Wait()
+		else
+			rootPart.Position = pos
+			task.wait()
+		end
+	end
+
 	if success and path.Status == Enum.PathStatus.Success then
 		local points = path:GetWaypoints()
-		for i, p in ipairs(points) do
-			if currentState ~= "PATROLLING" then break end -- interrupted
-			
-			humanoid:MoveTo(p.Position)
-			local moveSuccess = humanoid.MoveToFinished:Wait()
-			if not moveSuccess then
-				warn("[TeacherAI] Path stuck, recalculating...")
-				break
-			end
+		-- Skip the first waypoint as it is usually the current position
+		for i = 2, #points do
+			if currentState ~= "PATROLLING" then break end
+			moveToPoint(points[i].Position)
 		end
 	else
-		warn("[TeacherAI] Pathfinding failed:", err or path.Status)
-		-- Fallback to direct walk if path fails
-		humanoid:MoveTo(targetPosition)
-		humanoid.MoveToFinished:Wait()
+		warn("[TeacherAI] Pathfinding failed:", err or path.Status, "- walking direct")
+		moveToPoint(targetPosition)
 	end
 end
 
@@ -148,15 +174,18 @@ local function patrolLoop()
 			
 			-- Reached the node. Should we look around?
 			if currentState == "PATROLLING" then
-				local nodeName = string.lower(targetNode.Name)
-				if string.find(nodeName, "looknode") then
-					setState("LOOKING_AROUND")
-					local lookTime = math.random(TeacherSettings.IDLE_LOOK_TIME_MIN, TeacherSettings.IDLE_LOOK_TIME_MAX)
-					task.wait(lookTime)
-					setState("PATROLLING")
+				local nodeName = targetNode.Name
+				if LOOK_NODES[nodeName] then
+					-- E.g. 40% chance to stop and look around when hitting a designated chair node
+					if math.random() <= 0.40 then
+						setState("LOOKING_AROUND")
+						local lookTime = math.random(TeacherSettings.IDLE_LOOK_TIME_MIN, TeacherSettings.IDLE_LOOK_TIME_MAX)
+						task.wait(lookTime)
+						setState("PATROLLING")
+					end
 				else
 					-- Even at normal nodes, maybe a tiny pause
-					task.wait(math.random() * 1.5)
+					task.wait(math.random() * 0.5)
 				end
 			end
 		end
