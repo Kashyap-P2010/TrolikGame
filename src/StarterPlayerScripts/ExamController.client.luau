@@ -25,6 +25,7 @@
 ]]
 
 local Players           = game:GetService("Players")
+local UserInputService  = game:GetService("UserInputService")
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Shared            = ReplicatedStorage:WaitForChild("Shared")
@@ -302,6 +303,11 @@ local function startExam()
 	-- Show frame with loading state
 	examFrame.Visible = true
 	timerLabel.Visible = true
+	
+	if openExamBtn then
+		openExamBtn.Visible = true
+		openExamBtn.Text = "Close Exam UI"
+	end
 	if questionField   then questionField.Text = "Loading questions..." end
 	if timerLabel      then timerLabel.Text    = "8:00" end
 	if fieldA          then fieldA.Text        = "" end
@@ -351,10 +357,53 @@ end
 -- Button connections
 ---------------------------------------------------------------------------
 
--- OpenExam (test trigger)
-if openExamBtn then
-	openExamBtn.MouseButton1Click:Connect(startExam)
+-- UI Visibility Toggling
+local function toggleExamUI()
+	if not examActive then return end
+	examFrame.Visible = not examFrame.Visible
+	
+	if openExamBtn then
+		openExamBtn.Text = examFrame.Visible and "Close Exam UI" or "Open Exam UI"
+	end
 end
+
+-- OpenExam button now acts as a toggle instead of starting the exam
+if openExamBtn then
+	openExamBtn.Visible = false -- Hidden until exam actually starts
+	openExamBtn.MouseButton1Click:Connect(toggleExamUI)
+end
+
+-- E to toggle
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	if input.KeyCode == Enum.KeyCode.E then
+		toggleExamUI()
+	end
+end)
+
+-- Auto-start exam 5 seconds after sitting in a valid seat
+local function onCharacterAdded(character)
+	local humanoid = character:WaitForChild("Humanoid", 10)
+	if humanoid then
+		humanoid.Seated:Connect(function(isSeated, seatPart)
+			if isSeated and seatPart and string.match(seatPart.Name, "^Seat%d+") then
+				if not examActive and not examOpenGuard then
+					print("[ExamController] Seated in Exam Seat! Starting exam in 5 seconds...")
+					task.delay(5, function()
+						if not examActive then
+							startExam()
+						end
+					end)
+				end
+			end
+		end)
+	end
+end
+
+if player.Character then
+	onCharacterAdded(player.Character)
+end
+player.CharacterAdded:Connect(onCharacterAdded)
 
 -- Darken a color by reducing HSV value component
 local function darkenColor(c: Color3, factor: number): Color3
