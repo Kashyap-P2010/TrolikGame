@@ -58,56 +58,6 @@ if humanoid.HipHeight <= 0 then
 	warn("[TeacherAI_WARNING] Teacher's HipHeight is 0! If he gets stuck in the floor, please manually increase Humanoid.HipHeight in the model.")
 end
 
----------------------------------------------------------------------------
--- Script-Side Rig Orientation Fix (Crabwalking Fix)
----------------------------------------------------------------------------
--- Since the builder's rig has the HumanoidRootPart rotated sideways relative to the mesh, 
--- Humanoid.AutoRotate will make him walk sideways. This overrides AutoRotate and manually 
--- aligns the rig correctly based on the offset in TeacherSettings.
-local function fixCrabWalking()
-	debugLog("Applying script-side crabwalking fix (Motor6D Offset)...")
-	humanoid.AutoRotate = true -- Let Roblox handle natural turning
-	
-	-- Find the Motor6D/Weld/WeldConstraint connecting the HumanoidRootPart to the body
-	local foundConnection = false
-	local weldConstraints = {}
-	
-	for _, obj in ipairs(teacher:GetDescendants()) do
-		if (obj:IsA("Motor6D") or obj:IsA("Weld")) and (obj.Part0 == rootPart or obj.Part1 == rootPart) then
-			debugLog("Found Root Connection ("..obj.ClassName.."): " .. obj.Name .. ". Applying C0/C1 offset.")
-			if obj.Part0 == rootPart then
-				obj.C0 = obj.C0 * CFrame.Angles(0, math.rad(TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
-			else
-				obj.C1 = obj.C1 * CFrame.Angles(0, math.rad(-TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
-			end
-			foundConnection = true
-		elseif obj:IsA("WeldConstraint") and (obj.Part0 == rootPart or obj.Part1 == rootPart) then
-			table.insert(weldConstraints, obj)
-		end
-	end
-	
-	-- If there are WeldConstraints, we MUST disable ALL of them at the same time before rotating the RootPart,
-	-- otherwise the ones we didn't disable will physically prevent the RootPart from rotating!
-	if #weldConstraints > 0 then
-		debugLog("Found " .. #weldConstraints .. " Root WeldConstraint(s). Disabling all to rotate RootPart...")
-		for _, wc in ipairs(weldConstraints) do
-			wc.Enabled = false
-		end
-		
-		rootPart.CFrame = rootPart.CFrame * CFrame.Angles(0, math.rad(TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
-		
-		for _, wc in ipairs(weldConstraints) do
-			wc.Enabled = true
-		end
-		foundConnection = true
-	end
-	
-	if not foundConnection then
-		warn("[TeacherAI_WARNING] Could not find any Weld, Motor6D, or WeldConstraint connecting the HumanoidRootPart! Crabwalk fix failed.")
-	end
-end
-task.spawn(fixCrabWalking)
-
 local waypointsFolder = Workspace:WaitForChild("TeacherWaypoints", 60)
 if not waypointsFolder then 
 	warn("[TeacherAI_ERROR] TeacherWaypoints folder not found in Workspace!") 
