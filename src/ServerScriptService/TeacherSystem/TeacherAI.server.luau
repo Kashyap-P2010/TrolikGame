@@ -353,15 +353,24 @@ local function patrolLoop()
 						local lookTime = math.random(TeacherSettings.IDLE_LOOK_TIME_MIN, TeacherSettings.IDLE_LOOK_TIME_MAX)
 						
 						if track then
-							-- Wait for Roblox to load the length data if it hasn't yet
+							-- Wait for Roblox to load the length data if it hasn't yet, but DO NOT wait forever!
 							if track.Length == 0 then
-								track:GetPropertyChangedSignal("Length"):Wait()
+								local t = 0
+								while track.Length == 0 and t < 1 do
+									task.wait(0.1)
+									t += 0.1
+								end
 							end
 							
-							-- Play it exactly once (or multiply if it's very short)
-							lookTime = track.Length
-							if lookTime < 1 then
-								lookTime = track.Length * math.random(3, 5) -- Loop it a few times if it's a 0.5s anim
+							-- If it successfully loaded the length
+							if track.Length > 0 then
+								lookTime = track.Length
+								if lookTime < 1 then
+									lookTime = track.Length * math.random(3, 5) -- Loop it a few times if it's a 0.5s anim
+								end
+							else
+								-- Fallback if animation length completely failed to load
+								lookTime = 3
 							end
 						end
 						
