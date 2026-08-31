@@ -70,6 +70,8 @@ local function fixCrabWalking()
 	
 	-- Find the Motor6D/Weld/WeldConstraint connecting the HumanoidRootPart to the body
 	local foundConnection = false
+	local weldConstraints = {}
+	
 	for _, obj in ipairs(teacher:GetDescendants()) do
 		if (obj:IsA("Motor6D") or obj:IsA("Weld")) and (obj.Part0 == rootPart or obj.Part1 == rootPart) then
 			debugLog("Found Root Connection ("..obj.ClassName.."): " .. obj.Name .. ". Applying C0/C1 offset.")
@@ -79,15 +81,25 @@ local function fixCrabWalking()
 				obj.C1 = obj.C1 * CFrame.Angles(0, math.rad(-TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
 			end
 			foundConnection = true
-			break
 		elseif obj:IsA("WeldConstraint") and (obj.Part0 == rootPart or obj.Part1 == rootPart) then
-			debugLog("Found Root WeldConstraint: " .. obj.Name .. ". Rotating RootPart directly to fix offset.")
-			obj.Enabled = false
-			rootPart.CFrame = rootPart.CFrame * CFrame.Angles(0, math.rad(TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
-			obj.Enabled = true
-			foundConnection = true
-			break
+			table.insert(weldConstraints, obj)
 		end
+	end
+	
+	-- If there are WeldConstraints, we MUST disable ALL of them at the same time before rotating the RootPart,
+	-- otherwise the ones we didn't disable will physically prevent the RootPart from rotating!
+	if #weldConstraints > 0 then
+		debugLog("Found " .. #weldConstraints .. " Root WeldConstraint(s). Disabling all to rotate RootPart...")
+		for _, wc in ipairs(weldConstraints) do
+			wc.Enabled = false
+		end
+		
+		rootPart.CFrame = rootPart.CFrame * CFrame.Angles(0, math.rad(TeacherSettings.RIG_ROTATION_OFFSET_Y), 0)
+		
+		for _, wc in ipairs(weldConstraints) do
+			wc.Enabled = true
+		end
+		foundConnection = true
 	end
 	
 	if not foundConnection then
