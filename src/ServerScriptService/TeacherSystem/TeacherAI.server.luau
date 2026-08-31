@@ -69,7 +69,7 @@ end
 local ANIMATIONS = {
 	IDLE = "rbxassetid://98820429377987",
 	WALK = "rbxassetid://75525743234669",
-	LOOK = "rbxassetid://88647926841758" -- arms_crossed
+	LOOK = "rbxassetid://98820429377987" -- arms_crossed
 }
 
 local animator = humanoid:FindFirstChildOfClass("Animator")
@@ -235,9 +235,17 @@ local function walkToTarget(targetPosition: Vector3, sessionId: number, isDirect
 		
 		local timeout = 0
 		while not completed and patrolSessionId == sessionId and currentState == "PATROLLING" do
-			task.wait(0.1)
-			timeout += 0.1
+			task.wait(0.05)
+			timeout += 0.05
 			if timeout > 10 then break end -- 10 second timeout for direct walks
+			
+			-- Smooth walking trick: If we are close enough to the target, break early so we can 
+			-- immediately issue the next MoveTo command before he starts decelerating!
+			local dist = (rootPart.Position - targetPosition)
+			local flatDist = Vector3.new(dist.X, 0, dist.Z).Magnitude
+			if flatDist < 2.5 then
+				break
+			end
 		end
 		if conn then conn:Disconnect() end
 		return
@@ -269,6 +277,7 @@ local function walkToTarget(targetPosition: Vector3, sessionId: number, isDirect
 			if conn then conn:Disconnect() end
 		end)
 		
+		local timeout = 0
 		-- Wait for completion or interruption
 		while not completed do
 			if patrolSessionId ~= sessionId or currentState ~= "PATROLLING" then
@@ -277,6 +286,18 @@ local function walkToTarget(targetPosition: Vector3, sessionId: number, isDirect
 				if conn then conn:Disconnect() end
 				return false
 			end
+			
+			timeout += 0.05
+			if timeout > 8 then break end
+			
+			-- Smooth walking trick: If we are close enough to the target, break early so we can 
+			-- immediately issue the next MoveTo command before he starts decelerating!
+			local dist = (rootPart.Position - pos)
+			local flatDist = Vector3.new(dist.X, 0, dist.Z).Magnitude
+			if flatDist < 2.5 then
+				break
+			end
+			
 			task.wait(0.05)
 		end
 		return true
