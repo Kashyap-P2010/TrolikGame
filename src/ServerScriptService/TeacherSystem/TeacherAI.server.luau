@@ -347,7 +347,25 @@ local function patrolLoop()
 					if math.random() <= 0.20 then
 						debugLog("Roll successful! Teacher is looking around.")
 						setState("LOOKING_AROUND")
+						
+						-- Fetch the exact length of the animation so we don't cut it off!
+						local track = loadedAnimations["LOOK"]
 						local lookTime = math.random(TeacherSettings.IDLE_LOOK_TIME_MIN, TeacherSettings.IDLE_LOOK_TIME_MAX)
+						
+						if track then
+							-- Wait for Roblox to load the length data if it hasn't yet
+							if track.Length == 0 then
+								track:GetPropertyChangedSignal("Length"):Wait()
+							end
+							
+							-- Play it exactly once (or multiply if it's very short)
+							lookTime = track.Length
+							if lookTime < 1 then
+								lookTime = track.Length * math.random(3, 5) -- Loop it a few times if it's a 0.5s anim
+							end
+						end
+						
+						debugLog(string.format("Looking around for exact animation duration: %.2f seconds...", lookTime))
 						
 						-- Hold state, but check if we got interrupted
 						local waitStart = os.clock()
