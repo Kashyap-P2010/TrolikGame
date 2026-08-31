@@ -19,6 +19,12 @@ local TeacherSettings = {
 	-- Rig Fixes
 	RIG_ROTATION_OFFSET_Y = 90,  -- Fixes sideways crabwalking (in degrees, usually -90, 90, or 180)
 	
+	-- Waypoint Overrides
+	-- If PathfindingService generates a weird curve (like going to a chair), add the destination waypoint name here to force a straight-line walk.
+	DIRECT_WALK_WAYPOINTS = {
+		["4"] = true,
+	},
+	
 	-- Timings
 	IDLE_LOOK_TIME_MIN = 3,       -- Minimum seconds to spend looking around at a LookNode
 	IDLE_LOOK_TIME_MAX = 6,       -- Maximum seconds

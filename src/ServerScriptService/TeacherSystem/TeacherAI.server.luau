@@ -221,7 +221,28 @@ local function getNextWaypoint(): Instance?
 	return nextNode
 end
 
-local function walkToTarget(targetPosition: Vector3, sessionId: number)
+local function walkToTarget(targetPosition: Vector3, sessionId: number, isDirectWalk: boolean?)
+	if isDirectWalk then
+		debugLog("Executing DIRECT walk (ignoring PathfindingService) to target...")
+		humanoid:MoveTo(targetPosition)
+		
+		local completed = false
+		local conn
+		conn = humanoid.MoveToFinished:Connect(function(reached)
+			completed = true
+			if conn then conn:Disconnect() end
+		end)
+		
+		local timeout = 0
+		while not completed and patrolSessionId == sessionId and currentState == "PATROLLING" do
+			task.wait(0.1)
+			timeout += 0.1
+			if timeout > 10 then break end -- 10 second timeout for direct walks
+		end
+		if conn then conn:Disconnect() end
+		return
+	end
+	
 	debugLog(string.format("Computing path to target: %.1f, %.1f, %.1f", targetPosition.X, targetPosition.Y, targetPosition.Z))
 	local path = PathfindingService:CreatePath({
 		AgentRadius = TeacherSettings.AGENT_RADIUS,
@@ -283,19 +304,23 @@ local function patrolLoop()
 	debugLog("Patrol loop started.")
 	while task.wait() do
 		if currentState == "PATROLLING" then
-			local targetNode = getNextWaypoint()
-			if not targetNode then 
+			local nextNode = getNextWaypoint()
+			if not nextNode then 
 				warn("[TeacherAI_WARNING] No valid waypoints found, retrying in 1s...")
 				task.wait(1)
 				continue 
 			end
 			
+			local targetPos = (nextNode :: BasePart).Position
+			debugLog("Patrolling to waypoint: " .. nextNode.Name)
+			
+			local forceDirect = TeacherSettings.DIRECT_WALK_WAYPOINTS[nextNode.Name] or false
 			local currentSession = patrolSessionId
-			walkToTarget((targetNode :: BasePart).Position, currentSession)
+			walkToTarget(targetPos, currentSession, forceDirect)
 			
 			-- Ensure we are still patrolling and this wasn't interrupted by a catch/suspect event
 			if currentState == "PATROLLING" and patrolSessionId == currentSession then
-				local nodeName = targetNode.Name
+				local nodeName = nextNode.Name
 				if LOOK_NODES[nodeName] then
 					debugLog(string.format("Reached LookNode '%s'. Rolling for look animation (20%% chance)...", nodeName))
 					if math.random() <= 0.20 then
