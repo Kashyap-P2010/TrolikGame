@@ -415,7 +415,44 @@ RunService.Heartbeat:Connect(function()
 end)
 
 ---------------------------------------------------------------------------
--- Initialization Flow
+-- Collision Handling (No Player-Teacher Collisions)
+---------------------------------------------------------------------------
+local PhysicsService = game:GetService("PhysicsService")
+
+-- Register groups safely
+pcall(function()
+	PhysicsService:RegisterCollisionGroup("TeacherAI_Group")
+	PhysicsService:RegisterCollisionGroup("Player_Group")
+end)
+PhysicsService:CollisionGroupSetCollidable("TeacherAI_Group", "Player_Group", false)
+
+local function setCollisionGroup(model: Model, groupName: string)
+	for _, obj in ipairs(model:GetDescendants()) do
+		if obj:IsA("BasePart") then
+			obj.CollisionGroup = groupName
+		end
+	end
+end
+
+-- Assign the teacher
+setCollisionGroup(teacher, "TeacherAI_Group")
+
+-- Assign all players
+Players.PlayerAdded:Connect(function(player)
+	player.CharacterAdded:Connect(function(character)
+		-- Wait a frame for parts to load
+		task.wait()
+		setCollisionGroup(character, "Player_Group")
+	end)
+end)
+for _, player in ipairs(Players:GetPlayers()) do
+	if player.Character then
+		setCollisionGroup(player.Character, "Player_Group")
+	end
+end
+
+---------------------------------------------------------------------------
+-- Script-Side Rig Orientation Fix (Crabwalking Fix)
 ---------------------------------------------------------------------------
 local function startUp()
 	debugLog("Startup sequence initiated.")
