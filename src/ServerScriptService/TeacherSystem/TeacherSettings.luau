@@ -9,7 +9,7 @@ local TeacherSettings = {
 	FOV_RANGE_STUDS   = 35,       -- How far the teacher can see
 	
 	-- Movement
-	PATROL_WALK_SPEED = 5,        -- Slower walking speed for patrolling
+	PATROL_WALK_SPEED = 3.5,      -- Slower walking speed for patrolling
 	CATCH_WALK_SPEED  = 20,       -- Fast running speed when catching a student
 	
 	-- Pathfinding (Adjust if you resize the Teacher!)
