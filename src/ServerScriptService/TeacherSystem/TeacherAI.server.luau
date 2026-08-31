@@ -349,7 +349,7 @@ local function patrolLoop()
 						setState("LOOKING_AROUND")
 						
 						-- Fetch the exact length of the animation so we don't cut it off!
-						local track = loadedAnimations["LOOK"]
+						local track = loadedTracks["LOOK"]
 						local lookTime = math.random(TeacherSettings.IDLE_LOOK_TIME_MIN, TeacherSettings.IDLE_LOOK_TIME_MAX)
 						
 						if track then
