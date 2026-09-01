@@ -27,6 +27,7 @@
 local Players           = game:GetService("Players")
 local UserInputService  = game:GetService("UserInputService")
 
+local Workspace         = game:GetService("Workspace")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Shared            = ReplicatedStorage:WaitForChild("Shared")
 local ExamRemotes       = require(Shared:WaitForChild("ExamRemotes"))
@@ -71,6 +72,7 @@ end
 ---------------------------------------------------------------------------
 local examUI = waitFor(playerGui, "ExamUI", 15) :: ScreenGui?
 if not examUI then error("[ExamController] ExamUI not found — aborting!") end
+examUI.Enabled = true -- Ensure the ScreenGui is enabled!
 
 local openExamBtn = waitFor(examUI, "OpenExam", 10) :: TextButton?
 local examFrame   = waitFor(examUI, "Exam",     10) :: Frame?
@@ -373,7 +375,7 @@ if openExamBtn then
 	openExamBtn.MouseButton1Click:Connect(toggleExamUI)
 end
 
--- E to toggle
+-- E to toggle (Only works AFTER exam starts)
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
 	if gameProcessed then return end
 	if input.KeyCode == Enum.KeyCode.E then
@@ -381,29 +383,44 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
 	end
 end)
 
--- Auto-start exam 5 seconds after sitting in a valid seat
-local function onCharacterAdded(character)
-	local humanoid = character:WaitForChild("Humanoid", 10)
-	if humanoid then
-		humanoid.Seated:Connect(function(isSeated, seatPart)
-			if isSeated and seatPart and string.match(seatPart.Name, "^Seat%d+") then
-				if not examActive and not examOpenGuard then
-					print("[ExamController] Seated in Exam Seat! Starting exam in 5 seconds...")
-					task.delay(5, function()
-						if not examActive then
-							startExam()
-						end
-					end)
-				end
-			end
-		end)
-	end
+-- Setup ProximityPrompts on all "Exam model" parts in Workspace.Papers
+local function setupPaper(paperPart: BasePart)
+	local prompt = Instance.new("ProximityPrompt")
+	prompt.ActionText = "Open Paper"
+	prompt.KeyboardKeyCode = Enum.KeyCode.E
+	prompt.HoldDuration = 1
+	prompt.MaxActivationDistance = 5
+	prompt.RequiresLineOfSight = false
+	prompt.Parent = paperPart
+
+	prompt.Triggered:Connect(function(playerWhoTriggered)
+		if playerWhoTriggered == player and not examActive and not examOpenGuard then
+			prompt.Enabled = false -- Disable the prompt once the exam starts
+			print("[ExamController] Exam started via ProximityPrompt on " .. paperPart.Name)
+			startExam()
+		end
+	end)
 end
 
-if player.Character then
-	onCharacterAdded(player.Character)
-end
-player.CharacterAdded:Connect(onCharacterAdded)
+-- Wait for the folder without yielding forever if it doesn't exist yet
+task.spawn(function()
+	local papersFolder = Workspace:WaitForChild("Papers", 30)
+	if papersFolder then
+		for _, child in ipairs(papersFolder:GetChildren()) do
+			if child.Name == "Exam model" and child:IsA("BasePart") then
+				setupPaper(child)
+			end
+		end
+		
+		papersFolder.ChildAdded:Connect(function(child)
+			if child.Name == "Exam model" and child:IsA("BasePart") then
+				setupPaper(child)
+			end
+		end)
+	else
+		warn("[ExamController] Workspace.Papers folder not found!")
+	end
+end)
 
 -- Darken a color by reducing HSV value component
 local function darkenColor(c: Color3, factor: number): Color3
