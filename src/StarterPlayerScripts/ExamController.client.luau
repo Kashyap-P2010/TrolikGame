@@ -360,6 +360,13 @@ local function startGlobalTimer()
 	print("[ExamController] Global timer started (8 minutes)!")
 	if timerLabel then timerLabel.Visible = true end
 	
+	-- Make the ProximityPrompts visible now that the exam period has begun!
+	for _, prompt in ipairs(allPrompts) do
+		if not examFrame.Visible then
+			prompt.Enabled = true
+		end
+	end
+	
 	local startTime = os.clock()
 	timerThread = task.spawn(function()
 		while globalTimerActive do
@@ -416,6 +423,7 @@ local function setupPaper(paperPart: BasePart)
 	prompt.HoldDuration = 1
 	prompt.MaxActivationDistance = 5
 	prompt.RequiresLineOfSight = false
+	prompt.Enabled = false -- Hidden by default until the 5-second countdown finishes!
 	prompt.Parent = paperPart
 	
 	table.insert(allPrompts, prompt)

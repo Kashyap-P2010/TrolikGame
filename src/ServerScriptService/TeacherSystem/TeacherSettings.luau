@@ -23,11 +23,15 @@ local TeacherSettings = {
 	-- If PathfindingService generates a weird curve (like going to a chair), add the destination waypoint name here to force a straight-line walk.
 	DIRECT_WALK_WAYPOINTS = {
 		["4"] = true,
+		["17"] = true,
+		["18"] = true,
+		["19"] = true,
+		["20"] = true,
 	},
 	
 	-- Timings
-	IDLE_LOOK_TIME_MIN = 3,       -- Minimum seconds to spend looking around at a LookNode
-	IDLE_LOOK_TIME_MAX = 6,       -- Maximum seconds
+	IDLE_LOOK_TIME_MIN = 1.5,       -- Minimum seconds to spend looking around at a LookNode
+	IDLE_LOOK_TIME_MAX = 3,         -- Maximum seconds
 }
 
 return TeacherSettings
