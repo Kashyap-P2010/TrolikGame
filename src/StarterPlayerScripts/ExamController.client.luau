@@ -183,7 +183,7 @@ local timerThread:    thread?    = nil
 local examOpenGuard:  boolean    = false
 local warnInProgress: boolean    = false  -- prevents spam during 2s red flash
 local globalTimerActive: boolean = false
-local allPrompts: {ProximityPrompt} = {}
+local myPaperPrompt: ProximityPrompt? = nil
 
 ---------------------------------------------------------------------------
 -- Helpers
@@ -311,9 +311,9 @@ local function startExam()
 	-- Show frame with loading state
 	examFrame.Visible = true
 	
-	-- Hide all prompts since UI is open
-	for _, prompt in ipairs(allPrompts) do
-		prompt.Enabled = false
+	-- Hide prompt since UI is open
+	if myPaperPrompt then
+		myPaperPrompt.Enabled = false
 	end
 	
 	if openExamBtn then
@@ -360,11 +360,9 @@ local function startGlobalTimer()
 	print("[ExamController] Global timer started (8 minutes)!")
 	if timerLabel then timerLabel.Visible = true end
 	
-	-- Make the ProximityPrompts visible now that the exam period has begun!
-	for _, prompt in ipairs(allPrompts) do
-		if not examFrame.Visible then
-			prompt.Enabled = true
-		end
+	-- Make the ProximityPrompt visible now that the exam period has begun!
+	if myPaperPrompt and not examFrame.Visible then
+		myPaperPrompt.Enabled = true
 	end
 	
 	local startTime = os.clock()
@@ -395,9 +393,9 @@ local function toggleExamUI()
 		openExamBtn.Text = examFrame.Visible and "Close Exam UI" or "Open Exam UI"
 	end
 	
-	-- Toggle prompts based on UI visibility
-	for _, prompt in ipairs(allPrompts) do
-		prompt.Enabled = not examFrame.Visible
+	-- Toggle prompt based on UI visibility
+	if myPaperPrompt then
+		myPaperPrompt.Enabled = not examFrame.Visible
 	end
 end
 
@@ -415,67 +413,56 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
 	end
 end)
 
--- Setup ProximityPrompts on all "Exam model" parts in Workspace.Papers
-local function setupPaper(paperPart: BasePart)
-	local prompt = Instance.new("ProximityPrompt")
-	prompt.ActionText = "Open Paper"
-	prompt.KeyboardKeyCode = Enum.KeyCode.E
-	prompt.HoldDuration = 1
-	prompt.MaxActivationDistance = 5
-	prompt.RequiresLineOfSight = false
-	prompt.Enabled = false -- Hidden by default until the 5-second countdown finishes!
-	prompt.Parent = paperPart
-	
-	table.insert(allPrompts, prompt)
-
-	prompt.Triggered:Connect(function(playerWhoTriggered)
-		if playerWhoTriggered == player then
-			if not examActive and not examOpenGuard then
-				print("[ExamController] Exam started via ProximityPrompt on " .. paperPart.Name)
-				startExam()
-			elseif examActive then
-				-- If exam is already active, just open the UI
-				if not examFrame.Visible then
-					toggleExamUI()
-				end
-			end
-		end
-	end)
-end
-
--- Wait for the folder without yielding forever if it doesn't exist yet
-task.spawn(function()
-	local papersFolder = Workspace:WaitForChild("Papers", 30)
-	if papersFolder then
-		for _, child in ipairs(papersFolder:GetChildren()) do
-			if child.Name == "Exam model" and child:IsA("BasePart") then
-				setupPaper(child)
-			end
-		end
-		
-		papersFolder.ChildAdded:Connect(function(child)
-			if child.Name == "Exam model" and child:IsA("BasePart") then
-				setupPaper(child)
-			end
-		end)
-	else
-		warn("[ExamController] Workspace.Papers folder not found!")
-	end
-end)
-
 -- Auto-start the GLOBAL TIMER 5 seconds after sitting in a valid seat
 local function onCharacterAdded(character)
 	local humanoid = character:WaitForChild("Humanoid", 10)
 	if humanoid then
 		humanoid.Seated:Connect(function(isSeated, seatPart)
-			if isSeated and seatPart and string.match(seatPart.Name, "^Seat%d+") then
-				if not globalTimerActive then
-					print("[ExamController] Seated in Exam Seat! Timer starts in 5 seconds...")
-					task.delay(5, function()
-						if not globalTimerActive then
-							startGlobalTimer()
-						end
-					end)
+			if isSeated and seatPart then
+				local seatNum = string.match(seatPart.Name, "^Seat(%d+)$")
+				if seatNum then
+					if not globalTimerActive then
+						print(string.format("[ExamController] Seated in %s! Timer starts in 5 seconds...", seatPart.Name))
+						task.delay(5, function()
+							if not globalTimerActive then
+								-- Find their specific paper
+								local papersFolder = Workspace:FindFirstChild("Papers")
+								if papersFolder then
+									local myPaper = papersFolder:FindFirstChild("Paper" .. seatNum)
+									if myPaper and myPaper:IsA("BasePart") then
+										-- Create the prompt ONLY for their paper
+										local prompt = Instance.new("ProximityPrompt")
+										prompt.ActionText = "Open Paper"
+										prompt.KeyboardKeyCode = Enum.KeyCode.E
+										prompt.HoldDuration = 0
+										prompt.MaxActivationDistance = 5
+										prompt.RequiresLineOfSight = false
+										prompt.Parent = myPaper
+										
+										myPaperPrompt = prompt
+										
+										prompt.Triggered:Connect(function(playerWhoTriggered)
+											if playerWhoTriggered == player then
+												if not examActive and not examOpenGuard then
+													print("[ExamController] Exam started via ProximityPrompt on " .. myPaper.Name)
+													startExam()
+												elseif examActive then
+													-- If exam is already active, just open the UI
+													if not examFrame.Visible then
+														toggleExamUI()
+													end
+												end
+											end
+										end)
+									else
+										warn("[ExamController] Could not find Paper" .. seatNum .. " in Workspace.Papers!")
+									end
+								end
+								
+								startGlobalTimer()
+							end
+						end)
+					end
 				end
 			end
 		end)
