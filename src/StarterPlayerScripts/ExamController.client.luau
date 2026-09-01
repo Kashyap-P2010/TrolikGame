@@ -74,6 +74,9 @@ local examUI = waitFor(playerGui, "ExamUI", 15) :: ScreenGui?
 if not examUI then error("[ExamController] ExamUI not found — aborting!") end
 examUI.Enabled = true -- Ensure the ScreenGui is enabled!
 
+local timerUI = waitFor(playerGui, "TimerUI", 15) :: ScreenGui?
+if timerUI then timerUI.Enabled = true end
+
 local openExamBtn = waitFor(examUI, "OpenExam", 10) :: TextButton?
 local examFrame   = waitFor(examUI, "Exam",     10) :: Frame?
 if not examFrame then error("[ExamController] Exam frame not found — aborting!") end
@@ -155,7 +158,7 @@ timerLabel.TextColor3             = Color3.fromRGB(255, 255, 255)
 timerLabel.TextScaled             = true
 timerLabel.Text                   = "8:00"
 timerLabel.ZIndex                 = 10
-timerLabel.Parent                 = examUI
+timerLabel.Parent                 = timerUI or examUI
 timerLabel.Visible                = false
 
 local timerStroke          = Instance.new("UIStroke")
@@ -179,6 +182,8 @@ local score:          number     = 0
 local timerThread:    thread?    = nil
 local examOpenGuard:  boolean    = false
 local warnInProgress: boolean    = false  -- prevents spam during 2s red flash
+local globalTimerActive: boolean = false
+local allPrompts: {ProximityPrompt} = {}
 
 ---------------------------------------------------------------------------
 -- Helpers
@@ -254,8 +259,9 @@ end
 -- End the exam
 ---------------------------------------------------------------------------
 local function endExam()
-	if not examActive then return end
+	if not examActive and not globalTimerActive then return end
 	examActive = false
+	globalTimerActive = false
 
 	if timerThread then
 		pcall(task.cancel, timerThread)
@@ -304,7 +310,11 @@ local function startExam()
 
 	-- Show frame with loading state
 	examFrame.Visible = true
-	timerLabel.Visible = true
+	
+	-- Hide all prompts since UI is open
+	for _, prompt in ipairs(allPrompts) do
+		prompt.Enabled = false
+	end
 	
 	if openExamBtn then
 		openExamBtn.Visible = true
@@ -338,11 +348,21 @@ local function startExam()
 
 	print(string.format("[ExamController] Got %d questions — exam starts!", #questions))
 	displayQuestion(currentIndex)
+end
 
-	-- 8-minute timer
+---------------------------------------------------------------------------
+-- Global Timer Logic
+---------------------------------------------------------------------------
+local function startGlobalTimer()
+	if globalTimerActive then return end
+	globalTimerActive = true
+	
+	print("[ExamController] Global timer started (8 minutes)!")
+	if timerLabel then timerLabel.Visible = true end
+	
 	local startTime = os.clock()
 	timerThread = task.spawn(function()
-		while examActive do
+		while globalTimerActive do
 			local remaining = EXAM_DURATION_SECONDS - (os.clock() - startTime)
 			if remaining <= 0 then
 				if timerLabel then timerLabel.Text = "0:00" end
@@ -366,6 +386,11 @@ local function toggleExamUI()
 	
 	if openExamBtn then
 		openExamBtn.Text = examFrame.Visible and "Close Exam UI" or "Open Exam UI"
+	end
+	
+	-- Toggle prompts based on UI visibility
+	for _, prompt in ipairs(allPrompts) do
+		prompt.Enabled = not examFrame.Visible
 	end
 end
 
@@ -392,12 +417,20 @@ local function setupPaper(paperPart: BasePart)
 	prompt.MaxActivationDistance = 5
 	prompt.RequiresLineOfSight = false
 	prompt.Parent = paperPart
+	
+	table.insert(allPrompts, prompt)
 
 	prompt.Triggered:Connect(function(playerWhoTriggered)
-		if playerWhoTriggered == player and not examActive and not examOpenGuard then
-			prompt.Enabled = false -- Disable the prompt once the exam starts
-			print("[ExamController] Exam started via ProximityPrompt on " .. paperPart.Name)
-			startExam()
+		if playerWhoTriggered == player then
+			if not examActive and not examOpenGuard then
+				print("[ExamController] Exam started via ProximityPrompt on " .. paperPart.Name)
+				startExam()
+			elseif examActive then
+				-- If exam is already active, just open the UI
+				if not examFrame.Visible then
+					toggleExamUI()
+				end
+			end
 		end
 	end)
 end
@@ -421,6 +454,30 @@ task.spawn(function()
 		warn("[ExamController] Workspace.Papers folder not found!")
 	end
 end)
+
+-- Auto-start the GLOBAL TIMER 5 seconds after sitting in a valid seat
+local function onCharacterAdded(character)
+	local humanoid = character:WaitForChild("Humanoid", 10)
+	if humanoid then
+		humanoid.Seated:Connect(function(isSeated, seatPart)
+			if isSeated and seatPart and string.match(seatPart.Name, "^Seat%d+") then
+				if not globalTimerActive then
+					print("[ExamController] Seated in Exam Seat! Timer starts in 5 seconds...")
+					task.delay(5, function()
+						if not globalTimerActive then
+							startGlobalTimer()
+						end
+					end)
+				end
+			end
+		end)
+	end
+end
+
+if player.Character then
+	onCharacterAdded(player.Character)
+end
+player.CharacterAdded:Connect(onCharacterAdded)
 
 -- Darken a color by reducing HSV value component
 local function darkenColor(c: Color3, factor: number): Color3
