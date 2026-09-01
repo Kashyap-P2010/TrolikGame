@@ -183,6 +183,7 @@ local timerThread:    thread?    = nil
 local examOpenGuard:  boolean    = false
 local warnInProgress: boolean    = false  -- prevents spam during 2s red flash
 local globalTimerActive: boolean = false
+local examCompleted:  boolean    = false
 local myPaperPrompt: ProximityPrompt? = nil
 
 ---------------------------------------------------------------------------
@@ -286,9 +287,19 @@ local function endExam()
 
 	-- Hide after 3 seconds
 	task.delay(3, function()
-		examFrame.Visible = false
-		timerLabel.Visible = false
-		examOpenGuard     = false
+		if examFrame then examFrame.Visible = false end
+		if timerLabel then timerLabel.Visible = false end
+		
+		-- Destroy prompt and button permanently
+		if myPaperPrompt then
+			myPaperPrompt:Destroy()
+			myPaperPrompt = nil
+		end
+		if openExamBtn then
+			openExamBtn.Visible = false
+		end
+		
+		examCompleted = true
 	end)
 end
 
@@ -296,8 +307,8 @@ end
 -- Start the exam
 ---------------------------------------------------------------------------
 local function startExam()
-	if examOpenGuard then
-		warn("[ExamController] Exam already open — ignoring duplicate")
+	if examCompleted or examOpenGuard then
+		warn("[ExamController] Exam already open or completed — ignoring duplicate")
 		return
 	end
 	examOpenGuard = true
@@ -354,7 +365,7 @@ end
 -- Global Timer Logic
 ---------------------------------------------------------------------------
 local function startGlobalTimer()
-	if globalTimerActive then return end
+	if examCompleted or globalTimerActive then return end
 	globalTimerActive = true
 	
 	print("[ExamController] Global timer started (8 minutes)!")
@@ -386,7 +397,7 @@ end
 
 -- UI Visibility Toggling
 local function toggleExamUI()
-	if not examActive then return end
+	if not examActive or examCompleted then return end
 	examFrame.Visible = not examFrame.Visible
 	
 	if openExamBtn then
@@ -407,7 +418,7 @@ end
 
 -- E to toggle (Only works AFTER exam starts)
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
-	if gameProcessed then return end
+	if gameProcessed or examCompleted then return end
 	if input.KeyCode == Enum.KeyCode.E then
 		toggleExamUI()
 	end
@@ -421,10 +432,10 @@ local function onCharacterAdded(character)
 			if isSeated and seatPart then
 				local seatNum = string.match(seatPart.Name, "^Seat(%d+)$")
 				if seatNum then
-					if not globalTimerActive then
+					if not globalTimerActive and not examCompleted then
 						print(string.format("[ExamController] Seated in %s! Timer starts in 5 seconds...", seatPart.Name))
 						task.delay(5, function()
-							if not globalTimerActive then
+							if not globalTimerActive and not examCompleted then
 								-- Find their specific paper
 								local papersFolder = Workspace:FindFirstChild("Papers")
 								if papersFolder then
