@@ -339,7 +339,7 @@ getExamQuestions.OnServerInvoke = function(player: Player): {Question}
 	return questions
 end
 
---- RemoteEvent: client reports final score → server saves as attribute.
+--- RemoteEvent: client reports final score → server saves, awards coins, tracks exams.
 saveExamResult.OnServerEvent:Connect(function(player: Player, score: number, total: number)
 	-- Validate inputs (never trust the client)
 	if type(score) ~= "number" or type(total) ~= "number" then
@@ -355,6 +355,37 @@ saveExamResult.OnServerEvent:Connect(function(player: Player, score: number, tot
 	player:SetAttribute("ExamPercentage", percentage)
 
 	print(string.format("[ExamSystem] %s scored %d/%d (%d%%)", player.Name, score, total, percentage))
+
+	-- Award coins: 10 per correct answer
+	local COINS_PER_CORRECT = 10
+	local coinsEarned = score * COINS_PER_CORRECT
+	
+	-- Safely require PlayerData (may not be loaded yet in edge cases)
+	local PlayerData
+	local ok, err = pcall(function()
+		PlayerData = require(game:GetService("ServerScriptService"):FindFirstChild("DataSystem"):FindFirstChild("PlayerData"))
+	end)
+	
+	if ok and PlayerData and PlayerData.hasSession(player) then
+		-- Award coins
+		if coinsEarned > 0 then
+			PlayerData.addCoins(player, coinsEarned)
+		end
+		
+		-- Track exam taken
+		PlayerData.incrementExamsTaken(player)
+		
+		-- Check if passed (70% threshold)
+		if percentage >= 70 then
+			PlayerData.incrementExamsPassed(player)
+			print(string.format("[ExamSystem] %s PASSED the exam! (%d%%)", player.Name, percentage))
+		end
+		
+		-- Update best score
+		PlayerData.updateBestScore(player, percentage)
+	else
+		warn("[ExamSystem] Could not access PlayerData for " .. player.Name .. " — coins not awarded: " .. tostring(err))
+	end
 end)
 
 ---------------------------------------------------------------------------

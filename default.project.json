@@ -12,6 +12,9 @@
 			},
 			"TeacherSystem": {
 				"$path": "src/ServerScriptService/TeacherSystem"
+			},
+			"DataSystem": {
+				"$path": "src/ServerScriptService/DataSystem"
 			}
 		},
 		"ReplicatedStorage": {
