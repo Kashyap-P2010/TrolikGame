@@ -208,7 +208,6 @@ local function fetchFile(filePath: string): string?
 			Headers = {
 				["Authorization"] = "Bearer " .. GITHUB_PAT,
 				["Accept"]        = "application/vnd.github.v3.raw",
-				["User-Agent"]    = "TrolikGame-ExamSystem/1.0",
 			},
 		})
 	end)

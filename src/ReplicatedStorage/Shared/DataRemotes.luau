@@ -60,9 +60,15 @@ function DataRemotes.get(name: string): RemoteEvent | RemoteFunction
 		assert(r, "DataRemotes: remote '" .. name .. "' not found!")
 		return r :: any
 	else
-		local folder = ReplicatedStorage:WaitForChild("DataRemotes", 15)
-		assert(folder, "[DataRemotes] DataRemotes folder not found in ReplicatedStorage!")
-		local r = folder:WaitForChild(name, 10)
+		-- Wait generously for the server to create the folder
+		local folder = ReplicatedStorage:WaitForChild("DataRemotes", 30)
+		if not folder then
+			-- Retry once more — server scripts can be slow to initialize
+			warn("[DataRemotes] DataRemotes folder not found yet, retrying...")
+			folder = ReplicatedStorage:WaitForChild("DataRemotes", 30)
+		end
+		assert(folder, "[DataRemotes] DataRemotes folder not found in ReplicatedStorage after 60s!")
+		local r = folder:WaitForChild(name, 15)
 		assert(r, "[DataRemotes] Remote '" .. name .. "' not found!")
 		return r :: any
 	end
