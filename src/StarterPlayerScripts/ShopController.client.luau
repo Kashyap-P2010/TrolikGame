@@ -11,6 +11,7 @@
 local Players           = game:GetService("Players")
 local Workspace         = game:GetService("Workspace")
 local UserInputService  = game:GetService("UserInputService")
+local RunService        = game:GetService("RunService")
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Shared            = ReplicatedStorage:WaitForChild("Shared")
@@ -228,50 +229,46 @@ for _, itemName in ipairs(ITEM_NAMES) do
 end
 
 ---------------------------------------------------------------------------
--- ShopPad proximity detection
+-- ShopPad Proximity Detection (Distance-based for reliability)
 ---------------------------------------------------------------------------
-local shopPad = Workspace:WaitForChild("ShopPad", 30)
-
-if shopPad then
-	local touchingParts: { [BasePart]: boolean } = {}
-	local isOnPad = false
-	
-	local function checkPadStatus()
-		local playerOnPad = false
-		local character = player.Character
-		if character then
-			for part, _ in pairs(touchingParts) do
-				if part:IsDescendantOf(character) then
-					playerOnPad = true
-					break
-				end
-			end
+local shopPad: BasePart? = nil
+task.spawn(function()
+	while not shopPad do
+		shopPad = Workspace:FindFirstChild("ShopPad", true) :: BasePart
+		if shopPad then
+			print("[ShopController] Found ShopPad at: " .. shopPad:GetFullName())
+			break
 		end
-		
-		if playerOnPad ~= isOnPad then
-			isOnPad = playerOnPad
-			examTricksShop.Visible = isOnPad
-			if not isOnPad then
-				closeAllCanvasGroups()
-			end
-			print("[ShopController] Shop visibility: " .. tostring(isOnPad))
-		end
+		task.wait(1)
 	end
+end)
+
+local isOnPad = false
+RunService.Heartbeat:Connect(function()
+	if not shopPad then return end
+	if not player.Character then return end
 	
-	shopPad.Touched:Connect(function(hit: BasePart)
-		touchingParts[hit] = true
-		checkPadStatus()
-	end)
+	local hrp = player.Character:FindFirstChild("HumanoidRootPart")
+	if not hrp then return end
 	
-	shopPad.TouchEnded:Connect(function(hit: BasePart)
-		touchingParts[hit] = nil
-		checkPadStatus()
-	end)
+	-- Calculate 2D distance (ignore Y axis)
+	local diff = hrp.Position - shopPad.Position
+	local dist2D = math.sqrt(diff.X^2 + diff.Z^2)
 	
-	print("[ShopController] ShopPad connected ✓")
-else
-	warn("[ShopController] ShopPad not found in Workspace!")
-end
+	-- Assuming a standard pad size, 6 studs is a good activation radius
+	local playerOnPad = dist2D <= 6
+	
+	if playerOnPad ~= isOnPad then
+		isOnPad = playerOnPad
+		examTricksShop.Visible = isOnPad
+		if not isOnPad then
+			closeAllCanvasGroups()
+		end
+		-- print("[ShopController] Shop visibility: " .. tostring(isOnPad))
+	end
+end)
+
+print("[ShopController] ShopPad distance scanner active ✓")
 
 ---------------------------------------------------------------------------
 -- Real-time data updates from server

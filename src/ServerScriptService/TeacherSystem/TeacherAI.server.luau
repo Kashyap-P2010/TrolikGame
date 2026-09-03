@@ -15,7 +15,7 @@ local TeacherSettings = require(script.Parent:WaitForChild("TeacherSettings"))
 ---------------------------------------------------------------------------
 -- Debugging Setup
 ---------------------------------------------------------------------------
-local DEBUG_MODE = true
+local DEBUG_MODE = false
 local function debugLog(...)
 	if DEBUG_MODE then
 		print("[TeacherAI_DEBUG]", ...)
