@@ -181,6 +181,33 @@ local function openCanvasGroup(itemName: string)
 end
 
 ---------------------------------------------------------------------------
+-- Hover Animations
+---------------------------------------------------------------------------
+local function applyHoverAnimation(guiButton: GuiButton, targetFrame: GuiObject)
+	local uiScale = targetFrame:FindFirstChildWhichIsA("UIScale")
+	if not uiScale then
+		uiScale = Instance.new("UIScale")
+		uiScale.Parent = targetFrame
+	end
+	
+	local originalColor = targetFrame.BackgroundColor3
+	local r, g, b = originalColor.R, originalColor.G, originalColor.B
+	local hoverColor = Color3.new(math.max(0, r - 0.15), math.max(0, g - 0.15), math.max(0, b - 0.15))
+	
+	local tweenInfo = TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+	
+	guiButton.MouseEnter:Connect(function()
+		TweenService:Create(uiScale, tweenInfo, {Scale = 1.05}):Play()
+		TweenService:Create(targetFrame, tweenInfo, {BackgroundColor3 = hoverColor}):Play()
+	end)
+	
+	guiButton.MouseLeave:Connect(function()
+		TweenService:Create(uiScale, tweenInfo, {Scale = 1}):Play()
+		TweenService:Create(targetFrame, tweenInfo, {BackgroundColor3 = originalColor}):Play()
+	end)
+end
+
+---------------------------------------------------------------------------
 -- Wire up buy buttons inside a container (either an item frame or a CanvasGroup)
 ---------------------------------------------------------------------------
 local function wireBuyButtons(container: Instance, itemName: string)
@@ -203,6 +230,8 @@ local function wireBuyButtons(container: Instance, itemName: string)
 			btn.Parent = moneyBtn
 			clickTarget = btn
 		end
+		
+		applyHoverAnimation(clickTarget, moneyBtn)
 		
 		if clickTarget:IsA("GuiButton") then
 			clickTarget.MouseButton1Click:Connect(function()
@@ -234,6 +263,8 @@ local function wireBuyButtons(container: Instance, itemName: string)
 			btn.Parent = robuxBtn
 			clickTarget = btn
 		end
+		
+		applyHoverAnimation(clickTarget, robuxBtn)
 		
 		if clickTarget:IsA("GuiButton") then
 			clickTarget.MouseButton1Click:Connect(function()
@@ -276,6 +307,9 @@ for _, itemName in ipairs(ITEM_NAMES) do
 	clickBtn.MouseButton1Click:Connect(function()
 		openCanvasGroup(itemName)
 	end)
+	
+	-- Add hover anims to the item list frames too!
+	applyHoverAnimation(clickBtn, itemFrame)
 	
 	-- Wire buy buttons inside the item frame (the mini buy buttons in the list)
 	wireBuyButtons(itemFrame, itemName)
@@ -333,6 +367,9 @@ RunService.Heartbeat:Connect(function()
 		examTricksShop.Visible = isOnPad
 		if not isOnPad then
 			closeAllCanvasGroups()
+		else
+			-- Automatically show Nerd_Help when first opening the shop
+			openCanvasGroup("Nerd_Help")
 		end
 	end
 end)
