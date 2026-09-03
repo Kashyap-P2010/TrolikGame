@@ -244,19 +244,24 @@ task.spawn(function()
 end)
 
 local isOnPad = false
+local overlapParams = OverlapParams.new()
+overlapParams.FilterType = Enum.RaycastFilterType.Include
+
 RunService.Heartbeat:Connect(function()
 	if not shopPad then return end
-	if not player.Character then return end
+	local char = player.Character
+	if not char then return end
 	
-	local hrp = player.Character:FindFirstChild("HumanoidRootPart")
-	if not hrp then return end
+	overlapParams.FilterDescendantsInstances = {char}
 	
-	-- Calculate 2D distance (ignore Y axis)
-	local diff = hrp.Position - shopPad.Position
-	local dist2D = math.sqrt(diff.X^2 + diff.Z^2)
+	-- Create a virtual hitbox matching the pad's footprint, but extending 5 studs upwards
+	-- This captures players standing on it regardless of their HipHeight
+	local padCFrame = shopPad.CFrame
+	local hitboxSize = shopPad.Size + Vector3.new(0, 5, 0)
+	local hitboxCFrame = padCFrame * CFrame.new(0, 2.5, 0)
 	
-	-- Assuming a standard pad size, 6 studs is a good activation radius
-	local playerOnPad = dist2D <= 6
+	local touchingParts = Workspace:GetPartBoundsInBox(hitboxCFrame, hitboxSize, overlapParams)
+	local playerOnPad = #touchingParts > 0
 	
 	if playerOnPad ~= isOnPad then
 		isOnPad = playerOnPad
@@ -264,7 +269,6 @@ RunService.Heartbeat:Connect(function()
 		if not isOnPad then
 			closeAllCanvasGroups()
 		end
-		-- print("[ShopController] Shop visibility: " .. tostring(isOnPad))
 	end
 end)
 
