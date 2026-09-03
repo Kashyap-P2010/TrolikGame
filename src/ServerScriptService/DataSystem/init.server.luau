@@ -225,64 +225,70 @@ getPlayerDataRemote.OnServerInvoke = function(player: Player)
 end
 
 -- PurchaseItem: client wants to buy an item with coins
-purchaseItemRemote.OnServerEvent:Connect(function(player: Player, itemName: any)
+purchaseItemRemote.OnServerInvoke = function(player: Player, itemName: any)
 	-- Validate input type
 	if type(itemName) ~= "string" then
 		warn(string.format("[DataSystem] Invalid PurchaseItem args from %s", player.Name))
-		return
+		return false, "Invalid item requested."
 	end
 	
 	-- Check item exists in catalog
 	local catalogEntry = PlayerData.ITEM_CATALOG[itemName]
 	if not catalogEntry then
 		warn(string.format("[DataSystem] %s tried to buy unknown item: %s", player.Name, itemName))
-		return
+		return false, "Item not found in catalog."
 	end
 	
 	-- Check it's a coin item
 	if catalogEntry.currency ~= "Coins" then
 		warn(string.format("[DataSystem] %s tried to buy Robux item '%s' with coins", player.Name, itemName))
-		return
+		return false, "This item cannot be bought with coins."
 	end
 	
 	-- Check not already owned
 	if PlayerData.owns(player, itemName) then
 		warn(string.format("[DataSystem] %s already owns '%s'", player.Name, itemName))
-		return
+		return false, "You already own this item!"
 	end
 	
 	-- Attempt purchase
 	local success = PlayerData.spendCoins(player, catalogEntry.price)
 	if success then
 		PlayerData.grantItem(player, itemName)
+		local formattedName = string.gsub(itemName, "_", " ")
 		print(string.format("[DataSystem] %s purchased '%s' for %d coins", player.Name, itemName, catalogEntry.price))
+		return true, "Purchase successful: " .. formattedName
 	else
+		local data = PlayerData.getAll(player)
+		local currentCoins = data.Coins or 0
+		local needed = catalogEntry.price - currentCoins
 		warn(string.format("[DataSystem] %s cannot afford '%s' (%d coins needed)", player.Name, itemName, catalogEntry.price))
+		return false, "You need " .. tostring(needed) .. " more coins to buy this item."
 	end
-end)
+end
 
 -- PurchaseGamepass: client wants to buy a Robux item
-purchaseGPRemote.OnServerEvent:Connect(function(player: Player, itemName: any)
+purchaseGPRemote.OnServerInvoke = function(player: Player, itemName: any)
 	if type(itemName) ~= "string" then
 		warn(string.format("[DataSystem] Invalid PurchaseGamepass args from %s", player.Name))
-		return
+		return false, "Invalid item requested."
 	end
 	
 	local catalogEntry = PlayerData.ITEM_CATALOG[itemName]
 	if not catalogEntry or catalogEntry.currency ~= "Robux" then
 		warn(string.format("[DataSystem] %s tried invalid gamepass purchase: %s", player.Name, tostring(itemName)))
-		return
+		return false, "This item is not a gamepass."
 	end
 	
 	if PlayerData.owns(player, itemName) then
 		warn(string.format("[DataSystem] %s already owns gamepass item '%s'", player.Name, itemName))
-		return
+		return false, "You already own this item!"
 	end
 	
 	local gamepassId = catalogEntry.gamepassId
 	if gamepassId == 0 then
 		warn(string.format("[DataSystem] Gamepass ID not yet configured for '%s'", itemName))
-		return
+		return false, "This gamepass is invalid"
 	end
 	
 	-- Prompt the purchase on the client
@@ -291,8 +297,11 @@ purchaseGPRemote.OnServerEvent:Connect(function(player: Player, itemName: any)
 	end)
 	if not promptSuccess then
 		warn(string.format("[DataSystem] Failed to prompt gamepass for %s: %s", player.Name, tostring(promptErr)))
+		return false, "Failed to prompt purchase. Try again later."
 	end
-end)
+	
+	return true, "Prompting purchase..."
+end
 
 -- Listen for gamepass purchase completions
 MarketplaceService.PromptGamePassPurchaseFinished:Connect(function(player: Player, gamepassId: number, wasPurchased: boolean)

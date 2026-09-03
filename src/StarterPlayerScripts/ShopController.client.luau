@@ -12,6 +12,7 @@ local Players           = game:GetService("Players")
 local Workspace         = game:GetService("Workspace")
 local UserInputService  = game:GetService("UserInputService")
 local RunService        = game:GetService("RunService")
+local TweenService      = game:GetService("TweenService")
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Shared            = ReplicatedStorage:WaitForChild("Shared")
@@ -23,10 +24,10 @@ local playerGui = player:WaitForChild("PlayerGui")
 ---------------------------------------------------------------------------
 -- Remotes
 ---------------------------------------------------------------------------
-local getPlayerData   = DataRemotes.get("GetPlayerData") :: RemoteFunction
-local dataUpdated     = DataRemotes.get("DataUpdated") :: RemoteEvent
-local purchaseItem    = DataRemotes.get("PurchaseItem") :: RemoteEvent
-local purchaseGamepass = DataRemotes.get("PurchaseGamepass") :: RemoteEvent
+local getPlayerData    = DataRemotes.get("GetPlayerData") :: RemoteFunction
+local dataUpdated      = DataRemotes.get("DataUpdated") :: RemoteEvent
+local purchaseItem     = DataRemotes.get("PurchaseItem") :: RemoteFunction
+local purchaseGamepass = DataRemotes.get("PurchaseGamepass") :: RemoteFunction
 
 ---------------------------------------------------------------------------
 -- UI References
@@ -54,6 +55,51 @@ end
 examTricksShop.Visible = false
 
 ---------------------------------------------------------------------------
+-- Notifications UI
+---------------------------------------------------------------------------
+local notifLabel = Instance.new("TextLabel")
+notifLabel.Name = "ShopNotification"
+notifLabel.Size = UDim2.new(0, 400, 0, 50)
+notifLabel.AnchorPoint = Vector2.new(0.5, 0)
+notifLabel.Position = UDim2.new(0.5, 0, -0.2, 0) -- Starts off-screen (top)
+notifLabel.BackgroundTransparency = 1
+notifLabel.Font = Enum.Font.Montserrat
+notifLabel.TextSize = 24
+notifLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+notifLabel.Text = ""
+notifLabel.ZIndex = 100
+notifLabel.Parent = shopUI
+
+local notifStroke = Instance.new("UIStroke")
+notifStroke.Thickness = 3
+notifStroke.Color = Color3.fromRGB(0, 0, 0)
+notifStroke.Parent = notifLabel
+
+local activeNotifThread: thread? = nil
+
+local function showNotification(text: string, color: Color3)
+	if activeNotifThread then
+		task.cancel(activeNotifThread)
+	end
+	
+	notifLabel.Text = text
+	notifLabel.TextColor3 = color
+	
+	local tweenIn = TweenService:Create(notifLabel, TweenInfo.new(0.4, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+		Position = UDim2.new(0.5, 0, 0.1, 0)
+	})
+	tweenIn:Play()
+	
+	activeNotifThread = task.spawn(function()
+		task.wait(3)
+		local tweenOut = TweenService:Create(notifLabel, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+			Position = UDim2.new(0.5, 0, -0.2, 0)
+		})
+		tweenOut:Play()
+	end)
+end
+
+---------------------------------------------------------------------------
 -- Item names that map to CanvasGroups (siblings of ExamTricksShop in ShopUI)
 ---------------------------------------------------------------------------
 local ITEM_NAMES = {
@@ -71,6 +117,11 @@ local ITEM_NAMES = {
 local ROBUX_ITEMS = {
 	["Choice_Eraser"] = true,
 	["Smart_Glasses"] = true,
+}
+
+-- Aliases for CanvasGroups if their name in Studio differs from the itemName
+local CANVAS_ALIASES = {
+	["Window_Friend"] = "Neighbor_Cheats", -- The user reported the CanvasGroup is named Neighbor_Cheats
 }
 
 ---------------------------------------------------------------------------
@@ -117,14 +168,15 @@ end
 local function openCanvasGroup(itemName: string)
 	closeAllCanvasGroups()
 	
-	local cg = shopUI:FindFirstChild(itemName)
+	local cgName = CANVAS_ALIASES[itemName] or itemName
+	local cg = shopUI:FindFirstChild(cgName)
 	if cg and cg:IsA("CanvasGroup") then
 		cg.Visible = true
 		activeCanvasGroup = cg
 		updateBuyButtonState(cg, itemName)
 		print("[ShopController] Opened detail view for: " .. itemName)
 	else
-		warn("[ShopController] CanvasGroup not found for: " .. itemName)
+		warn("[ShopController] CanvasGroup not found for: " .. itemName .. " (searched for " .. cgName .. ")")
 	end
 end
 
@@ -155,11 +207,17 @@ local function wireBuyButtons(container: Instance, itemName: string)
 		if clickTarget:IsA("GuiButton") then
 			clickTarget.MouseButton1Click:Connect(function()
 				if ownedItems[itemName] then
-					warn("[ShopController] Already own " .. itemName)
+					showNotification("You already own this item!", Color3.fromRGB(255, 100, 100))
 					return
 				end
 				print("[ShopController] Purchasing with coins: " .. itemName)
-				purchaseItem:FireServer(itemName)
+				local success, msg = purchaseItem:InvokeServer(itemName)
+				
+				if success then
+					showNotification(msg, Color3.fromRGB(100, 255, 100))
+				else
+					showNotification(msg, Color3.fromRGB(255, 100, 100))
+				end
 			end)
 		end
 	end
@@ -180,11 +238,17 @@ local function wireBuyButtons(container: Instance, itemName: string)
 		if clickTarget:IsA("GuiButton") then
 			clickTarget.MouseButton1Click:Connect(function()
 				if ownedItems[itemName] then
-					warn("[ShopController] Already own " .. itemName)
+					showNotification("You already own this item!", Color3.fromRGB(255, 100, 100))
 					return
 				end
 				print("[ShopController] Purchasing with Robux: " .. itemName)
-				purchaseGamepass:FireServer(itemName)
+				local success, msg = purchaseGamepass:InvokeServer(itemName)
+				
+				if success then
+					-- Don't show success text here, Roblox's native prompt covers it
+				else
+					showNotification(msg, Color3.fromRGB(255, 100, 100))
+				end
 			end)
 		end
 	end
@@ -221,7 +285,8 @@ end
 
 -- Wire buy buttons inside each CanvasGroup (the detail view buy buttons)
 for _, itemName in ipairs(ITEM_NAMES) do
-	local cg = shopUI:FindFirstChild(itemName)
+	local cgName = CANVAS_ALIASES[itemName] or itemName
+	local cg = shopUI:FindFirstChild(cgName)
 	if cg and cg:IsA("CanvasGroup") then
 		cg.Visible = false -- start hidden
 		wireBuyButtons(cg, itemName)

@@ -20,12 +20,12 @@ local DataRemotes = {}
 
 local REMOTE_FUNCTIONS = {
 	"GetPlayerData",
+	"PurchaseItem",
+	"PurchaseGamepass",
 }
 
 local REMOTE_EVENTS = {
 	"DataUpdated",
-	"PurchaseItem",
-	"PurchaseGamepass",
 }
 
 local remotesFolder: Folder? = nil
