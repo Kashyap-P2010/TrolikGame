@@ -423,4 +423,48 @@ dataUpdated.OnClientEvent:Connect(function(key: string, value: any)
 	end
 end)
 
+---------------------------------------------------------------------------
+-- Manual clipping for 'Glow' frames bleeding outside ScrollingFrame bounds
+---------------------------------------------------------------------------
+local function updateGlowVisibility()
+	if not examTricksShop then return end
+	-- The exact bounds of the visible scroll window
+	local topBound = examTricksShop.AbsolutePosition.Y
+	local bottomBound = topBound + examTricksShop.AbsoluteSize.Y
+	
+	for _, itemName in ipairs(ITEM_NAMES) do
+		local itemFrame = itemsFolder:FindFirstChild(itemName)
+		if itemFrame then
+			local effectsFolder = itemFrame:FindFirstChild("Effects")
+			if effectsFolder then
+				-- Calculate the top/bottom Y coordinates of this specific item in the list
+				local itemTop = itemFrame.AbsolutePosition.Y
+				local itemBottom = itemTop + itemFrame.AbsoluteSize.Y
+				
+				-- If it's clipping the top or bottom bound, hide its glowing effects
+				-- We add a slight margin of 10 studs to hide it slightly early before the glow bleeds
+				local isClipping = (itemTop < topBound - 10) or (itemBottom > bottomBound + 10)
+				
+				for _, glowFrame in ipairs(effectsFolder:GetChildren()) do
+					if glowFrame:IsA("GuiObject") then
+						glowFrame.Visible = not isClipping
+					end
+				end
+			end
+		end
+	end
+end
+
+if examTricksShop:IsA("ScrollingFrame") then
+	examTricksShop:GetPropertyChangedSignal("CanvasPosition"):Connect(updateGlowVisibility)
+end
+examTricksShop:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateGlowVisibility)
+examTricksShop:GetPropertyChangedSignal("AbsolutePosition"):Connect(updateGlowVisibility)
+
+-- Run once on startup (must wait a frame for Absolute bounds to settle if UI is disabled initially)
+task.spawn(function()
+	RunService.Heartbeat:Wait()
+	updateGlowVisibility()
+end)
+
 print("[ShopController] Initialized ✓")
