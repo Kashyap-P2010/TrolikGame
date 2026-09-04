@@ -211,32 +211,59 @@ end
 -- Rainbow Outline Animation
 ---------------------------------------------------------------------------
 local function applyRainbowOutline(frame: GuiObject)
-	local uiStroke = frame:FindFirstChildWhichIsA("UIStroke")
-	if not uiStroke then
-		uiStroke = Instance.new("UIStroke")
-		uiStroke.Thickness = 3
-		uiStroke.Parent = frame
+	local targetStroke
+	-- Try to find the existing black outline so we replace it perfectly
+	if frame:FindFirstChildWhichIsA("UIStroke") then
+		targetStroke = frame:FindFirstChildWhichIsA("UIStroke")
+	else
+		-- It might be on an inner background frame
+		for _, child in ipairs(frame:GetChildren()) do
+			if child:IsA("Frame") or child:IsA("ImageLabel") then
+				if child.Name ~= "Buy" and child.Name ~= "Effects" then
+					local s = child:FindFirstChildWhichIsA("UIStroke")
+					if s then
+						targetStroke = s
+						break
+					end
+				end
+			end
+		end
 	end
-	uiStroke.Color = Color3.new(1, 1, 1) -- Must be white for gradient to show colors
 	
-	local gradient = uiStroke:FindFirstChildWhichIsA("UIGradient")
+	if not targetStroke then
+		targetStroke = Instance.new("UIStroke")
+		targetStroke.Thickness = 3
+		targetStroke.Parent = frame
+	end
+	
+	targetStroke.Color = Color3.new(1, 1, 1) -- Must be white for gradient to show colors
+	
+	local gradient = targetStroke:FindFirstChildWhichIsA("UIGradient")
 	if not gradient then
 		gradient = Instance.new("UIGradient")
+		-- Double rainbow for denser colors!
 		gradient.Color = ColorSequence.new({
-			ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 0, 0)),
-			ColorSequenceKeypoint.new(0.16, Color3.fromRGB(255, 255, 0)),
-			ColorSequenceKeypoint.new(0.33, Color3.fromRGB(0, 255, 0)),
-			ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 255, 255)),
-			ColorSequenceKeypoint.new(0.66, Color3.fromRGB(0, 0, 255)),
-			ColorSequenceKeypoint.new(0.83, Color3.fromRGB(255, 0, 255)),
-			ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 0, 0))
+			ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 0, 0)),
+			ColorSequenceKeypoint.new(0.083, Color3.fromRGB(255, 255, 0)),
+			ColorSequenceKeypoint.new(0.166, Color3.fromRGB(0, 255, 0)),
+			ColorSequenceKeypoint.new(0.250, Color3.fromRGB(0, 255, 255)),
+			ColorSequenceKeypoint.new(0.333, Color3.fromRGB(0, 0, 255)),
+			ColorSequenceKeypoint.new(0.416, Color3.fromRGB(255, 0, 255)),
+			ColorSequenceKeypoint.new(0.500, Color3.fromRGB(255, 0, 0)),
+			ColorSequenceKeypoint.new(0.583, Color3.fromRGB(255, 255, 0)),
+			ColorSequenceKeypoint.new(0.666, Color3.fromRGB(0, 255, 0)),
+			ColorSequenceKeypoint.new(0.750, Color3.fromRGB(0, 255, 255)),
+			ColorSequenceKeypoint.new(0.833, Color3.fromRGB(0, 0, 255)),
+			ColorSequenceKeypoint.new(0.916, Color3.fromRGB(255, 0, 255)),
+			ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 0, 0))
 		})
-		gradient.Parent = uiStroke
+		gradient.Parent = targetStroke
 	end
 	
 	RunService.RenderStepped:Connect(function(dt)
 		if examTricksShop and examTricksShop.Visible then
-			gradient.Rotation = (gradient.Rotation + dt * 100) % 360
+			-- Increased speed from 100 to 350
+			gradient.Rotation = (gradient.Rotation + dt * 350) % 360
 		end
 	end)
 end
@@ -345,7 +372,7 @@ for _, itemName in ipairs(ITEM_NAMES) do
 	-- Add hover anims to the item list frames too!
 	applyHoverAnimation(clickBtn, itemFrame)
 	
-	if itemName == "Choice_Eraser" or itemName == "Genius_Potion" then
+	if itemName == "Choice_Eraser" or itemName == "Smart_Glasses" then
 		applyRainbowOutline(itemFrame)
 	end
 	
