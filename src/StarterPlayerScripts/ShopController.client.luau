@@ -208,6 +208,40 @@ local function applyHoverAnimation(guiButton: GuiButton, targetFrame: GuiObject)
 end
 
 ---------------------------------------------------------------------------
+-- Rainbow Outline Animation
+---------------------------------------------------------------------------
+local function applyRainbowOutline(frame: GuiObject)
+	local uiStroke = frame:FindFirstChildWhichIsA("UIStroke")
+	if not uiStroke then
+		uiStroke = Instance.new("UIStroke")
+		uiStroke.Thickness = 3
+		uiStroke.Parent = frame
+	end
+	uiStroke.Color = Color3.new(1, 1, 1) -- Must be white for gradient to show colors
+	
+	local gradient = uiStroke:FindFirstChildWhichIsA("UIGradient")
+	if not gradient then
+		gradient = Instance.new("UIGradient")
+		gradient.Color = ColorSequence.new({
+			ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 0, 0)),
+			ColorSequenceKeypoint.new(0.16, Color3.fromRGB(255, 255, 0)),
+			ColorSequenceKeypoint.new(0.33, Color3.fromRGB(0, 255, 0)),
+			ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 255, 255)),
+			ColorSequenceKeypoint.new(0.66, Color3.fromRGB(0, 0, 255)),
+			ColorSequenceKeypoint.new(0.83, Color3.fromRGB(255, 0, 255)),
+			ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 0, 0))
+		})
+		gradient.Parent = uiStroke
+	end
+	
+	RunService.RenderStepped:Connect(function(dt)
+		if examTricksShop and examTricksShop.Visible then
+			gradient.Rotation = (gradient.Rotation + dt * 100) % 360
+		end
+	end)
+end
+
+---------------------------------------------------------------------------
 -- Wire up buy buttons inside a container (either an item frame or a CanvasGroup)
 ---------------------------------------------------------------------------
 local function wireBuyButtons(container: Instance, itemName: string)
@@ -310,6 +344,10 @@ for _, itemName in ipairs(ITEM_NAMES) do
 	
 	-- Add hover anims to the item list frames too!
 	applyHoverAnimation(clickBtn, itemFrame)
+	
+	if itemName == "Choice_Eraser" or itemName == "Genius_Potion" then
+		applyRainbowOutline(itemFrame)
+	end
 	
 	-- Wire buy buttons inside the item frame (the mini buy buttons in the list)
 	wireBuyButtons(itemFrame, itemName)
