@@ -120,9 +120,7 @@ local ROBUX_ITEMS = {
 }
 
 -- Aliases for CanvasGroups if their name in Studio differs from the itemName
-local CANVAS_ALIASES = {
-	["Window_Friend"] = "Neighbor_Cheats", -- The user reported the CanvasGroup is named Neighbor_Cheats
-}
+local CANVAS_ALIASES = {}
 
 ---------------------------------------------------------------------------
 -- Local state
