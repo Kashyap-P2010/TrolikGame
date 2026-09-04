@@ -218,7 +218,7 @@ local function applyRainbowOutline(frame: GuiObject)
 	else
 		-- It might be on an inner background frame
 		for _, child in ipairs(frame:GetChildren()) do
-			if child:IsA("Frame") or child:IsA("ImageLabel") then
+			if child:IsA("GuiObject") then
 				if child.Name ~= "Buy" and child.Name ~= "Effects" then
 					local s = child:FindFirstChildWhichIsA("UIStroke")
 					if s then
@@ -241,29 +241,23 @@ local function applyRainbowOutline(frame: GuiObject)
 	local gradient = targetStroke:FindFirstChildWhichIsA("UIGradient")
 	if not gradient then
 		gradient = Instance.new("UIGradient")
-		-- Double rainbow for denser colors!
+		-- Standard rainbow for larger color bands
 		gradient.Color = ColorSequence.new({
-			ColorSequenceKeypoint.new(0.000, Color3.fromRGB(255, 0, 0)),
-			ColorSequenceKeypoint.new(0.083, Color3.fromRGB(255, 255, 0)),
-			ColorSequenceKeypoint.new(0.166, Color3.fromRGB(0, 255, 0)),
-			ColorSequenceKeypoint.new(0.250, Color3.fromRGB(0, 255, 255)),
-			ColorSequenceKeypoint.new(0.333, Color3.fromRGB(0, 0, 255)),
-			ColorSequenceKeypoint.new(0.416, Color3.fromRGB(255, 0, 255)),
-			ColorSequenceKeypoint.new(0.500, Color3.fromRGB(255, 0, 0)),
-			ColorSequenceKeypoint.new(0.583, Color3.fromRGB(255, 255, 0)),
-			ColorSequenceKeypoint.new(0.666, Color3.fromRGB(0, 255, 0)),
-			ColorSequenceKeypoint.new(0.750, Color3.fromRGB(0, 255, 255)),
-			ColorSequenceKeypoint.new(0.833, Color3.fromRGB(0, 0, 255)),
-			ColorSequenceKeypoint.new(0.916, Color3.fromRGB(255, 0, 255)),
-			ColorSequenceKeypoint.new(1.000, Color3.fromRGB(255, 0, 0))
+			ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 0, 0)),
+			ColorSequenceKeypoint.new(0.16, Color3.fromRGB(255, 255, 0)),
+			ColorSequenceKeypoint.new(0.33, Color3.fromRGB(0, 255, 0)),
+			ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 255, 255)),
+			ColorSequenceKeypoint.new(0.66, Color3.fromRGB(0, 0, 255)),
+			ColorSequenceKeypoint.new(0.83, Color3.fromRGB(255, 0, 255)),
+			ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 0, 0))
 		})
 		gradient.Parent = targetStroke
 	end
 	
 	RunService.RenderStepped:Connect(function(dt)
 		if examTricksShop and examTricksShop.Visible then
-			-- Increased speed from 100 to 350
-			gradient.Rotation = (gradient.Rotation + dt * 350) % 360
+			-- Reverted speed back to 100
+			gradient.Rotation = (gradient.Rotation + dt * 100) % 360
 		end
 	end)
 end
