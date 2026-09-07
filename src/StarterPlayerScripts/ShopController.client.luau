@@ -39,11 +39,14 @@ if not shopUI then
 end
 shopUI.Enabled = true
 
-local examTricksShop = shopUI:WaitForChild("ExamTricksShop", 10) :: Frame?
+local examTricksShop = shopUI:WaitForChild("ExamTricksShop", 10) :: ScrollingFrame?
 if not examTricksShop then
 	warn("[ShopController] ExamTricksShop not found inside ShopUI!")
 	return
 end
+
+local teacherPranksShop = shopUI:WaitForChild("TeacherPranksShop", 10) :: ScrollingFrame?
+local robuxShop = shopUI:WaitForChild("RobuxShop", 10) :: ScrollingFrame?
 
 local itemsFolder = examTricksShop:WaitForChild("Items", 10)
 if not itemsFolder then
@@ -53,6 +56,8 @@ end
 
 -- Start hidden
 examTricksShop.Visible = false
+if teacherPranksShop then teacherPranksShop.Visible = false end
+if robuxShop then robuxShop.Visible = false end
 
 ---------------------------------------------------------------------------
 -- Notifications UI
@@ -113,6 +118,17 @@ local ITEM_NAMES = {
 	"Window_Friend",
 }
 
+local TEACHER_PRANKS_ITEMS = {
+	"Time_Freeze",
+	"Bee_Delivery",
+	"Break_The_Window",
+	"Cabinet_Crash",
+	"Explode_Teacher",
+	"Fake_Knock",
+	"Fire_Alarm",
+	"TV_Glitch",
+}
+
 -- Which items are Robux-only (must match PlayerData.ITEM_CATALOG)
 local ROBUX_ITEMS = {
 	["Choice_Eraser"] = true,
@@ -132,12 +148,16 @@ local activeCanvasGroup: CanvasGroup? = nil
 -- Helpers
 ---------------------------------------------------------------------------
 local function closeAllCanvasGroups()
-	for _, name in ipairs(ITEM_NAMES) do
-		local cg = shopUI:FindFirstChild(name)
-		if cg and cg:IsA("CanvasGroup") then
-			cg.Visible = false
+	local function closeList(list)
+		for _, name in ipairs(list) do
+			local cg = shopUI:FindFirstChild(name)
+			if cg and cg:IsA("CanvasGroup") then
+				cg.Visible = false
+			end
 		end
 	end
+	closeList(ITEM_NAMES)
+	closeList(TEACHER_PRANKS_ITEMS)
 	activeCanvasGroup = nil
 end
 
@@ -339,94 +359,158 @@ local function wireBuyButtons(container: Instance, itemName: string)
 end
 
 ---------------------------------------------------------------------------
--- Wire up item frames (inside ExamTricksShop > Items)
+-- Wire up item frames for standard shops
 ---------------------------------------------------------------------------
-for _, itemName in ipairs(ITEM_NAMES) do
-	local itemFrame = itemsFolder:FindFirstChild(itemName)
-	if not itemFrame then
-		warn("[ShopController] Item frame not found: " .. itemName)
-		continue
+local function wireShopItems(shopFrame, itemsList)
+	if not shopFrame then return end
+	local itemsFolder = shopFrame:FindFirstChild("Items")
+	if not itemsFolder then return end
+
+	for _, itemName in ipairs(itemsList) do
+		local itemFrame = itemsFolder:FindFirstChild(itemName)
+		if not itemFrame then
+			warn("[ShopController] Item frame not found: " .. itemName)
+			continue
+		end
+		
+		local clickBtn = Instance.new("TextButton")
+		clickBtn.Name = "ItemClickOverlay"
+		clickBtn.Size = UDim2.new(1, 0, 1, 0)
+		clickBtn.BackgroundTransparency = 1
+		clickBtn.Text = ""
+		clickBtn.ZIndex = 10
+		clickBtn.Parent = itemFrame
+		
+		clickBtn.MouseButton1Click:Connect(function()
+			openCanvasGroup(itemName)
+		end)
+		
+		applyHoverAnimation(clickBtn, itemFrame)
+		
+		if itemName == "Choice_Eraser" or itemName == "Smart_Glasses" or itemName == "Explode_Teacher" then
+			applyRainbowOutline(itemFrame)
+		end
+		
+		wireBuyButtons(itemFrame, itemName)
+		print("[ShopController] Wired item frame: " .. itemName)
 	end
-	
-	-- Make the frame clickable by adding an invisible button overlay
-	local clickBtn = Instance.new("TextButton")
-	clickBtn.Name = "ItemClickOverlay"
-	clickBtn.Size = UDim2.new(1, 0, 1, 0)
-	clickBtn.BackgroundTransparency = 1
-	clickBtn.Text = ""
-	clickBtn.ZIndex = 10
-	clickBtn.Parent = itemFrame
-	
-	clickBtn.MouseButton1Click:Connect(function()
-		openCanvasGroup(itemName)
-	end)
-	
-	-- Add hover anims to the item list frames too!
-	applyHoverAnimation(clickBtn, itemFrame)
-	
-	if itemName == "Choice_Eraser" or itemName == "Smart_Glasses" then
-		applyRainbowOutline(itemFrame)
-	end
-	
-	-- Wire buy buttons inside the item frame (the mini buy buttons in the list)
-	wireBuyButtons(itemFrame, itemName)
-	
-	print("[ShopController] Wired item frame: " .. itemName)
 end
 
+wireShopItems(examTricksShop, ITEM_NAMES)
+wireShopItems(teacherPranksShop, TEACHER_PRANKS_ITEMS)
+
 -- Wire buy buttons inside each CanvasGroup (the detail view buy buttons)
-for _, itemName in ipairs(ITEM_NAMES) do
-	local cgName = CANVAS_ALIASES[itemName] or itemName
-	local cg = shopUI:FindFirstChild(cgName)
-	if cg and cg:IsA("CanvasGroup") then
-		cg.Visible = false -- start hidden
-		wireBuyButtons(cg, itemName)
+local function wireCanvasGroups(itemsList)
+	for _, itemName in ipairs(itemsList) do
+		local cgName = CANVAS_ALIASES[itemName] or itemName
+		local cg = shopUI:FindFirstChild(cgName)
+		if cg and cg:IsA("CanvasGroup") then
+			cg.Visible = false -- start hidden
+			wireBuyButtons(cg, itemName)
+		end
+	end
+end
+wireCanvasGroups(ITEM_NAMES)
+wireCanvasGroups(TEACHER_PRANKS_ITEMS)
+
+---------------------------------------------------------------------------
+-- Wire up Robux Shop
+---------------------------------------------------------------------------
+if robuxShop then
+	for _, itemFrame in ipairs(robuxShop:GetChildren()) do
+		if itemFrame:IsA("Frame") and itemFrame.Name == "Item" then
+			local nameLabel = itemFrame:FindFirstChild("Name")
+			if nameLabel and nameLabel:IsA("TextLabel") then
+				local itemName = nameLabel.Text
+				
+				-- Convert spacing/newlines to match naming conventions if necessary, 
+				-- but since user uses placeholders, just pass it exactly.
+				-- Add hover anims
+				local clickBtn = itemFrame:FindFirstChild("TextButton")
+				if clickBtn and clickBtn:IsA("TextButton") then
+					applyHoverAnimation(clickBtn, itemFrame)
+					
+					clickBtn.MouseButton1Click:Connect(function()
+						print("[ShopController] Purchasing RobuxShop item: " .. itemName)
+						local success, msg = purchaseGamepass:InvokeServer(itemName)
+						if not success then
+							showNotification(msg, Color3.fromRGB(255, 100, 100))
+						end
+					end)
+				end
+			end
+		end
 	end
 end
 
 ---------------------------------------------------------------------------
 -- ShopPad Proximity Detection (Distance-based for reliability)
 ---------------------------------------------------------------------------
-local shopPad: BasePart? = nil
+local pads = {
+	ExamTricksShopPad = { part = nil, isStanding = false },
+	TeacherPranksShopPad = { part = nil, isStanding = false },
+	RobuxShopPad = { part = nil, isStanding = false },
+}
+
 task.spawn(function()
-	while not shopPad do
-		shopPad = Workspace:FindFirstChild("ShopPad", true) :: BasePart
-		if shopPad then
-			print("[ShopController] Found ShopPad at: " .. shopPad:GetFullName())
-			break
+	while true do
+		local allFound = true
+		for padName, padData in pairs(pads) do
+			if not padData.part then
+				local part = Workspace:FindFirstChild(padName, true)
+				if part and part:IsA("BasePart") then
+					padData.part = part
+					print("[ShopController] Found " .. padName .. " at: " .. part:GetFullName())
+				else
+					allFound = false
+				end
+			end
 		end
+		if allFound then break end
 		task.wait(1)
 	end
 end)
 
-local isOnPad = false
 local overlapParams = OverlapParams.new()
 overlapParams.FilterType = Enum.RaycastFilterType.Include
 
+local function checkPad(padPart: BasePart, char: Model): boolean
+	local padCFrame = padPart.CFrame
+	local hitboxSize = padPart.Size + Vector3.new(0, 5, 0)
+	local hitboxCFrame = padCFrame * CFrame.new(0, 2.5, 0)
+	
+	local touchingParts = Workspace:GetPartBoundsInBox(hitboxCFrame, hitboxSize, overlapParams)
+	return #touchingParts > 0
+end
+
 RunService.Heartbeat:Connect(function()
-	if not shopPad then return end
 	local char = player.Character
 	if not char then return end
 	
 	overlapParams.FilterDescendantsInstances = {char}
 	
-	-- Create a virtual hitbox matching the pad's footprint, but extending 5 studs upwards
-	-- This captures players standing on it regardless of their HipHeight
-	local padCFrame = shopPad.CFrame
-	local hitboxSize = shopPad.Size + Vector3.new(0, 5, 0)
-	local hitboxCFrame = padCFrame * CFrame.new(0, 2.5, 0)
-	
-	local touchingParts = Workspace:GetPartBoundsInBox(hitboxCFrame, hitboxSize, overlapParams)
-	local playerOnPad = #touchingParts > 0
-	
-	if playerOnPad ~= isOnPad then
-		isOnPad = playerOnPad
-		examTricksShop.Visible = isOnPad
-		if not isOnPad then
-			closeAllCanvasGroups()
-		else
-			-- Automatically show Nerd_Help when first opening the shop
-			openCanvasGroup("Nerd_Help")
+	for padName, padData in pairs(pads) do
+		if padData.part then
+			local currentlyStanding = checkPad(padData.part, char)
+			if currentlyStanding ~= padData.isStanding then
+				padData.isStanding = currentlyStanding
+				
+				if padName == "ExamTricksShopPad" then
+					if examTricksShop then examTricksShop.Visible = currentlyStanding end
+					if not currentlyStanding then
+						closeAllCanvasGroups()
+					else
+						openCanvasGroup("Nerd_Help")
+					end
+				elseif padName == "TeacherPranksShopPad" then
+					if teacherPranksShop then teacherPranksShop.Visible = currentlyStanding end
+					if not currentlyStanding then
+						closeAllCanvasGroups()
+					end
+				elseif padName == "RobuxShopPad" then
+					if robuxShop then robuxShop.Visible = currentlyStanding end
+				end
+			end
 		end
 	end
 end)
@@ -465,16 +549,46 @@ dataUpdated.OnClientEvent:Connect(function(key: string, value: any)
 			end
 		end
 		
-		-- Update all visible buy buttons
-		for _, itemName in ipairs(ITEM_NAMES) do
-			local itemFrame = itemsFolder:FindFirstChild(itemName)
-			if itemFrame then
-				updateBuyButtonState(itemFrame, itemName)
-			end
+		local function updateList(list, shopFrame)
+			if not shopFrame then return end
+			local itemsFld = shopFrame:FindFirstChild("Items")
+			if not itemsFld then return end
 			
-			local cg = shopUI:FindFirstChild(itemName)
-			if cg then
-				updateBuyButtonState(cg, itemName)
+			for _, itemName in ipairs(list) do
+				local itemFrame = itemsFld:FindFirstChild(itemName)
+				if itemFrame then
+					updateBuyButtonState(itemFrame, itemName)
+				end
+				
+				local cgName = CANVAS_ALIASES[itemName] or itemName
+				local cg = shopUI:FindFirstChild(cgName)
+				if cg then
+					updateBuyButtonState(cg, itemName)
+				end
+			end
+		end
+		
+		updateList(ITEM_NAMES, examTricksShop)
+		updateList(TEACHER_PRANKS_ITEMS, teacherPranksShop)
+		
+		if robuxShop then
+			for _, itemFrame in ipairs(robuxShop:GetChildren()) do
+				if itemFrame:IsA("Frame") and itemFrame.Name == "Item" then
+					local nameLabel = itemFrame:FindFirstChild("Name")
+					if nameLabel and nameLabel:IsA("TextLabel") then
+						local itemName = nameLabel.Text
+						local clickBtn = itemFrame:FindFirstChild("TextButton")
+						if clickBtn and clickBtn:IsA("TextButton") then
+							if ownedItems[itemName] then
+								-- Just a fallback visual update for robux items if they don't use standard buy buttons
+								local innerText = clickBtn:FindFirstChild("TextLabel")
+								if innerText and innerText:IsA("TextLabel") then
+									innerText.Text = "Owned"
+								end
+							end
+						end
+					end
+				end
 			end
 		end
 	end
@@ -483,23 +597,22 @@ end)
 ---------------------------------------------------------------------------
 -- Manual clipping for 'Glow' frames bleeding outside ScrollingFrame bounds
 ---------------------------------------------------------------------------
-local function updateGlowVisibility()
-	if not examTricksShop then return end
-	-- The exact bounds of the visible scroll window
-	local topBound = examTricksShop.AbsolutePosition.Y
-	local bottomBound = topBound + examTricksShop.AbsoluteSize.Y
+local function updateGlowForShop(shopFrame, itemsList)
+	if not shopFrame then return end
+	local itemsFld = shopFrame:FindFirstChild("Items")
+	if not itemsFld then return end
 	
-	for _, itemName in ipairs(ITEM_NAMES) do
-		local itemFrame = itemsFolder:FindFirstChild(itemName)
+	local topBound = shopFrame.AbsolutePosition.Y
+	local bottomBound = topBound + shopFrame.AbsoluteSize.Y
+	
+	for _, itemName in ipairs(itemsList) do
+		local itemFrame = itemsFld:FindFirstChild(itemName)
 		if itemFrame then
 			local effectsFolder = itemFrame:FindFirstChild("Effects")
 			if effectsFolder then
-				-- Calculate the top/bottom Y coordinates of this specific item in the list
 				local itemTop = itemFrame.AbsolutePosition.Y
 				local itemBottom = itemTop + itemFrame.AbsoluteSize.Y
 				
-				-- If it's clipping the top or bottom bound, hide its glowing effects
-				-- We add a slight margin of 10 studs to hide it slightly early before the glow bleeds
 				local isClipping = (itemTop < topBound - 10) or (itemBottom > bottomBound + 10)
 				
 				for _, glowFrame in ipairs(effectsFolder:GetChildren()) do
@@ -512,11 +625,21 @@ local function updateGlowVisibility()
 	end
 end
 
-if examTricksShop:IsA("ScrollingFrame") then
-	examTricksShop:GetPropertyChangedSignal("CanvasPosition"):Connect(updateGlowVisibility)
+local function updateGlowVisibility()
+	updateGlowForShop(examTricksShop, ITEM_NAMES)
+	updateGlowForShop(teacherPranksShop, TEACHER_PRANKS_ITEMS)
 end
-examTricksShop:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateGlowVisibility)
-examTricksShop:GetPropertyChangedSignal("AbsolutePosition"):Connect(updateGlowVisibility)
+
+local function bindScrollEvents(shopFrame)
+	if shopFrame and shopFrame:IsA("ScrollingFrame") then
+		shopFrame:GetPropertyChangedSignal("CanvasPosition"):Connect(updateGlowVisibility)
+		shopFrame:GetPropertyChangedSignal("AbsoluteSize"):Connect(updateGlowVisibility)
+		shopFrame:GetPropertyChangedSignal("AbsolutePosition"):Connect(updateGlowVisibility)
+	end
+end
+
+bindScrollEvents(examTricksShop)
+bindScrollEvents(teacherPranksShop)
 
 -- Run once on startup (must wait a frame for Absolute bounds to settle if UI is disabled initially)
 task.spawn(function()
