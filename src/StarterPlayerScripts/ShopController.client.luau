@@ -47,6 +47,7 @@ end
 
 local teacherPranksShop = shopUI:WaitForChild("TeacherPranksShop", 10) :: ScrollingFrame?
 local robuxShop = shopUI:WaitForChild("RobuxShop", 10) :: ScrollingFrame?
+local topbar = shopUI:WaitForChild("Topbar", 10) :: Frame?
 
 local itemsFolder = examTricksShop:WaitForChild("Items", 10)
 if not itemsFolder then
@@ -58,6 +59,7 @@ end
 examTricksShop.Visible = false
 if teacherPranksShop then teacherPranksShop.Visible = false end
 if robuxShop then robuxShop.Visible = false end
+if topbar then topbar.Visible = false end
 
 ---------------------------------------------------------------------------
 -- Notifications UI
@@ -483,6 +485,21 @@ local function checkPad(padPart: BasePart, char: Model): boolean
 	return #touchingParts > 0
 end
 
+---------------------------------------------------------------------------
+-- Topbar Logic
+---------------------------------------------------------------------------
+local robuxShopClosedManually = false
+if topbar then
+	local closeBtn = topbar:FindFirstChild("TextButton")
+	if closeBtn and closeBtn:IsA("GuiButton") then
+		closeBtn.MouseButton1Click:Connect(function()
+			robuxShopClosedManually = true
+			if robuxShop then robuxShop.Visible = false end
+			topbar.Visible = false
+		end)
+	end
+end
+
 RunService.Heartbeat:Connect(function()
 	local char = player.Character
 	if not char then return end
@@ -508,7 +525,16 @@ RunService.Heartbeat:Connect(function()
 						closeAllCanvasGroups()
 					end
 				elseif padName == "RobuxShopPad" then
-					if robuxShop then robuxShop.Visible = currentlyStanding end
+					if not currentlyStanding then
+						robuxShopClosedManually = false
+						if robuxShop then robuxShop.Visible = false end
+						if topbar then topbar.Visible = false end
+					else
+						if not robuxShopClosedManually then
+							if robuxShop then robuxShop.Visible = true end
+							if topbar then topbar.Visible = true end
+						end
+					end
 				end
 			end
 		end
