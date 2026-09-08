@@ -12,6 +12,24 @@ local ContentProvider = game:GetService("ContentProvider")
 
 local TeacherSettings = require(script.Parent:WaitForChild("TeacherSettings"))
 
+-- CheatManager integration (for strike system)
+local CheatManager = nil
+task.defer(function()
+	local ok, mod = pcall(function()
+		local cheatSystem = game:GetService("ServerScriptService"):FindFirstChild("CheatSystem")
+		if cheatSystem then
+			return require(cheatSystem:FindFirstChild("CheatManager"))
+		end
+		return nil
+	end)
+	if ok and mod then
+		CheatManager = mod
+		debugLog("CheatManager linked successfully")
+	else
+		warn("[TeacherAI] CheatManager not found — catching system will not issue strikes")
+	end
+end)
+
 ---------------------------------------------------------------------------
 -- Debugging Setup
 ---------------------------------------------------------------------------
@@ -184,8 +202,17 @@ local function setState(newState: AIState)
 		stopTrack("IDLE")
 		playTrack("LOOK")
 		humanoid.WalkSpeed = 0
+		
+	elseif newState == "CATCHING" then
+		stopTrack("IDLE")
+		stopTrack("LOOK")
+		playTrack("WALK")
+		humanoid.WalkSpeed = TeacherSettings.CATCH_WALK_SPEED
 	end
 end
+
+-- Target player the teacher is currently chasing
+local catchTarget: Player? = nil
 
 ---------------------------------------------------------------------------
 -- Pathfinding Logic
@@ -408,35 +435,115 @@ rayParams.FilterDescendantsInstances = {teacher}
 rayParams.FilterType = Enum.RaycastFilterType.Exclude
 
 local function checkFOV()
-	local fovAngle = TeacherSettings.FOV_ANGLE_DEGREES
+	-- Only check when teacher is looking around (not while walking)
+	if currentState ~= "LOOKING_AROUND" then return end
+	
 	local range = TeacherSettings.FOV_RANGE_STUDS
-	local minDot = math.cos(math.rad(fovAngle / 2))
 	
 	for _, plr in ipairs(Players:GetPlayers()) do
+		local isCheating = plr:GetAttribute("IsCheating") == true
+		local isOutOfSeat = plr:GetAttribute("IsOutOfSeat") == true
+		
+		-- Only care about players who are actively cheating or out of seat
+		if not isCheating and not isOutOfSeat then continue end
+		
 		local char = plr.Character
-		if char and char:FindFirstChild("HumanoidRootPart") then
-			local targetHRP = char.HumanoidRootPart :: Part
-			local dirToPlayer = targetHRP.Position - head.Position
-			local distance = dirToPlayer.Magnitude
-			
-			if distance <= range then
-				local normalizedDir = dirToPlayer.Unit
-				local dot = head.CFrame.LookVector:Dot(normalizedDir)
-				
-				if dot >= minDot then
-					local rayResult = Workspace:Raycast(head.Position, dirToPlayer, rayParams)
-					if rayResult and rayResult.Instance:IsDescendantOf(char) then
-						-- TODO: Check if player is cheating.
-						-- debugLog(string.format("Player %s is currently within line of sight!", plr.Name))
-					end
-				end
-			end
+		if not char then continue end
+		local targetHRP = char:FindFirstChild("HumanoidRootPart") :: BasePart?
+		if not targetHRP then continue end
+		
+		local dirToPlayer = targetHRP.Position - head.Position
+		local distance = dirToPlayer.Magnitude
+		
+		if distance > range then continue end
+		
+		-- Line of sight check (raycast)
+		local rayResult = Workspace:Raycast(head.Position, dirToPlayer, rayParams)
+		if rayResult and rayResult.Instance:IsDescendantOf(char) then
+			-- Player is cheating AND in line of sight — CATCH THEM!
+			print(string.format("[TeacherAI] SPOTTED %s cheating! Initiating catch!", plr.Name))
+			catchTarget = plr
+			task.spawn(catchPlayer, plr)
+			return -- Only chase one player at a time
 		end
 	end
 end
 
-RunService.Heartbeat:Connect(function()
-	if currentState == "PATROLLING" or currentState == "LOOKING_AROUND" then
+---------------------------------------------------------------------------
+-- Catch Player Logic
+---------------------------------------------------------------------------
+function catchPlayer(targetPlayer: Player)
+	local char = targetPlayer.Character
+	if not char then return end
+	local targetHRP = char:FindFirstChild("HumanoidRootPart") :: BasePart?
+	if not targetHRP then return end
+	
+	setState("CATCHING")
+	local sessionId = patrolSessionId
+	
+	-- Sprint toward the player
+	print(string.format("[TeacherAI] Sprinting to catch %s!", targetPlayer.Name))
+	
+	local chaseStartTime = os.clock()
+	local MAX_CHASE_TIME = 8 -- seconds, give up after this
+	
+	while currentState == "CATCHING" and patrolSessionId == sessionId do
+		-- Re-check character exists
+		char = targetPlayer.Character
+		if not char then break end
+		targetHRP = char:FindFirstChild("HumanoidRootPart") :: BasePart?
+		if not targetHRP then break end
+		
+		-- Move toward player
+		humanoid:MoveTo(targetHRP.Position)
+		
+		-- Check if close enough to "catch" them
+		local dist = (rootPart.Position - targetHRP.Position).Magnitude
+		if dist < 6 then
+			-- CAUGHT!
+			print(string.format("[TeacherAI] Reached %s — issuing warning!", targetPlayer.Name))
+			humanoid:MoveTo(rootPart.Position) -- Stop moving
+			
+			-- Play the look/warning animation
+			stopTrack("WALK")
+			playTrack("LOOK")
+			
+			-- Issue strike via CheatManager
+			if CheatManager then
+				CheatManager.addStrike(targetPlayer)
+			end
+			
+			-- Hold for 2 seconds (warning animation)
+			task.wait(2)
+			break
+		end
+		
+		-- Timeout check
+		if os.clock() - chaseStartTime > MAX_CHASE_TIME then
+			print(string.format("[TeacherAI] Chase timed out for %s — returning to patrol", targetPlayer.Name))
+			break
+		end
+		
+		task.wait(0.1)
+	end
+	
+	-- Return to patrolling
+	catchTarget = nil
+	if currentState == "CATCHING" and patrolSessionId == sessionId then
+		setState("PATROLLING")
+	end
+end
+
+-- Only check FOV periodically (every 0.5s) instead of every Heartbeat to save performance
+local fovCheckAccumulator = 0
+RunService.Heartbeat:Connect(function(dt)
+	if currentState ~= "LOOKING_AROUND" then
+		fovCheckAccumulator = 0
+		return
+	end
+	fovCheckAccumulator += dt
+	if fovCheckAccumulator >= 0.5 then
+		fovCheckAccumulator = 0
 		checkFOV()
 	end
 end)
