@@ -76,7 +76,6 @@ local function updateUI()
 			if claimBtn then
 				claimBtn.Visible = true
 				claimBtn.Text = "Claim"
-				claimBtn.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
 			end
 			if activeGradient then activeGradient.Enabled = true end
 		else
