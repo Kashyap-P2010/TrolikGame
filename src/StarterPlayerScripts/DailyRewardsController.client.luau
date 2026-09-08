@@ -66,18 +66,19 @@ local function updateUI()
 		
 		if claimBtn then claimBtn.Visible = false end
 		if notYetBtn then notYetBtn.Visible = false end
-		if activeGradient then activeGradient.Enabled = false end
 		
 		if i < nextRewardDay or (claimedToday and i <= expectedStreak) then
 			-- Already claimed
-			if claimBtn then claimBtn.Visible = false end
+			if claimBtn then 
+				claimBtn.Visible = true
+				claimBtn.Text = "Claimed!"
+			end
 		elseif i == nextRewardDay and not claimedToday then
 			-- Ready to claim!
 			if claimBtn then
 				claimBtn.Visible = true
 				claimBtn.Text = "Claim"
 			end
-			if activeGradient then activeGradient.Enabled = true end
 		else
 			-- Future reward
 			if notYetBtn then notYetBtn.Visible = false end
@@ -141,6 +142,7 @@ task.spawn(function()
 		local lastClaimMidnight = getUTCMidnight(lastClaim)
 		local currentMidnight = getUTCMidnight(os.time())
 		if currentMidnight ~= lastClaimMidnight then
+			shopUI.Enabled = true
 			dailyRewardsUI.Visible = true
 		end
 	end
