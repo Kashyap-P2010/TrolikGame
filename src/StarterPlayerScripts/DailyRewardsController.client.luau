@@ -70,11 +70,7 @@ local function updateUI()
 		
 		if i < nextRewardDay or (claimedToday and i <= expectedStreak) then
 			-- Already claimed
-			if claimBtn then 
-				claimBtn.Visible = true 
-				claimBtn.Text = "Claimed"
-				claimBtn.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
-			end
+			if claimBtn then claimBtn.Visible = false end
 			rewardFrame.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
 		elseif i == nextRewardDay and not claimedToday then
 			-- Ready to claim!
@@ -87,8 +83,9 @@ local function updateUI()
 			rewardFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		else
 			-- Future reward
-			if notYetBtn then notYetBtn.Visible = true end
-			rewardFrame.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
+			if notYetBtn then notYetBtn.Visible = false end
+			if claimBtn then claimBtn.Visible = false end
+			rewardFrame.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
 		end
 	end
 end
