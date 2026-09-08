@@ -22,6 +22,7 @@ local REMOTE_FUNCTIONS = {
 	"GetPlayerData",
 	"PurchaseItem",
 	"PurchaseGamepass",
+	"ClaimDailyReward",
 }
 
 local REMOTE_EVENTS = {

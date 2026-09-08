@@ -37,6 +37,8 @@ local DEFAULT_DATA = {
 	BestScore       = 0,
 	OwnedItems      = {},
 	GamepassItems   = {},
+	LastDailyRewardClaim = 0,
+	DailyRewardStreak = 0,
 }
 
 ---------------------------------------------------------------------------

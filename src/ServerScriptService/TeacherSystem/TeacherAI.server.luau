@@ -452,6 +452,8 @@ pcall(function()
 	PhysicsService:RegisterCollisionGroup("Player_Group")
 end)
 PhysicsService:CollisionGroupSetCollidable("TeacherAI_Group", "Player_Group", false)
+-- IMPORTANT: Players must still collide with the floor and seats (Default group)!
+PhysicsService:CollisionGroupSetCollidable("Player_Group", "Default", true)
 
 local function setCollisionGroup(model: Model, groupName: string)
 	for _, obj in ipairs(model:GetDescendants()) do

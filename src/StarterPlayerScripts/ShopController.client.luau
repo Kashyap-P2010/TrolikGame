@@ -275,7 +275,7 @@ local function applyRainbowOutline(frame: GuiObject)
 	end
 	
 	RunService.RenderStepped:Connect(function(dt)
-		if examTricksShop and examTricksShop.Visible then
+		if frame and frame:IsDescendantOf(shopUI) and shopUI.Enabled then
 			-- Reverted speed back to 100
 			gradient.Rotation = (gradient.Rotation + dt * 100) % 360
 		end
