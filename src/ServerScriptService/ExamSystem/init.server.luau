@@ -334,6 +334,15 @@ getExamQuestions.OnServerInvoke = function(player: Player): {Question}
 	end
 
 	local questions = buildExamSet(difficulty)
+	
+	-- Register questions with CheatManager so it can provide answers for cheats
+	local cheatManagerOk, CheatManager = pcall(function()
+		return require(game:GetService("ServerScriptService"):FindFirstChild("CheatSystem"):FindFirstChild("CheatManager"))
+	end)
+	if cheatManagerOk and CheatManager and CheatManager.registerExamQuestions then
+		CheatManager.registerExamQuestions(player, questions)
+	end
+	
 	print(string.format("[ExamSystem] Serving %d questions (%s) to %s", #questions, difficulty, player.Name))
 	return questions
 end

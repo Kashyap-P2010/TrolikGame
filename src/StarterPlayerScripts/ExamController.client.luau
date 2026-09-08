@@ -32,6 +32,20 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Shared            = ReplicatedStorage:WaitForChild("Shared")
 local ExamRemotes       = require(Shared:WaitForChild("ExamRemotes"))
 
+-- CheatController integration (loaded lazily to avoid circular dependency)
+local CheatController = nil
+task.defer(function()
+	local ok, mod = pcall(function()
+		return require(script.Parent:WaitForChild("CheatController", 10))
+	end)
+	if ok and mod then
+		CheatController = mod
+		print("[ExamController] CheatController linked ✓")
+	else
+		warn("[ExamController] CheatController not found — cheats will not work")
+	end
+end)
+
 local player    = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
@@ -232,6 +246,11 @@ local function displayQuestion(index: number)
 	warnInProgress = false
 	clearAllSelections()
 
+	-- Notify CheatController of question change
+	if CheatController then
+		CheatController.setCurrentQuestion(index, #questions)
+	end
+
 	-- ChooseAnswer always hidden; NextQuestion always shown
 	setVisible(chooseAnswerBtn, false)
 	setVisible(nextQuestionBtn, true)
@@ -254,6 +273,39 @@ local function displayQuestion(index: number)
 	if fieldASelected then fieldASelected.Text = q.a end
 	if fieldBSelected then fieldBSelected.Text = q.b end
 	if fieldCSelected then fieldCSelected.Text = q.c end
+
+	-- Reset all options to visible (in case Choice Eraser hid one previously)
+	if btnA then btnA.Visible = true end
+	if btnB then btnB.Visible = true end
+	if btnC then btnC.Visible = true end
+
+	-- Apply Choice Eraser effect (hide one wrong option)
+	if CheatController then
+		local erased = CheatController.getErasedOption()
+		if erased then
+			if erased == "A" and btnA then btnA.Visible = false end
+			if erased == "B" and btnB then btnB.Visible = false end
+			if erased == "C" and btnC then btnC.Visible = false end
+		end
+
+		-- Apply Smart Glasses / Genius Potion highlight effect
+		local highlighted = CheatController.getHighlightedAnswer(index)
+		if highlighted then
+			-- Add a green glow border to the correct answer button
+			local targetBtn = (highlighted == "A" and btnA) or (highlighted == "B" and btnB) or (highlighted == "C" and btnC)
+			if targetBtn then
+				-- Remove any previous highlight strokes
+				for _, child in targetBtn:GetChildren() do
+					if child.Name == "CheatHighlight" then child:Destroy() end
+				end
+				local highlightStroke = Instance.new("UIStroke")
+				highlightStroke.Name = "CheatHighlight"
+				highlightStroke.Thickness = 3
+				highlightStroke.Color = Color3.fromRGB(0, 255, 100)
+				highlightStroke.Parent = targetBtn
+			end
+		end
+	end
 end
 
 ---------------------------------------------------------------------------
@@ -263,6 +315,11 @@ local function endExam()
 	if not examActive and not globalTimerActive then return end
 	examActive = false
 	globalTimerActive = false
+
+	-- Notify CheatController that exam ended
+	if CheatController then
+		CheatController.setExamActive(false)
+	end
 
 	if timerThread then
 		pcall(task.cancel, timerThread)
@@ -356,6 +413,11 @@ local function startExam()
 	currentIndex = 1
 	score        = 0
 	examActive   = true
+
+	-- Notify CheatController that exam is active
+	if CheatController then
+		CheatController.setExamActive(true)
+	end
 
 	print(string.format("[ExamController] Got %d questions — exam starts!", #questions))
 	displayQuestion(currentIndex)
