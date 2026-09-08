@@ -446,7 +446,7 @@ local function onCharacterAdded(character)
 										prompt.ActionText = "Open Paper"
 										prompt.KeyboardKeyCode = Enum.KeyCode.E
 										prompt.HoldDuration = 0
-										prompt.MaxActivationDistance = 5
+										prompt.MaxActivationDistance = 12
 										prompt.RequiresLineOfSight = false
 										prompt.Parent = myPaper
 										

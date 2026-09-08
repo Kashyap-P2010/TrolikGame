@@ -221,6 +221,17 @@ end)
 
 -- GetPlayerData: client requests their data snapshot
 getPlayerDataRemote.OnServerInvoke = function(player: Player)
+	-- Yield up to 10 seconds if data is still loading to prevent 0-coin race condition
+	local timeout = 0
+	while not PlayerData.hasSession(player) and timeout < 100 do
+		task.wait(0.1)
+		timeout += 1
+	end
+	
+	if not PlayerData.hasSession(player) then
+		warn(string.format("[DataSystem] %s requested data but session still missing after 10s!", player.Name))
+	end
+	
 	return PlayerData.getAll(player)
 end
 
