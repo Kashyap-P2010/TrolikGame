@@ -1,0 +1,702 @@
+﻿[
+    {
+        "q":  "Where does the name “atlas” for a map collection come from?",
+        "a":  "From Atlas in Mercator’s work",
+        "b":  "From the Atlas Mountains",
+        "c":  "From Greek city Atla",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why does quartz glass withstand higher temperatures?",
+        "a":  "More sodium",
+        "b":  "Fewer impurities",
+        "c":  "Ceramic coating",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who gave name to the astronomy unit “mors”?",
+        "a":  "Johannes Kepler",
+        "b":  "Urbain Le Verrier",
+        "c":  "No such unit exists",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why is tungsten used in filaments?",
+        "a":  "It is light",
+        "b":  "It has a very high melting point",
+        "c":  "It does not conduct electricity",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do fireflies glow?",
+        "a":  "Fluorescence",
+        "b":  "Phosphorescence",
+        "c":  "Bioluminescence",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does the word “algorithm” come from?",
+        "a":  "Al-Khwarizmi",
+        "b":  "Archimedes",
+        "c":  "Aristotle",
+        "correct":  "A"
+    },
+    {
+        "q":  "In what is dynamic viscosity measured?",
+        "a":  "Pascal-seconds",
+        "b":  "Newtons",
+        "c":  "Lux",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why is platinum valued in catalysts?",
+        "a":  "It is the lightest metal",
+        "b":  "It speeds up chemical reactions",
+        "c":  "It does not conduct heat",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where does obsidian come from?",
+        "a":  "Sea deposits",
+        "b":  "Meteor impacts",
+        "c":  "Rapidly cooled lava",
+        "correct":  "C"
+    },
+    {
+        "q":  "Who was Tycho Brahe?",
+        "a":  "Astronomer",
+        "b":  "Biologist",
+        "c":  "Cartographer",
+        "correct":  "A"
+    },
+    {
+        "q":  "What creates Jupiter’s auroras?",
+        "a":  "Storms",
+        "b":  "Magnetic field and charged particles",
+        "c":  "Sunlight reflection",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why does graphene conduct electricity well?",
+        "a":  "Single-layer carbon structure",
+        "b":  "Silver mixture",
+        "c":  "High iron content",
+        "correct":  "A"
+    },
+    {
+        "q":  "What scale measures mineral hardness?",
+        "a":  "Richter",
+        "b":  "Mohs",
+        "c":  "Beaufort",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where does “cobalt” get its name?",
+        "a":  "German miners’ word “kobold”",
+        "b":  "Greek god",
+        "c":  "River name",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why does bismuth create colorful crystals?",
+        "a":  "Copper content",
+        "b":  "Thin oxide surface layer",
+        "c":  "Cosmic radiation",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where does “quartz” get its name?",
+        "a":  "German “quarz”",
+        "b":  "Latin “aqua”",
+        "c":  "Greek god",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why is gallium unusual?",
+        "a":  "Non-magnetic",
+        "b":  "Melts in your hand",
+        "c":  "Does not conduct electricity",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was Al-Biruni?",
+        "a":  "Persian ruler",
+        "b":  "European astronomer",
+        "c":  "Scholar of astronomy and geography",
+        "correct":  "C"
+    },
+    {
+        "q":  "What causes the Doppler effect?",
+        "a":  "Frequency change from wave source movement",
+        "b":  "Air temperature change",
+        "c":  "Light reflection",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where is the oldest known cave art?",
+        "a":  "France",
+        "b":  "Indonesia",
+        "c":  "Spain",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where does “tantalum” get its name?",
+        "a":  "Discovery place",
+        "b":  "Latin metal name",
+        "c":  "Mythological Tantalus",
+        "correct":  "C"
+    },
+    {
+        "q":  "Who was James Clerk Maxwell?",
+        "a":  "Geologist",
+        "b":  "Biologist",
+        "c":  "Physicist of electromagnetism",
+        "correct":  "C"
+    },
+    {
+        "q":  "What causes Mars’ red color?",
+        "a":  "Iron oxides",
+        "b":  "Earth light reflection",
+        "c":  "Active volcanoes",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where was the oldest writing found?",
+        "a":  "Egypt",
+        "b":  "Mesopotamia",
+        "c":  "China",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where does the word “coffee” come from?",
+        "a":  "Ethiopian Kaffa region",
+        "b":  "Arabic word for water",
+        "c":  "First planter’s name",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do flamingos stand on one leg?",
+        "a":  "Faster escape",
+        "b":  "Reduce heat loss",
+        "c":  "Rest after flying",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who created Dracula?",
+        "a":  "Mary Shelley",
+        "b":  "Edgar Allan Poe",
+        "c":  "Bram Stoker",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where is Earth’s largest volcano?",
+        "a":  "Italy",
+        "b":  "Hawaii",
+        "c":  "Japan",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why are mosquitoes attracted to CO₂?",
+        "a":  "Energy source",
+        "b":  "Predator protection",
+        "c":  "Finding hosts",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does “tabasco” come from?",
+        "a":  "Mexican Tabasco state",
+        "b":  "Chef’s name",
+        "c":  "Pepper type",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do meteors glow in the atmosphere?",
+        "a":  "Metal burning",
+        "b":  "Heating from air compression and friction",
+        "c":  "Moon reflection",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the science of butterflies called?",
+        "a":  "Ornithology",
+        "b":  "Entomology",
+        "c":  "Lepidopterology",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does “espresso” come from?",
+        "a":  "Italian word for quick preparation",
+        "b":  "Coffee plant name",
+        "c":  "Drink color",
+        "correct":  "A"
+    },
+    {
+        "q":  "In what is light speed measured?",
+        "a":  "Joules",
+        "b":  "Square meters",
+        "c":  "Kilometers per second",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why doesn’t gold rust?",
+        "a":  "It does not easily react with oxygen",
+        "b":  "It has no metal atoms",
+        "c":  "Oxygen cannot affect it",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does “carat” come from?",
+        "a":  "Tree name",
+        "b":  "Greek word for gold",
+        "c":  "Carob seeds",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why are whales not fish?",
+        "a":  "They breathe with lungs and are mammals",
+        "b":  "They live only in warm waters",
+        "c":  "They have larger hearts",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does “crimson” come from?",
+        "a":  "Persian word linked to red",
+        "b":  "Mineral name",
+        "c":  "Greek god",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why does the Moon look larger near the horizon?",
+        "a":  "It changes size",
+        "b":  "Optical illusion",
+        "c":  "Thicker atmosphere",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was Louis Pasteur?",
+        "a":  "Astronomer",
+        "b":  "Geologist",
+        "c":  "Chemist and biologist",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do bats sleep upside down?",
+        "a":  "Cannot walk",
+        "b":  "Their claws allow hanging",
+        "c":  "Protects from light",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why is diamond transparent?",
+        "a":  "No carbon",
+        "b":  "Specific crystal structure",
+        "c":  "Contains air",
+        "correct":  "B"
+    },
+    {
+        "q":  "What creates fog?",
+        "a":  "Freezing air",
+        "b":  "Atmospheric dust",
+        "c":  "Water vapor condensation",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does “Amazon” get its name?",
+        "a":  "Spanish explorers’ stories",
+        "b":  "Fish name",
+        "c":  "Amazon tribe",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where do the largest animals live?",
+        "a":  "Tropical forests",
+        "b":  "Oceans",
+        "c":  "Deserts",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do planes fly higher than birds?",
+        "a":  "Lighter wings",
+        "b":  "Engines work in thin air",
+        "c":  "No gravity affects them",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was Carl Sagan?",
+        "a":  "Biologist",
+        "b":  "Geologist",
+        "c":  "Astronomer and science communicator",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the science of weather called?",
+        "a":  "Geology",
+        "b":  "Climatology",
+        "c":  "Meteorology",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does “chocolate” come from?",
+        "a":  "Mesoamerican languages",
+        "b":  "Latin",
+        "c":  "Italian",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why was salt valuable in the past?",
+        "a":  "Used as metal",
+        "b":  "Preserved food",
+        "c":  "Only found in mountains",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was Leonardo da Vinci?",
+        "a":  "Only a painter",
+        "b":  "Only an inventor",
+        "c":  "An artist and scientist",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why does a golf ball have dimples?",
+        "a":  "To make it lighter",
+        "b":  "To reduce drag and increase flight distance",
+        "c":  "To make it easier to find",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was the person whose name gave rise to the word \"sandwich\"?",
+        "a":  "A baker",
+        "b":  "A traveler",
+        "c":  "A count",
+        "correct":  "C"
+    },
+    {
+        "q":  "What causes the characteristic smell of a new book?",
+        "a":  "Volatile compounds released from paper and glue",
+        "b":  "Printing ink",
+        "c":  "Ozone in the air",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where were paper money first used?",
+        "a":  "Japan",
+        "b":  "China",
+        "c":  "India",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where does the word \"picnic\" come from?",
+        "a":  "French language",
+        "b":  "German language",
+        "c":  "Spanish language",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the spiciness of chili peppers measured in?",
+        "a":  "Scoville units",
+        "b":  "Brix degrees",
+        "c":  "PPM",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the name of the oldest preserved board game?",
+        "a":  "Mancala",
+        "b":  "Go",
+        "c":  "Senet",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does the name \"sandpaper\" come from?",
+        "a":  "From the abrasive material applied to paper",
+        "b":  "From the city where it was invented",
+        "c":  "From the inventor\u0027s name",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why is oak wood often used for barrels?",
+        "a":  "It is the lightest wood",
+        "b":  "It is durable and reduces leaking",
+        "c":  "It does not change the taste of drinks at all",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do jeans become lighter over time?",
+        "a":  "The dye wears off the fibers",
+        "b":  "Due to UV radiation",
+        "c":  "Due to oxidation of cotton",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where is the lint filter usually located in a tumble dryer?",
+        "a":  "Near the motor",
+        "b":  "Near the door opening",
+        "c":  "At the back of the device",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the metal tip of a shoelace called?",
+        "a":  "Clamp",
+        "b":  "Rivet",
+        "c":  "Aglet",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do phone chargers heat up during use?",
+        "a":  "Because of airflow",
+        "b":  "Some energy turns into heat",
+        "c":  "Because of Earth\u0027s magnetic field",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where does the name \"thermos\" come from?",
+        "a":  "From the Greek word meaning \"warm\"",
+        "b":  "From the inventor\u0027s name",
+        "c":  "From a city in Germany",
+        "correct":  "A"
+    },
+    {
+        "q":  "Who was the person whose name gave rise to the word \"silicone\"?",
+        "a":  "A chemist",
+        "b":  "A jeweler",
+        "c":  "The name does not come from a person",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why are bananas harvested before they ripen?",
+        "a":  "They are sweeter",
+        "b":  "They handle transport better",
+        "c":  "They never spoil after picking",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was Francis Drake?",
+        "a":  "A king of England",
+        "b":  "A Spanish admiral",
+        "c":  "An English sailor and privateer",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why did pirates often wear eye patches?",
+        "a":  "To adapt vision to dark places",
+        "b":  "To protect eyes from sunlight",
+        "c":  "To hide a missing eye from battles",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do electric guitars have pickups?",
+        "a":  "To increase string voltage",
+        "b":  "To convert string vibrations into an electrical signal",
+        "c":  "To tune the instrument automatically",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do electric guitars use different pickups?",
+        "a":  "To change the sound tone",
+        "b":  "To increase the neck length",
+        "c":  "To reduce the guitar weight",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where is most of the Canadian Arctic located?",
+        "a":  "In the north of the country",
+        "b":  "On the west coast",
+        "c":  "Near the US border",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the fruit ripening process caused by gas called?",
+        "a":  "Fermentation",
+        "b":  "Photosynthesis",
+        "c":  "Ethylene action",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why did pirate ships often have black flags?",
+        "a":  "They were a symbol of warning and threat",
+        "b":  "They were easier to make",
+        "c":  "They hid ships at night",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why can\u0027t people smell during sleep?",
+        "a":  "The brain processes smells less during sleep",
+        "b":  "The nose stops working",
+        "c":  "Air does not reach the nose",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does the name \"Milka\" chocolate come from?",
+        "a":  "From combining the words milk and cocoa",
+        "b":  "From the creator\u0027s name",
+        "c":  "From a city in Switzerland",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why is snow white?",
+        "a":  "It contains salt",
+        "b":  "Light reflects from many ice crystals",
+        "c":  "It has white coloring",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is screen resolution measured in?",
+        "a":  "Kilograms",
+        "b":  "Hertz",
+        "c":  "Pixels",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do people sometimes dream about places they have never seen?",
+        "a":  "The brain combines remembered image fragments",
+        "b":  "Dreams are always memories",
+        "c":  "Eyes see images during sleep",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does the word \"shampoo\" come from?",
+        "a":  "From Spanish",
+        "b":  "From Latin",
+        "c":  "From Hindi",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do cats purr?",
+        "a":  "Only when they are happy",
+        "b":  "Only during sleep",
+        "c":  "For communication and calming, among other reasons",
+        "correct":  "C"
+    },
+    {
+        "q":  "How is pencil hardness measured?",
+        "a":  "HB scale",
+        "b":  "Mohs scale",
+        "c":  "Beaufort scale",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do sewn clothes have labels?",
+        "a":  "To increase durability",
+        "b":  "To show the material composition",
+        "c":  "To improve appearance",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do dogs tilt their heads when hearing strange sounds?",
+        "a":  "To better understand the sound source",
+        "b":  "Because they lose balance",
+        "c":  "To cool their ears",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the phenomenon where people remember events differently called?",
+        "a":  "Optical illusion",
+        "b":  "Mandela Effect",
+        "c":  "Sleep paralysis",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why is there sometimes a white line on teeth after waking up?",
+        "a":  "Due to dried enamel surface",
+        "b":  "Due to enamel damage",
+        "c":  "Due to food residue",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why does powdered sugar dissolve faster than normal sugar?",
+        "a":  "It is sweeter",
+        "b":  "It is warmer",
+        "c":  "It has smaller crystals",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why does cut onion smell stronger after being refrigerated?",
+        "a":  "Due to released sulfur compounds",
+        "b":  "Due to increased sugar content",
+        "c":  "Due to frozen cells",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do coins have different sizes?",
+        "a":  "Only for appearance",
+        "b":  "To make them easier to recognize and produce",
+        "c":  "To make them heavier",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do most apartment doors open inward?",
+        "a":  "They are easier to secure and do not block corridors",
+        "b":  "They are lighter",
+        "c":  "They keep heat better",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do bathroom mirrors turn black at the edges over time?",
+        "a":  "Because of dust under the glass",
+        "b":  "Because of sunlight",
+        "c":  "Because the reflective layer gets damaged",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why does a phone slow down when it gets very hot?",
+        "a":  "It loses internet connection",
+        "b":  "The battery disappears",
+        "c":  "The system limits performance to protect components",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does the name \"ketchup\" come from?",
+        "a":  "From a Chinese word related to sauce",
+        "b":  "From the name of tomato",
+        "c":  "From a chef\u0027s name",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do ice cubes sometimes become white inside?",
+        "a":  "Because of magic",
+        "b":  "Because of very low temperature",
+        "c":  "Because of trapped air bubbles and minerals",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why does an electric kettle turn off automatically?",
+        "a":  "Because of temperature and steam sensors",
+        "b":  "Because the battery runs out",
+        "c":  "Because of a magnet in the base",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why is window glass colder than the wall next to it?",
+        "a":  "Glass always has a lower temperature",
+        "b":  "Glass insulates worse than a wall",
+        "c":  "Glass absorbs cold",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why are batteries placed opposite ways in a remote?",
+        "a":  "To increase voltage",
+        "b":  "To create a correct electric circuit",
+        "c":  "To reduce battery size",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do numeric keyboards have a bump on number 5?",
+        "a":  "To prevent number wear",
+        "b":  "To make keys louder",
+        "c":  "To find the center without looking",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do clothes dry faster in the wind?",
+        "a":  "Wind heats the material",
+        "b":  "Wind removes humid air near the fabric",
+        "c":  "Wind changes water composition",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why is paper placed inside new shoes?",
+        "a":  "To keep the shoe shape during transport",
+        "b":  "To increase product weight",
+        "c":  "To improve the leather smell",
+        "correct":  "A"
+    }
+]

@@ -1,0 +1,1402 @@
+﻿[
+    {
+        "q":  "Which country is famous for Machu Picchu?",
+        "a":  "Peru",
+        "b":  "Egypt",
+        "c":  "India",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which invention is credited to the Wright brothers?",
+        "a":  "Telephone",
+        "b":  "Airplane",
+        "c":  "Light bulb",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which language has the most native speakers in the world?",
+        "a":  "Spanish",
+        "b":  "English",
+        "c":  "Mandarin Chinese",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the process where rocks are worn away by water and wind called?",
+        "a":  "Crystallization",
+        "b":  "Erosion",
+        "c":  "Condensation",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the period when dinosaurs lived called?",
+        "a":  "Ice Age",
+        "b":  "Mesozoic Era",
+        "c":  "Middle Ages",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which gas causes most human-made greenhouse effect?",
+        "a":  "Oxygen",
+        "b":  "Nitrogen",
+        "c":  "Carbon dioxide",
+        "correct":  "C"
+    },
+    {
+        "q":  "Who painted \"The Starry Night\"?",
+        "a":  "Vincent van Gogh",
+        "b":  "Leonardo da Vinci",
+        "c":  "Pablo Picasso",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the highest mountain in Africa?",
+        "a":  "Mount Everest",
+        "b":  "Mount Kilimanjaro",
+        "c":  "Mont Blanc",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which computer part performs most calculations?",
+        "a":  "Graphics card",
+        "b":  "Mouse",
+        "c":  "Processor",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which Greek hero was known for his strength and twelve labors?",
+        "a":  "Achilles",
+        "b":  "Hercules",
+        "c":  "Zeus",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which record is measured in athletics competitions?",
+        "a":  "Longest jump",
+        "b":  "Most books owned",
+        "c":  "Largest building",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the science that studies earthquakes called?",
+        "a":  "Oceanography",
+        "b":  "Meteorology",
+        "c":  "Seismology",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which country is known for inventing paper?",
+        "a":  "China",
+        "b":  "France",
+        "c":  "Brazil",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the capital of Australia?",
+        "a":  "Sydney",
+        "b":  "Canberra",
+        "c":  "Melbourne",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which Greek hero had a famous weak spot in his heel?",
+        "a":  "Hercules",
+        "b":  "Theseus",
+        "c":  "Achilles",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the science that studies animals called?",
+        "a":  "Botany",
+        "b":  "Zoology",
+        "c":  "Geology",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which sport is played on ice with stones and brushes?",
+        "a":  "Curling",
+        "b":  "Hockey",
+        "c":  "Ice skating",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the most famous football tournament for national teams?",
+        "a":  "FIFA World Cup",
+        "b":  "Tour de France",
+        "c":  "Wimbledon",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which country created the first paper money?",
+        "a":  "Egypt",
+        "b":  "China",
+        "c":  "Italy",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the science that studies living organisms?",
+        "a":  "Physics",
+        "b":  "Chemistry",
+        "c":  "Biology",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which landmark is a symbol of New York?",
+        "a":  "Statue of Liberty",
+        "b":  "Eiffel Tower",
+        "c":  "Big Ben",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the line dividing Earth into Northern and Southern Hemispheres?",
+        "a":  "Equator",
+        "b":  "Tropic of Cancer",
+        "c":  "Prime Meridian",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which company created Photoshop?",
+        "a":  "Microsoft",
+        "b":  "Adobe",
+        "c":  "Nintendo",
+        "correct":  "B"
+    },
+    {
+        "q":  "What ancient writing system was used by Egyptians?",
+        "a":  "Runes",
+        "b":  "Cyrillic",
+        "c":  "Hieroglyphs",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which instrument measures air humidity?",
+        "a":  "Hygrometer",
+        "b":  "Barometer",
+        "c":  "Thermometer",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the largest island in the world?",
+        "a":  "Madagascar",
+        "b":  "Greenland",
+        "c":  "Iceland",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which scientist created the laws of motion and gravity?",
+        "a":  "Tesla",
+        "b":  "Darwin",
+        "c":  "Newton",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the process of creating new species in nature?",
+        "a":  "Fermentation",
+        "b":  "Evolution",
+        "c":  "Distillation",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which country is known for windmills and tulips?",
+        "a":  "Switzerland",
+        "b":  "Austria",
+        "c":  "Netherlands",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which computer part is responsible for displaying images?",
+        "a":  "Graphics card",
+        "b":  "Hard drive",
+        "c":  "Power supply",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which sport uses a racket and a shuttlecock?",
+        "a":  "Squash",
+        "b":  "Table tennis",
+        "c":  "Badminton",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the layer of the atmosphere where we live?",
+        "a":  "Troposphere",
+        "b":  "Stratosphere",
+        "c":  "Ionosphere",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which ancient people created democracy in Athens?",
+        "a":  "Romans",
+        "b":  "Greeks",
+        "c":  "Persians",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the capital of Spain?",
+        "a":  "Barcelona",
+        "b":  "Madrid",
+        "c":  "Valencia",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which mythical creature had a lion\u0027s body and a human head?",
+        "a":  "Minotaur",
+        "b":  "Centaur",
+        "c":  "Sphinx",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which layer of Earth is directly below the crust?",
+        "a":  "Mantle",
+        "b":  "Core",
+        "c":  "Atmosphere",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which animal is the largest land predator?",
+        "a":  "Lion",
+        "b":  "Tiger",
+        "c":  "Polar bear",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the science that studies fossils?",
+        "a":  "Paleontology",
+        "b":  "Ecology",
+        "c":  "Meteorology",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which country is famous for watches and the Alps?",
+        "a":  "Austria",
+        "b":  "Switzerland",
+        "c":  "Denmark",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which continent is the smallest by area?",
+        "a":  "Europe",
+        "b":  "Antarctica",
+        "c":  "Australia",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the science that studies insects called?",
+        "a":  "Entomology",
+        "b":  "Zoology",
+        "c":  "Botany",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does sushi come from?",
+        "a":  "China",
+        "b":  "Japan",
+        "c":  "Korea",
+        "correct":  "B"
+    },
+    {
+        "q":  "How is a rainbow created?",
+        "a":  "By moving clouds",
+        "b":  "By wind",
+        "c":  "By light bending through water drops",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does an archaeologist study?",
+        "a":  "Remains of ancient civilizations",
+        "b":  "Human health",
+        "c":  "Computer design",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the myth of Daedalus and Icarus about?",
+        "a":  "The creation of the world",
+        "b":  "Trying to escape using wings",
+        "c":  "A war between gods",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which gas is used in balloons to make them float?",
+        "a":  "Oxygen",
+        "b":  "Nitrogen",
+        "c":  "Helium",
+        "correct":  "C"
+    },
+    {
+        "q":  "Who was Ludwig van Beethoven?",
+        "a":  "Scientist",
+        "b":  "Composer",
+        "c":  "Athlete",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where is the Great Barrier Reef located?",
+        "a":  "Near the coast of Australia",
+        "b":  "Near the coast of Canada",
+        "c":  "Near the coast of Norway",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why can airplanes stay in the air?",
+        "a":  "Because wings create lift",
+        "b":  "Because of heavy engines",
+        "c":  "Because of magnets",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is paper made from?",
+        "a":  "Metal",
+        "b":  "Plant fibers",
+        "c":  "Glass",
+        "correct":  "B"
+    },
+    {
+        "q":  "What causes waves on water?",
+        "a":  "Sunlight",
+        "b":  "Temperature",
+        "c":  "Mainly wind movement",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does the traditional dish paella come from?",
+        "a":  "Italy",
+        "b":  "Spain",
+        "c":  "Greece",
+        "correct":  "B"
+    },
+    {
+        "q":  "What causes an echo?",
+        "a":  "Changes in air temperature",
+        "b":  "Movement of ocean waves",
+        "c":  "Reflection of sound waves",
+        "correct":  "C"
+    },
+    {
+        "q":  "When did the first human Moon landing happen?",
+        "a":  "1959",
+        "b":  "1969",
+        "c":  "1979",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why are plants green?",
+        "a":  "Because chlorophyll reflects green light",
+        "b":  "Because they contain oxygen",
+        "c":  "Because they absorb all colors",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the book \"Alice in Wonderland\" about?",
+        "a":  "A girl\u0027s journey to a strange world",
+        "b":  "A history of war",
+        "c":  "Exploring space",
+        "correct":  "A"
+    },
+    {
+        "q":  "What are most coins made from?",
+        "a":  "Metals",
+        "b":  "Wood",
+        "c":  "Glass",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where is Stonehenge located?",
+        "a":  "Ireland",
+        "b":  "England",
+        "c":  "Norway",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was Albert Einstein?",
+        "a":  "Painter",
+        "b":  "Musician",
+        "c":  "Physicist",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does karate come from?",
+        "a":  "China",
+        "b":  "Japan",
+        "c":  "Korea",
+        "correct":  "B"
+    },
+    {
+        "q":  "What causes lightning?",
+        "a":  "Wind",
+        "b":  "Rain",
+        "c":  "Electrical discharges",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does a meteorologist study?",
+        "a":  "Weather",
+        "b":  "Animals",
+        "c":  "Rocks",
+        "correct":  "A"
+    },
+    {
+        "q":  "Who was Julius Caesar?",
+        "a":  "Composer",
+        "b":  "Scientist",
+        "c":  "Emperor",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is a car battery used for?",
+        "a":  "Cooling",
+        "b":  "Providing power",
+        "c":  "Braking",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is magma?",
+        "a":  "Gas",
+        "b":  "Melted rock",
+        "c":  "Crystal",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why does the Moon shine?",
+        "a":  "It reflects sunlight",
+        "b":  "It produces fire",
+        "c":  "It creates its own light",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where do giant pandas live?",
+        "a":  "India",
+        "b":  "China",
+        "c":  "Japan",
+        "correct":  "B"
+    },
+    {
+        "q":  "How does a magnet work?",
+        "a":  "Through heat",
+        "b":  "Through light",
+        "c":  "Through a magnetic field",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is popcorn made from?",
+        "a":  "Rice",
+        "b":  "Corn",
+        "c":  "Wheat",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is radar used for?",
+        "a":  "Cooking",
+        "b":  "Medical treatment",
+        "c":  "Detecting objects",
+        "correct":  "C"
+    },
+    {
+        "q":  "How do bees communicate with each other?",
+        "a":  "Singing",
+        "b":  "Dancing",
+        "c":  "Changing colors",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do people see optical illusions?",
+        "a":  "The brain interprets images",
+        "b":  "Eyes stop working",
+        "c":  "Light disappears",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where is the Colosseum located?",
+        "a":  "Greece",
+        "b":  "Italy",
+        "c":  "Egypt",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is chocolate made from?",
+        "a":  "Salt",
+        "b":  "Rice",
+        "c":  "Cocoa",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does pizza come from?",
+        "a":  "France",
+        "b":  "Italy",
+        "c":  "Germany",
+        "correct":  "B"
+    },
+    {
+        "q":  "How are diamonds formed?",
+        "a":  "By freezing water",
+        "b":  "By sunlight",
+        "c":  "By high pressure",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is a map used for?",
+        "a":  "Finding places",
+        "b":  "Measuring temperature",
+        "c":  "Taking photos",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is a whale shark?",
+        "a":  "A freshwater fish",
+        "b":  "A marine mammal",
+        "c":  "The largest fish in the world",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do dreams happen?",
+        "a":  "Because of Earth\u0027s movement",
+        "b":  "Because of brain activity during sleep",
+        "c":  "Because of room temperature",
+        "correct":  "B"
+    },
+    {
+        "q":  "What helps birds stay in the air?",
+        "a":  "Scales",
+        "b":  "Fins",
+        "c":  "Wings",
+        "correct":  "C"
+    },
+    {
+        "q":  "What happens to a shadow when the Sun changes position?",
+        "a":  "It changes length",
+        "b":  "It disappears forever",
+        "c":  "It becomes colorful",
+        "correct":  "A"
+    },
+    {
+        "q":  "How can you recognize a metal?",
+        "a":  "It is soft like paper",
+        "b":  "It conducts electricity",
+        "c":  "It floats on water",
+        "correct":  "B"
+    },
+    {
+        "q":  "What causes rock erosion?",
+        "a":  "Silence",
+        "b":  "Darkness",
+        "c":  "Wind and water",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where are magnets used in everyday life?",
+        "a":  "In speakers",
+        "b":  "In plants",
+        "c":  "In food",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do whales and dolphins have in common?",
+        "a":  "They are fish",
+        "b":  "They are mammals",
+        "c":  "They have gills",
+        "correct":  "B"
+    },
+    {
+        "q":  "What helps an airplane rise into the air?",
+        "a":  "Wheels",
+        "b":  "Turned-off engines",
+        "c":  "Lift from wings",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why does salt dissolve in water?",
+        "a":  "Water molecules separate it",
+        "b":  "Water turns it into gas",
+        "c":  "Salt starts glowing",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is at the center of the Solar System?",
+        "a":  "Moon",
+        "b":  "Sun",
+        "c":  "Earth",
+        "correct":  "B"
+    },
+    {
+        "q":  "What happens when you blink?",
+        "a":  "You stop seeing",
+        "b":  "Your eyes change color",
+        "c":  "Your eyes become moist",
+        "correct":  "C"
+    },
+    {
+        "q":  "What do diamonds and graphite have in common?",
+        "a":  "They are liquids",
+        "b":  "They are forms of carbon",
+        "c":  "They are metals",
+        "correct":  "B"
+    },
+    {
+        "q":  "What can cause earthquakes?",
+        "a":  "Movement of tectonic plates",
+        "b":  "Falling snow",
+        "c":  "Moonlight",
+        "correct":  "A"
+    },
+    {
+        "q":  "What happens to sound in a vacuum?",
+        "a":  "It becomes louder",
+        "b":  "It changes color",
+        "c":  "It does not travel",
+        "correct":  "C"
+    },
+    {
+        "q":  "What happens to metal left in rain for a long time?",
+        "a":  "It rusts",
+        "b":  "It disappears",
+        "c":  "It turns into glass",
+        "correct":  "A"
+    },
+    {
+        "q":  "How can you recognize a nocturnal animal?",
+        "a":  "It only lives in water",
+        "b":  "It is active after dark",
+        "c":  "It has no eyes",
+        "correct":  "B"
+    },
+    {
+        "q":  "What protects Earth from some space radiation?",
+        "a":  "Ocean",
+        "b":  "Moon",
+        "c":  "Atmosphere",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is a wrench used for?",
+        "a":  "Unscrewing bolts",
+        "b":  "Writing",
+        "c":  "Measuring temperature",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do camels and cacti have in common?",
+        "a":  "They live in forests",
+        "b":  "They are adapted to deserts",
+        "c":  "They are plants",
+        "correct":  "B"
+    },
+    {
+        "q":  "What creates the sound of a guitar?",
+        "a":  "Light",
+        "b":  "Heat",
+        "c":  "String vibrations",
+        "correct":  "C"
+    },
+    {
+        "q":  "How can you identify a mineral?",
+        "a":  "By taste",
+        "b":  "By its properties",
+        "c":  "By smell",
+        "correct":  "B"
+    },
+    {
+        "q":  "What makes a ship float on water?",
+        "a":  "Magnetism",
+        "b":  "Buoyancy",
+        "c":  "Electricity",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is a 3D printer used for?",
+        "a":  "Creating objects",
+        "b":  "Taking photos",
+        "c":  "Measuring temperature",
+        "correct":  "A"
+    },
+    {
+        "q":  "What does inflation mean?",
+        "a":  "Fewer people",
+        "b":  "Rising prices",
+        "c":  "Weather changes",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was Johannes Gutenberg?",
+        "a":  "An astronaut",
+        "b":  "A doctor",
+        "c":  "The inventor of the printing press",
+        "correct":  "C"
+    },
+    {
+        "q":  "What helps an architect create a building?",
+        "a":  "A design plan",
+        "b":  "A recipe",
+        "c":  "A weather map",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where did samba originate?",
+        "a":  "Japan",
+        "b":  "Italy",
+        "c":  "Brazil",
+        "correct":  "C"
+    },
+    {
+        "q":  "What do Spanish and Italian have in common?",
+        "a":  "They are Asian languages",
+        "b":  "They come from Latin",
+        "c":  "They use Cyrillic",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is a topographic map used for?",
+        "a":  "Showing terrain",
+        "b":  "Showing prices",
+        "c":  "Showing movies",
+        "correct":  "A"
+    },
+    {
+        "q":  "What does a speedometer measure in a car?",
+        "a":  "Temperature",
+        "b":  "Speed",
+        "c":  "Fuel level",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was William Shakespeare?",
+        "a":  "A scientist",
+        "b":  "An athlete",
+        "c":  "A writer",
+        "correct":  "C"
+    },
+    {
+        "q":  "What makes a battery work?",
+        "a":  "Chemical reactions",
+        "b":  "Wind",
+        "c":  "Sound",
+        "correct":  "A"
+    },
+    {
+        "q":  "What helps divers breathe underwater?",
+        "a":  "A vest",
+        "b":  "A mask",
+        "c":  "An air tank",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do airplanes have wings?",
+        "a":  "They create lift",
+        "b":  "They add weight",
+        "c":  "They cool the engine",
+        "correct":  "A"
+    },
+    {
+        "q":  "What does CPU stand for?",
+        "a":  "Phone memory",
+        "b":  "Processor",
+        "c":  "Screen",
+        "correct":  "B"
+    },
+    {
+        "q":  "What are most pencils made from?",
+        "a":  "Plastic",
+        "b":  "Iron",
+        "c":  "Graphite",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does the color white symbolize in many cultures?",
+        "a":  "Strength",
+        "b":  "Peace",
+        "c":  "Anger",
+        "correct":  "B"
+    },
+    {
+        "q":  "What helps find a location on a map?",
+        "a":  "Color",
+        "b":  "Coordinates",
+        "c":  "Sound",
+        "correct":  "B"
+    },
+    {
+        "q":  "How does a combustion engine work?",
+        "a":  "With water",
+        "b":  "With magnets",
+        "c":  "By burning fuel",
+        "correct":  "C"
+    },
+    {
+        "q":  "What causes the blue color of the sky?",
+        "a":  "Light scattering",
+        "b":  "Ocean reflection",
+        "c":  "Water vapor",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why is metal used in electrical wires?",
+        "a":  "It is light",
+        "b":  "It conducts electricity well",
+        "c":  "It never heats up",
+        "correct":  "B"
+    },
+    {
+        "q":  "What do bats and dolphins have in common?",
+        "a":  "They only live on land",
+        "b":  "They breathe with gills",
+        "c":  "They use echolocation",
+        "correct":  "C"
+    },
+    {
+        "q":  "What causes the northern lights?",
+        "a":  "Moonlight",
+        "b":  "Ice clouds",
+        "c":  "Particles from the Sun",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the job of a car cooling system?",
+        "a":  "Control temperature",
+        "b":  "Increase weight",
+        "c":  "Change fuel",
+        "correct":  "A"
+    },
+    {
+        "q":  "What does the Richter scale measure?",
+        "a":  "Wind strength",
+        "b":  "Earthquake strength",
+        "c":  "Temperature",
+        "correct":  "B"
+    },
+    {
+        "q":  "What allows an airplane to turn?",
+        "a":  "Changing wing colors",
+        "b":  "Adding more fuel",
+        "c":  "Moving control surfaces",
+        "correct":  "C"
+    },
+    {
+        "q":  "What causes the sour taste of a lemon?",
+        "a":  "Citric acid",
+        "b":  "Salt",
+        "c":  "Sugar",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why does ice float on water?",
+        "a":  "It is heavier",
+        "b":  "It has lower density",
+        "c":  "It is warmer",
+        "correct":  "B"
+    },
+    {
+        "q":  "What makes a cut apple turn brown?",
+        "a":  "Freezing",
+        "b":  "Drying",
+        "c":  "Oxidation",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why does a mirror show a reflection?",
+        "a":  "It lets light pass through",
+        "b":  "It reflects light",
+        "c":  "It creates light",
+        "correct":  "B"
+    },
+    {
+        "q":  "What causes tears when cutting onions?",
+        "a":  "Heat",
+        "b":  "Smell",
+        "c":  "Chemical compounds",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why does a phone battery drain faster while gaming?",
+        "a":  "High energy usage",
+        "b":  "No screen",
+        "c":  "Less memory",
+        "correct":  "A"
+    },
+    {
+        "q":  "What protects teeth from cavities?",
+        "a":  "Sugar",
+        "b":  "Fluoride",
+        "c":  "Caffeine",
+        "correct":  "B"
+    },
+    {
+        "q":  "What makes bread fluffy?",
+        "a":  "Salt",
+        "b":  "Water",
+        "c":  "Yeast",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why is a metal spoon colder than a wooden one?",
+        "a":  "It transfers heat better",
+        "b":  "It has less mass",
+        "c":  "It is always wet",
+        "correct":  "A"
+    },
+    {
+        "q":  "What creates the smell of fresh flowers?",
+        "a":  "Color",
+        "b":  "Scent compounds",
+        "c":  "Temperature",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why does a banana turn brown over time?",
+        "a":  "It freezes",
+        "b":  "It loses water",
+        "c":  "It ripens",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do clothes dry faster in the sun?",
+        "a":  "They become heavier",
+        "b":  "They have more water",
+        "c":  "Water evaporates faster",
+        "correct":  "C"
+    },
+    {
+        "q":  "What helps a fridge stay cold?",
+        "a":  "Refrigerant",
+        "b":  "Light",
+        "c":  "Room fan",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why does salt help with icy roads?",
+        "a":  "It heats the road",
+        "b":  "It lowers the freezing point",
+        "c":  "It removes snow by itself",
+        "correct":  "B"
+    },
+    {
+        "q":  "What happens to pasta while cooking?",
+        "a":  "It becomes salty",
+        "b":  "It freezes",
+        "c":  "It absorbs water",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the main ingredient of fries?",
+        "a":  "Rice",
+        "b":  "Potatoes",
+        "c":  "Corn",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is found in large amounts in carrots?",
+        "a":  "Iron",
+        "b":  "Beta-carotene",
+        "c":  "Caffeine",
+        "correct":  "B"
+    },
+    {
+        "q":  "What makes broccoli a healthy vegetable?",
+        "a":  "It contains fiber",
+        "b":  "It contains caffeine",
+        "c":  "It is a fruit",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the main ingredient in most soft drinks?",
+        "a":  "Vitamins",
+        "b":  "Flour",
+        "c":  "Water",
+        "correct":  "C"
+    },
+    {
+        "q":  "What gives coffee its bitter taste?",
+        "a":  "Salt",
+        "b":  "Compounds in coffee beans",
+        "c":  "Water",
+        "correct":  "B"
+    },
+    {
+        "q":  "What happens to an egg when it is cooked?",
+        "a":  "It freezes",
+        "b":  "It completely evaporates",
+        "c":  "The protein hardens",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why does a phone heat up while gaming?",
+        "a":  "It loses color",
+        "b":  "It gets bigger",
+        "c":  "The processor works hard",
+        "correct":  "C"
+    },
+    {
+        "q":  "What makes chips crispy?",
+        "a":  "Low water content",
+        "b":  "High sugar content",
+        "c":  "Low temperature",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do honey and flower nectar have in common?",
+        "a":  "They are fruits",
+        "b":  "They come from plants",
+        "c":  "They are minerals",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do people have different eye colors?",
+        "a":  "Because of diet",
+        "b":  "Because of weather",
+        "c":  "Because of genes",
+        "correct":  "C"
+    },
+    {
+        "q":  "What helps airplanes find their flight route?",
+        "a":  "Navigation systems",
+        "b":  "Mirrors",
+        "c":  "Brakes",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where is the Grand Canyon located?",
+        "a":  "USA",
+        "b":  "Canada",
+        "c":  "Mexico",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which planet rotates the fastest on its axis?",
+        "a":  "Venus",
+        "b":  "Jupiter",
+        "c":  "Saturn",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is steel made from?",
+        "a":  "Copper",
+        "b":  "Aluminum",
+        "c":  "Iron",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does a barometer measure?",
+        "a":  "Humidity",
+        "b":  "Atmospheric pressure",
+        "c":  "Wind speed",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which gas is most common in Earth\u0027s atmosphere?",
+        "a":  "Oxygen",
+        "b":  "Nitrogen",
+        "c":  "Carbon dioxide",
+        "correct":  "B"
+    },
+    {
+        "q":  "What state of matter is glass in?",
+        "a":  "Gas",
+        "b":  "Liquid",
+        "c":  "Solid",
+        "correct":  "C"
+    },
+    {
+        "q":  "What mostly affects the length of a shadow on a sunny day?",
+        "a":  "Position of the Sun",
+        "b":  "Color of the ground",
+        "c":  "Wind direction",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do passenger airplanes fly at high altitudes?",
+        "a":  "There is more oxygen there",
+        "b":  "Air resistance is lower",
+        "c":  "It is easier to avoid mountains",
+        "correct":  "B"
+    },
+    {
+        "q":  "What phenomenon gives a rainbow many colors?",
+        "a":  "Reflection of light",
+        "b":  "Refraction of light",
+        "c":  "Dispersion of light",
+        "correct":  "C"
+    },
+    {
+        "q":  "What makes a magnet attract iron?",
+        "a":  "Magnetic field",
+        "b":  "Electric charge",
+        "c":  "Friction",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do most ships have a darker color below the waterline?",
+        "a":  "It is cheaper",
+        "b":  "It hides dirt and marine growth better",
+        "c":  "It improves speed",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the hardest natural substance?",
+        "a":  "Granite",
+        "b":  "Quartz",
+        "c":  "Diamond",
+        "correct":  "C"
+    },
+    {
+        "q":  "What happens to atmospheric pressure when climbing a high mountain?",
+        "a":  "It decreases",
+        "b":  "It increases",
+        "c":  "It stays the same",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which component of air is needed for burning?",
+        "a":  "Nitrogen",
+        "b":  "Oxygen",
+        "c":  "Argon",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was James Watt?",
+        "a":  "Explorer of America",
+        "b":  "Mathematician",
+        "c":  "Engineer",
+        "correct":  "C"
+    },
+    {
+        "q":  "What do solar panels use to produce energy?",
+        "a":  "Sunlight",
+        "b":  "Wind",
+        "c":  "Rain",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do car tires have tread?",
+        "a":  "For appearance",
+        "b":  "To increase grip",
+        "c":  "To reduce engine noise",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why does a stick in water appear bent?",
+        "a":  "Reflection of light",
+        "b":  "Refraction of light",
+        "c":  "Scattering of light",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where is the greatest pressure in the ocean?",
+        "a":  "At the surface",
+        "b":  "Halfway down",
+        "c":  "At the bottom",
+        "correct":  "C"
+    },
+    {
+        "q":  "What was the first zipper used for?",
+        "a":  "Joining materials",
+        "b":  "Opening doors",
+        "c":  "Holding papers together",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which structure was the tallest in the world for thousands of years?",
+        "a":  "Eiffel Tower",
+        "b":  "Great Pyramid of Giza",
+        "c":  "Big Ben",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do some road signs have reflective surfaces?",
+        "a":  "They are easier to see at night",
+        "b":  "They are cheaper to produce",
+        "c":  "They resist rain better",
+        "correct":  "A"
+    },
+    {
+        "q":  "What mostly causes ocean tides?",
+        "a":  "Wind",
+        "b":  "The Moon\u0027s gravity",
+        "c":  "Ocean currents",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is in the center of the eye and controls incoming light?",
+        "a":  "Retina",
+        "b":  "Lens",
+        "c":  "Pupil",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which invention allowed food to be stored for a long time without refrigeration?",
+        "a":  "Microwave oven",
+        "b":  "Canned food",
+        "c":  "Blender",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where does the tradition of wearing kimono come from?",
+        "a":  "China",
+        "b":  "Korea",
+        "c":  "Japan",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do windows in skyscrapers often not open?",
+        "a":  "For safety reasons",
+        "b":  "They are too heavy",
+        "c":  "They have no handles",
+        "correct":  "A"
+    },
+    {
+        "q":  "What most often causes waves in the sea?",
+        "a":  "Tides",
+        "b":  "Wind",
+        "c":  "Ships",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where did the tradition of Halloween originate?",
+        "a":  "France",
+        "b":  "Spain",
+        "c":  "Ireland",
+        "correct":  "C"
+    },
+    {
+        "q":  "What powers most electric cars?",
+        "a":  "Electric motor",
+        "b":  "Steam engine",
+        "c":  "Jet engine",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which part of a car controls the direction of driving?",
+        "a":  "Clutch",
+        "b":  "Steering wheel",
+        "c":  "Muffler",
+        "correct":  "B"
+    },
+    {
+        "q":  "What do bees collect from flowers?",
+        "a":  "Nectar",
+        "b":  "Sand",
+        "c":  "Gravel",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which insect undergoes complete metamorphosis?",
+        "a":  "Grasshopper",
+        "b":  "Butterfly",
+        "c":  "Dragonfly",
+        "correct":  "B"
+    },
+    {
+        "q":  "What do fireflies use to glow?",
+        "a":  "Reflection of light",
+        "b":  "Solar energy",
+        "c":  "Chemical reaction",
+        "correct":  "C"
+    },
+    {
+        "q":  "What causes the phases of the Moon?",
+        "a":  "Changes in the visible illuminated part from Earth",
+        "b":  "Change in the Moon\u0027s color",
+        "c":  "Earth\u0027s rotation",
+        "correct":  "A"
+    },
+    {
+        "q":  "About how many days does the Moon take to orbit Earth?",
+        "a":  "7",
+        "b":  "27",
+        "c":  "365",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is found in large amounts on the Moon\u0027s surface?",
+        "a":  "Forests",
+        "b":  "Oceans",
+        "c":  "Craters",
+        "correct":  "C"
+    },
+    {
+        "q":  "What separates Europe from Africa?",
+        "a":  "Mediterranean Sea",
+        "b":  "Baltic Sea",
+        "c":  "Black Sea",
+        "correct":  "A"
+    },
+    {
+        "q":  "What causes wind?",
+        "a":  "Movement of the Moon",
+        "b":  "Earth\u0027s rotation",
+        "c":  "Differences in air pressure",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do airplanes sometimes leave white trails?",
+        "a":  "Due to condensation of water vapor",
+        "b":  "Due to burning wings",
+        "c":  "Due to smoke from the cabin",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which invention allowed quick transmission of voice over distance?",
+        "a":  "Television",
+        "b":  "Telephone",
+        "c":  "Camera",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which continent has no permanent residents?",
+        "a":  "Asia",
+        "b":  "Antarctica",
+        "c":  "Europe",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do some animals hibernate?",
+        "a":  "Lack of fur",
+        "b":  "Too much food",
+        "c":  "Adaptation to difficult conditions",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why does the Moon appear to shine?",
+        "a":  "It reflects sunlight",
+        "b":  "It produces its own light",
+        "c":  "It is hot like a star",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which substance causes the spicy taste of chili peppers?",
+        "a":  "Caffeine",
+        "b":  "Capsaicin",
+        "c":  "Glucose",
+        "correct":  "B"
+    },
+    {
+        "q":  "What does archaeology study?",
+        "a":  "Weather",
+        "b":  "Planetary systems",
+        "c":  "Ancient civilizations through discoveries",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do car windows have special protective layers?",
+        "a":  "For greater safety",
+        "b":  "To make them heavier",
+        "c":  "To change their color",
+        "correct":  "A"
+    },
+    {
+        "q":  "What are most electrical cables made from?",
+        "a":  "Wood",
+        "b":  "Glass",
+        "c":  "Copper",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does the Beaufort scale measure?",
+        "a":  "Wind strength",
+        "b":  "Water temperature",
+        "c":  "Ocean depth",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where is the highest mountain in the world located?",
+        "a":  "Europe",
+        "b":  "Africa",
+        "c":  "Asia",
+        "correct":  "C"
+    }
+]

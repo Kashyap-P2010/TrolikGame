@@ -1,0 +1,1402 @@
+﻿[
+    {
+        "q":  "Which planet is closest to the Sun?",
+        "a":  "Earth",
+        "b":  "Mercury",
+        "c":  "Mars",
+        "correct":  "B"
+    },
+    {
+        "q":  "How many days are in a week?",
+        "a":  "5",
+        "b":  "10",
+        "c":  "7",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the capital of Poland?",
+        "a":  "Krakow",
+        "b":  "Warsaw",
+        "c":  "Gdansk",
+        "correct":  "B"
+    },
+    {
+        "q":  "How many legs does a dog have?",
+        "a":  "4",
+        "b":  "2",
+        "c":  "6",
+        "correct":  "A"
+    },
+    {
+        "q":  "What color do you get by mixing blue and yellow?",
+        "a":  "Green",
+        "b":  "Red",
+        "c":  "Purple",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which is the largest ocean?",
+        "a":  "Atlantic Ocean",
+        "b":  "Pacific Ocean",
+        "c":  "Indian Ocean",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is 5 + 5?",
+        "a":  "10",
+        "b":  "15",
+        "c":  "20",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the largest mammal in the world?",
+        "a":  "Elephant",
+        "b":  "Giraffe",
+        "c":  "Blue whale",
+        "correct":  "C"
+    },
+    {
+        "q":  "How many planets are in the Solar System?",
+        "a":  "7",
+        "b":  "8",
+        "c":  "9",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which animal says \"meow\"?",
+        "a":  "Dog",
+        "b":  "Rabbit",
+        "c":  "Cat",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the official language of Poland?",
+        "a":  "English",
+        "b":  "Polish",
+        "c":  "German",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which season comes after summer?",
+        "a":  "Autumn",
+        "b":  "Winter",
+        "c":  "Spring",
+        "correct":  "A"
+    },
+    {
+        "q":  "How many minutes are in an hour?",
+        "a":  "30",
+        "b":  "60",
+        "c":  "100",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the process plants use to make food?",
+        "a":  "Fermentation",
+        "b":  "Respiration",
+        "c":  "Photosynthesis",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which is the largest continent?",
+        "a":  "Europe",
+        "b":  "Asia",
+        "c":  "Africa",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which gas do humans need to breathe?",
+        "a":  "Carbon dioxide",
+        "b":  "Helium",
+        "c":  "Oxygen",
+        "correct":  "C"
+    },
+    {
+        "q":  "How many sides does a triangle have?",
+        "a":  "3",
+        "b":  "4",
+        "c":  "5",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do we use to see?",
+        "a":  "Eyes",
+        "b":  "Ears",
+        "c":  "Hands",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which of these is a fruit?",
+        "a":  "Carrot",
+        "b":  "Apple",
+        "c":  "Potato",
+        "correct":  "B"
+    },
+    {
+        "q":  "How many months are in a year?",
+        "a":  "12",
+        "b":  "10",
+        "c":  "15",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which planet do humans live on?",
+        "a":  "Saturn",
+        "b":  "Earth",
+        "c":  "Neptune",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is frozen water called?",
+        "a":  "Ice",
+        "b":  "Steam",
+        "c":  "Rain",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the opposite of \"hot\"?",
+        "a":  "Cold",
+        "b":  "Warm",
+        "c":  "Dry",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which organ helps people think?",
+        "a":  "Heart",
+        "b":  "Brain",
+        "c":  "Stomach",
+        "correct":  "B"
+    },
+    {
+        "q":  "What do fish use to breathe underwater?",
+        "a":  "Fins",
+        "b":  "Wings",
+        "c":  "Gills",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which country is the Eiffel Tower in?",
+        "a":  "France",
+        "b":  "Japan",
+        "c":  "Italy",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is 10 × 2?",
+        "a":  "30",
+        "b":  "15",
+        "c":  "20",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which animal is the fastest in the ocean?",
+        "a":  "Shark",
+        "b":  "Sailfish",
+        "c":  "Dolphin",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is a baby dog called?",
+        "a":  "Calf",
+        "b":  "Kitten",
+        "c":  "Puppy",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which superhero is known as the Dark Knight?",
+        "a":  "Superman",
+        "b":  "Batman",
+        "c":  "Spider-Man",
+        "correct":  "B"
+    },
+    {
+        "q":  "What device is used to take photos?",
+        "a":  "Camera",
+        "b":  "Microphone",
+        "c":  "Speaker",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the closest star to Earth?",
+        "a":  "Moon",
+        "b":  "Sun",
+        "c":  "Mars",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which sport uses a ball and a hoop?",
+        "a":  "Basketball",
+        "b":  "Tennis",
+        "c":  "Swimming",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do you call someone who creates computer programs?",
+        "a":  "Doctor",
+        "b":  "Pilot",
+        "c":  "Programmer",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which item is used to measure time?",
+        "a":  "Clock",
+        "b":  "Ruler",
+        "c":  "Thermometer",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is a popular internet search engine?",
+        "a":  "Excel",
+        "b":  "Paint",
+        "c":  "Google",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which animal is known for changing color to hide?",
+        "a":  "Chameleon",
+        "b":  "Horse",
+        "c":  "Dolphin",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which planet is famous for its rings?",
+        "a":  "Saturn",
+        "b":  "Venus",
+        "c":  "Earth",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which computer part stores your files?",
+        "a":  "Mouse",
+        "b":  "Hard drive",
+        "c":  "Keyboard",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which country is famous for the Pyramids of Giza?",
+        "a":  "Egypt",
+        "b":  "Canada",
+        "c":  "Brazil",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the name of the galaxy that Earth is in?",
+        "a":  "Andromeda",
+        "b":  "Red Dragon Galaxy",
+        "c":  "Milky Way",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which language is most commonly used to build websites?",
+        "a":  "HTML",
+        "b":  "Music",
+        "c":  "History",
+        "correct":  "A"
+    },
+    {
+        "q":  "According to many sources, which is the world\u0027s longest river?",
+        "a":  "Amazon River",
+        "b":  "Nile River",
+        "c":  "Danube River",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which of these stores electrical energy?",
+        "a":  "Battery",
+        "b":  "Spoon",
+        "c":  "Book",
+        "correct":  "A"
+    },
+    {
+        "q":  "What currency is used in the United States?",
+        "a":  "Euro",
+        "b":  "Pound",
+        "c":  "Dollar",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which animal is known as the \"King of the Jungle\"?",
+        "a":  "Lion",
+        "b":  "Panda",
+        "c":  "Goat",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where do people watch movies on a big screen?",
+        "a":  "Stadium",
+        "b":  "Museum",
+        "c":  "Movie theater",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which item helps you find your way?",
+        "a":  "Compass",
+        "b":  "Clock",
+        "c":  "Camera",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which animal has black-and-white fur and eats bamboo?",
+        "a":  "Koala",
+        "b":  "Panda",
+        "c":  "Zebra",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is most commonly used to control a character in a video game?",
+        "a":  "Controller",
+        "b":  "Stove",
+        "c":  "Watch",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which country is famous for sushi?",
+        "a":  "Italy",
+        "b":  "Mexico",
+        "c":  "Japan",
+        "correct":  "C"
+    },
+    {
+        "q":  "What device measures temperature?",
+        "a":  "Thermometer",
+        "b":  "Barometer",
+        "c":  "Microscope",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which sport is played on ice with a puck?",
+        "a":  "Soccer",
+        "b":  "Basketball",
+        "c":  "Hockey",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the place where you can borrow books?",
+        "a":  "Library",
+        "b":  "Restaurant",
+        "c":  "Pharmacy",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the capital of France?",
+        "a":  "London",
+        "b":  "Rome",
+        "c":  "Paris",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which food is usually used to make sandwiches?",
+        "a":  "Bread",
+        "b":  "Ice",
+        "c":  "Sand",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do you call someone who designs buildings?",
+        "a":  "Driver",
+        "b":  "Architect",
+        "c":  "Teacher",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which of these is usually found in a bathroom?",
+        "a":  "Bathtub",
+        "b":  "TV",
+        "c":  "Stove",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which country is famous for pizza?",
+        "a":  "China",
+        "b":  "Canada",
+        "c":  "Italy",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which computer part displays the image?",
+        "a":  "Monitor",
+        "b":  "Keyboard",
+        "c":  "Speaker",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which metal is commonly used to make cans?",
+        "a":  "Gold",
+        "b":  "Silver",
+        "c":  "Aluminum",
+        "correct":  "C"
+    },
+    {
+        "q":  "What vehicle travels into space?",
+        "a":  "Rocket",
+        "b":  "Boat",
+        "c":  "Train",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which sport uses a board and ocean waves?",
+        "a":  "Skiing",
+        "b":  "Surfing",
+        "c":  "Boxing",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who painted the Mona Lisa?",
+        "a":  "Leonardo da Vinci",
+        "b":  "Pablo Picasso",
+        "c":  "Vincent van Gogh",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which country is shaped like a boot?",
+        "a":  "Greece",
+        "b":  "Italy",
+        "c":  "Spain",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which popular dance comes from Argentina?",
+        "a":  "Waltz",
+        "b":  "Flamenco",
+        "c":  "Tango",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which holiday is celebrated on October 31?",
+        "a":  "Halloween",
+        "b":  "Easter",
+        "c":  "Valentine\u0027s Day",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which athlete is famous for basketball and jersey number 23?",
+        "a":  "Lionel Messi",
+        "b":  "Michael Jordan",
+        "c":  "Usain Bolt",
+        "correct":  "B"
+    },
+    {
+        "q":  "What currency is used in Japan?",
+        "a":  "Won",
+        "b":  "Yuan",
+        "c":  "Yen",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which invention is associated with Thomas Edison?",
+        "a":  "Light bulb",
+        "b":  "Car",
+        "c":  "Airplane",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which language is spoken in Spain?",
+        "a":  "French",
+        "b":  "Spanish",
+        "c":  "Portuguese",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the process of making a movie from drawings called?",
+        "a":  "Cooking",
+        "b":  "Photography",
+        "c":  "Animation",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which sport uses clubs and small balls?",
+        "a":  "Golf",
+        "b":  "Boxing",
+        "c":  "Swimming",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is 15 + 10?",
+        "a":  "35",
+        "b":  "30",
+        "c":  "25",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which planet is known as the Red Planet?",
+        "a":  "Venus",
+        "b":  "Mars",
+        "c":  "Jupiter",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which chemical element has the symbol O?",
+        "a":  "Gold",
+        "b":  "Hydrogen",
+        "c":  "Oxygen",
+        "correct":  "C"
+    },
+    {
+        "q":  "How many sides does a hexagon have?",
+        "a":  "6",
+        "b":  "5",
+        "c":  "8",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which organ is responsible for breathing?",
+        "a":  "Heart",
+        "b":  "Brain",
+        "c":  "Lungs",
+        "correct":  "C"
+    },
+    {
+        "q":  "Who wrote \"Romeo and Juliet\"?",
+        "a":  "William Shakespeare",
+        "b":  "Adam Mickiewicz",
+        "c":  "J.R.R. Tolkien",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which temperature unit is most commonly used worldwide?",
+        "a":  "Kilogram",
+        "b":  "Degrees Celsius",
+        "c":  "Meter",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the square root of 9?",
+        "a":  "2",
+        "b":  "4",
+        "c":  "3",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the study of planets and stars called?",
+        "a":  "Astronomy",
+        "b":  "Biology",
+        "c":  "Geology",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which computer part performs calculations?",
+        "a":  "Monitor",
+        "b":  "Processor",
+        "c":  "Keyboard",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the longest bone in the human body?",
+        "a":  "Femur",
+        "b":  "Skull bone",
+        "c":  "Hand bone",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which country is the largest by land area?",
+        "a":  "Canada",
+        "b":  "Russia",
+        "c":  "China",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the chemical symbol for iron?",
+        "a":  "Mg",
+        "b":  "H",
+        "c":  "Fe",
+        "correct":  "C"
+    },
+    {
+        "q":  "How many degrees are in a full circle?",
+        "a":  "90°",
+        "b":  "180°",
+        "c":  "360°",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which tool is used to measure weight?",
+        "a":  "Scale",
+        "b":  "Ruler",
+        "c":  "Clock",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do you call someone who designs clothes?",
+        "a":  "Photographer",
+        "b":  "Fashion designer",
+        "c":  "Architect",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which symbol is on Japan\u0027s flag?",
+        "a":  "Star",
+        "b":  "Cross",
+        "c":  "Red circle",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the study of rocks called?",
+        "a":  "Geology",
+        "b":  "Zoology",
+        "c":  "Astronomy",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which invention lets people talk over long distances?",
+        "a":  "Thermometer",
+        "b":  "Telephone",
+        "c":  "Compass",
+        "correct":  "B"
+    },
+    {
+        "q":  "What do you call someone who studies the past through excavations?",
+        "a":  "Car mechanic",
+        "b":  "Doctor",
+        "c":  "Archaeologist",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which material is transparent and commonly used in windows?",
+        "a":  "Wood",
+        "b":  "Stone",
+        "c":  "Glass",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the place where airplanes take off and land?",
+        "a":  "Harbor",
+        "b":  "Train station",
+        "c":  "Airport",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which part of a book usually shows the title and author\u0027s name?",
+        "a":  "Cover",
+        "b":  "Blank page",
+        "c":  "Bookmark",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which science studies substances and their reactions?",
+        "a":  "History",
+        "b":  "Geography",
+        "c":  "Chemistry",
+        "correct":  "C"
+    },
+    {
+        "q":  "What do you call someone who creates paintings?",
+        "a":  "Painter",
+        "b":  "Driver",
+        "c":  "Astronaut",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which device is used to heat a house?",
+        "a":  "Refrigerator",
+        "b":  "Radiator",
+        "c":  "Freezer",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which metal is attracted to a magnet?",
+        "a":  "Aluminum",
+        "b":  "Silver",
+        "c":  "Iron",
+        "correct":  "C"
+    },
+    {
+        "q":  "What device measures earthquakes?",
+        "a":  "Seismograph",
+        "b":  "Thermometer",
+        "c":  "Barometer",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which musical instrument usually has six strings?",
+        "a":  "Flute",
+        "b":  "Guitar",
+        "c":  "Trumpet",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the name of the ancient amphitheater in Rome?",
+        "a":  "Parthenon",
+        "b":  "Acropolis",
+        "c":  "Colosseum",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which invention helps people travel on water?",
+        "a":  "Boat",
+        "b":  "Telephone",
+        "c":  "Car",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do you call someone who writes books?",
+        "a":  "Actor",
+        "b":  "Author",
+        "c":  "Painter",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which material is commonly used to make clothes?",
+        "a":  "Cotton",
+        "b":  "Concrete",
+        "c":  "Glass",
+        "correct":  "A"
+    },
+    {
+        "q":  "What was the oldest known writing system used in Mesopotamia?",
+        "a":  "Hieroglyphs",
+        "b":  "Alphabet",
+        "c":  "Cuneiform",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which sport uses a bow and arrows?",
+        "a":  "Fencing",
+        "b":  "Archery",
+        "c":  "Gymnastics",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which planet is known for its extremely hot surface?",
+        "a":  "Saturn",
+        "b":  "Uranus",
+        "c":  "Venus",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the study of human society and behavior called?",
+        "a":  "Physics",
+        "b":  "Sociology",
+        "c":  "Mathematics",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which tool shows the cardinal directions?",
+        "a":  "Compass",
+        "b":  "Magnifying glass",
+        "c":  "Flashlight",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the study of numbers and calculations called?",
+        "a":  "Chemistry",
+        "b":  "Mathematics",
+        "c":  "Biology",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which gas is the most common in Earth\u0027s atmosphere?",
+        "a":  "Oxygen",
+        "b":  "Carbon dioxide",
+        "c":  "Nitrogen",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which sport is played on a court?",
+        "a":  "Baseball",
+        "b":  "Tennis",
+        "c":  "Hockey",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which is the largest desert in the world?",
+        "a":  "Sahara",
+        "b":  "Gobi",
+        "c":  "Antarctica",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which sense lets you smell?",
+        "a":  "Smell",
+        "b":  "Sight",
+        "c":  "Hearing",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the process of ice turning into water called?",
+        "a":  "Evaporation",
+        "b":  "Melting",
+        "c":  "Condensation",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which continent is crossed by both the Equator and the Tropic of Capricorn?",
+        "a":  "Asia",
+        "b":  "Europe",
+        "c":  "Africa",
+        "correct":  "C"
+    },
+    {
+        "q":  "What vehicle travels on rails?",
+        "a":  "Train",
+        "b":  "Bus",
+        "c":  "Car",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which element has the symbol Na?",
+        "a":  "Nitrogen",
+        "b":  "Sodium",
+        "c":  "Nickel",
+        "correct":  "B"
+    },
+    {
+        "q":  "What device is used to observe distant stars?",
+        "a":  "Telescope",
+        "b":  "Microscope",
+        "c":  "Binoculars",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which ocean lies between Africa and Australia?",
+        "a":  "Atlantic Ocean",
+        "b":  "Arctic Ocean",
+        "c":  "Indian Ocean",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the largest species of wild cat?",
+        "a":  "Leopard",
+        "b":  "Cheetah",
+        "c":  "Tiger",
+        "correct":  "C"
+    },
+    {
+        "q":  "What do you call the person who leads an orchestra?",
+        "a":  "Conductor",
+        "b":  "Guitarist",
+        "c":  "Singer",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which of these countries is in South America?",
+        "a":  "Mexico",
+        "b":  "Canada",
+        "c":  "Argentina",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which language is most commonly spoken in the United Kingdom?",
+        "a":  "Spanish",
+        "b":  "English",
+        "c":  "Italian",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which of these birds cannot fly?",
+        "a":  "Eagle",
+        "b":  "Sparrow",
+        "c":  "Penguin",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which sense lets you hear sounds?",
+        "a":  "Hearing",
+        "b":  "Smell",
+        "c":  "Taste",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do you call someone who bakes bread?",
+        "a":  "Chef",
+        "b":  "Baker",
+        "c":  "Butcher",
+        "correct":  "B"
+    },
+    {
+        "q":  "What should you do before eating?",
+        "a":  "Wash your hands",
+        "b":  "Watch TV",
+        "c":  "Go for a run",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which part of a plant absorbs water from the soil?",
+        "a":  "Leaf",
+        "b":  "Root",
+        "c":  "Stem",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which product is made from milk?",
+        "a":  "Rice",
+        "b":  "Pasta",
+        "c":  "Cheese",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which continent is France in?",
+        "a":  "Europe",
+        "b":  "Asia",
+        "c":  "Africa",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which vitamin is produced in the skin by sunlight?",
+        "a":  "Vitamin C",
+        "b":  "Vitamin D",
+        "c":  "Vitamin K",
+        "correct":  "B"
+    },
+    {
+        "q":  "What usually grows from a seed?",
+        "a":  "Fruit",
+        "b":  "Flower",
+        "c":  "Plant",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which ingredient is most commonly used to make bread?",
+        "a":  "Flour",
+        "b":  "Rice",
+        "c":  "Sugar",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the capital of Germany?",
+        "a":  "Munich",
+        "b":  "Berlin",
+        "c":  "Hamburg",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which drink is best for staying hydrated?",
+        "a":  "Cola",
+        "b":  "Juice",
+        "c":  "Water",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which part of a flower often attracts insects with its color?",
+        "a":  "Petals",
+        "b":  "Root",
+        "c":  "Stem",
+        "correct":  "A"
+    },
+    {
+        "q":  "At what temperature does water boil at sea level?",
+        "a":  "80°C",
+        "b":  "100°C",
+        "c":  "120°C",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which of these countries is in Europe?",
+        "a":  "Brazil",
+        "b":  "Japan",
+        "c":  "Spain",
+        "correct":  "C"
+    },
+    {
+        "q":  "How many teeth does an adult usually have?",
+        "a":  "32",
+        "b":  "28",
+        "c":  "36",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do plants need for photosynthesis?",
+        "a":  "Sand",
+        "b":  "Sunlight",
+        "c":  "Snow",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which seasoning makes food taste salty?",
+        "a":  "Pepper",
+        "b":  "Sugar",
+        "c":  "Salt",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which device most commonly connects a computer to the internet wirelessly?",
+        "a":  "Monitor",
+        "b":  "Keyboard",
+        "c":  "Wi-Fi router",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which animal can sleep while standing?",
+        "a":  "Horse",
+        "b":  "Cat",
+        "c":  "Rabbit",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is important for staying hydrated?",
+        "a":  "Sugary drinks",
+        "b":  "Drinking water regularly",
+        "c":  "Eating only fruit",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which traffic light means you can go?",
+        "a":  "Green",
+        "b":  "Red",
+        "c":  "Yellow",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the force that pulls objects toward Earth?",
+        "a":  "Friction",
+        "b":  "Magnetism",
+        "c":  "Gravity",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which nutrient helps build muscles?",
+        "a":  "Fat",
+        "b":  "Protein",
+        "c":  "Sugar",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where does Santa Claus live in popular stories?",
+        "a":  "Lapland",
+        "b":  "Brazil",
+        "c":  "Egypt",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do bees make?",
+        "a":  "Milk",
+        "b":  "Honey",
+        "c":  "Wool",
+        "correct":  "B"
+    },
+    {
+        "q":  "What do you call the person who flies an airplane?",
+        "a":  "Driver",
+        "b":  "Captain",
+        "c":  "Pilot",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is a refrigerator used for?",
+        "a":  "Keeping food cold",
+        "b":  "Washing clothes",
+        "c":  "Washing dishes",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does milk come from?",
+        "a":  "Birds",
+        "b":  "Cows",
+        "c":  "Sheep",
+        "correct":  "B"
+    },
+    {
+        "q":  "What does a turtle carry on its back?",
+        "a":  "Fur",
+        "b":  "Wings",
+        "c":  "Shell",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do people use an umbrella?",
+        "a":  "To stay dry",
+        "b":  "To stay warm",
+        "c":  "To make light",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where do birds sleep?",
+        "a":  "In caves",
+        "b":  "In burrows",
+        "c":  "In nests",
+        "correct":  "C"
+    },
+    {
+        "q":  "What shines in the sky during the day?",
+        "a":  "The Sun",
+        "b":  "The Moon",
+        "c":  "Stars",
+        "correct":  "A"
+    },
+    {
+        "q":  "What animal is Simba in \"The Lion King\"?",
+        "a":  "Tiger",
+        "b":  "Wolf",
+        "c":  "Lion",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is most often added to tea to make it sweeter?",
+        "a":  "Sugar",
+        "b":  "Salt",
+        "c":  "Pepper",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where do polar bears live in the wild?",
+        "a":  "Antarctica",
+        "b":  "The Arctic",
+        "c":  "Greenland",
+        "correct":  "B"
+    },
+    {
+        "q":  "What do penguins use to swim underwater?",
+        "a":  "Legs",
+        "b":  "Tail",
+        "c":  "Flippers",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is a seat belt used for?",
+        "a":  "Protecting passengers",
+        "b":  "Making the car faster",
+        "c":  "Saving fuel",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is inside a peach?",
+        "a":  "Pit",
+        "b":  "Nut",
+        "c":  "Loose seeds",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why are sunglasses useful?",
+        "a":  "They magnify objects",
+        "b":  "They protect your eyes from sunlight",
+        "c":  "They improve hearing",
+        "correct":  "B"
+    },
+    {
+        "q":  "What do dolphins breathe with?",
+        "a":  "Gills",
+        "b":  "Fins",
+        "c":  "Lungs",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where do bees store honey?",
+        "a":  "Nest",
+        "b":  "Hive",
+        "c":  "Burrow",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is most commonly found in a salad?",
+        "a":  "Meat",
+        "b":  "Vegetables",
+        "c":  "Pasta",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where does wheat flour come from?",
+        "a":  "Corn",
+        "b":  "Rice",
+        "c":  "Wheat",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why should you wear a helmet while riding a bike?",
+        "a":  "It protects your head",
+        "b":  "It makes you faster",
+        "c":  "It improves balance",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do pandas mainly eat?",
+        "a":  "Leaves",
+        "b":  "Bamboo",
+        "c":  "Fruit",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is usually inside an egg?",
+        "a":  "Only the yolk",
+        "b":  "Only the egg white",
+        "c":  "Both yolk and egg white",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is a trash can used for?",
+        "a":  "Throwing away waste",
+        "b":  "Storing clothes",
+        "c":  "Washing dishes",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where do bananas grow?",
+        "a":  "On bushes",
+        "b":  "On banana plants",
+        "c":  "Underground",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is 15 + 27?",
+        "a":  "42",
+        "b":  "41",
+        "c":  "43",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is 9 × 8?",
+        "a":  "64",
+        "b":  "72",
+        "c":  "81",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is 81 ÷ 9?",
+        "a":  "8",
+        "b":  "10",
+        "c":  "9",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is 12²?",
+        "a":  "144",
+        "b":  "124",
+        "c":  "132",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is 7 × 6 − 10?",
+        "a":  "30",
+        "b":  "32",
+        "c":  "36",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is 5³?",
+        "a":  "25",
+        "b":  "15",
+        "c":  "125",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is 100 − 48?",
+        "a":  "52",
+        "b":  "58",
+        "c":  "48",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do koalas mainly eat?",
+        "a":  "Bamboo",
+        "b":  "Eucalyptus leaves",
+        "c":  "Grass",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where is the human heart located?",
+        "a":  "On the right side",
+        "b":  "Exactly in the middle",
+        "c":  "Slightly to the left",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does rain come from?",
+        "a":  "Rivers",
+        "b":  "Clouds",
+        "c":  "Oceans",
+        "correct":  "B"
+    },
+    {
+        "q":  "What grows on an oak tree?",
+        "a":  "Pine cones",
+        "b":  "Chestnuts",
+        "c":  "Acorns",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is a flashlight used for?",
+        "a":  "Providing light",
+        "b":  "Heating",
+        "c":  "Cooling",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is most commonly found in a hamburger?",
+        "a":  "Rice",
+        "b":  "Patty",
+        "c":  "Pasta",
+        "correct":  "B"
+    },
+    {
+        "q":  "How do adult frogs breathe?",
+        "a":  "Only with gills",
+        "b":  "Only with their tail",
+        "c":  "With lungs and skin",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do people wear gloves in winter?",
+        "a":  "To keep their hands warm",
+        "b":  "To become stronger",
+        "c":  "To improve eyesight",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is most often added to cake to make it sweeter?",
+        "a":  "Salt",
+        "b":  "Sugar",
+        "c":  "Vinegar",
+        "correct":  "B"
+    },
+    {
+        "q":  "According to legend, what is at the end of a rainbow?",
+        "a":  "A castle",
+        "b":  "Rain",
+        "c":  "Treasure",
+        "correct":  "C"
+    },
+    {
+        "q":  "What do you use to play tennis?",
+        "a":  "A ball and a racket",
+        "b":  "A stick and a puck",
+        "c":  "Shoes",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where are sports competitions usually held?",
+        "a":  "City center",
+        "b":  "Library",
+        "c":  "Stadium",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is a world map used for?",
+        "a":  "Showing countries",
+        "b":  "Counting money",
+        "c":  "Writing stories",
+        "correct":  "A"
+    },
+    {
+        "q":  "What do people usually wear on their head in winter?",
+        "a":  "Glasses",
+        "b":  "A hat",
+        "c":  "Gloves",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is found in the ocean?",
+        "a":  "Clouds",
+        "b":  "Salt water",
+        "c":  "Desert sand",
+        "correct":  "B"
+    },
+    {
+        "q":  "How do people usually travel between countries by air?",
+        "a":  "Train",
+        "b":  "Ship",
+        "c":  "Airplane",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where did pizza originate?",
+        "a":  "Italy",
+        "b":  "France",
+        "c":  "Canada",
+        "correct":  "A"
+    },
+    {
+        "q":  "What are boxing gloves used for?",
+        "a":  "Protecting your hands during a fight",
+        "b":  "Making punches stronger",
+        "c":  "Helping with balance",
+        "correct":  "A"
+    }
+]

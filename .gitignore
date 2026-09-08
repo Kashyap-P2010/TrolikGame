@@ -23,9 +23,8 @@ Thumbs.db
 # Exam system secrets — contains GitHub PAT, never commit this!
 src/ServerScriptService/ExamSystem/ExamSecrets.luau
 
-# Compiled question JSON files — generated locally from txt files, not committed
-# (Served from GitHub API using the raw txt files instead)
-Questions/*.json
+# Compiled question JSON files are NOW committed so they can be fetched via GitHub API
+# Questions/*.json
 
 # Question conversion helper
 convert_questions.ps1

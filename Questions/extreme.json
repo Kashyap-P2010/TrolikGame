@@ -1,0 +1,1402 @@
+﻿[
+    {
+        "q":  "What does the term “aphelion” mean in astronomy?",
+        "a":  "The greatest distance of a planet from the Sun",
+        "b":  "The highest speed of a planet",
+        "c":  "The point where orbits intersect",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which element has the highest melting point among pure metals?",
+        "a":  "Osmium",
+        "b":  "Tungsten",
+        "c":  "Rhenium",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which language belongs to the Dravidian language family?",
+        "a":  "Hindi",
+        "b":  "Tamil",
+        "c":  "Bengali",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the mineral dolomite composed of?",
+        "a":  "Calcium only",
+        "b":  "Silica",
+        "c":  "Calcium and magnesium carbonate",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does the term “isotope” mean?",
+        "a":  "Atoms of the same element with different numbers of neutrons",
+        "b":  "Atoms with the same mass",
+        "c":  "Molecules with different electrons",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the SI unit of luminous intensity?",
+        "a":  "Candela",
+        "b":  "Lumen",
+        "c":  "Lux",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which gas makes up the largest part of Titan’s atmosphere?",
+        "a":  "Methane",
+        "b":  "Nitrogen",
+        "c":  "Carbon dioxide",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was the creator of “The Divine Comedy”?",
+        "a":  "Petrarch",
+        "b":  "Boccaccio",
+        "c":  "Dante Alighieri",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does the term “exclave” mean?",
+        "a":  "A part of a country separated from its main territory",
+        "b":  "A country without access to the sea",
+        "c":  "An autonomous region",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which element was named after the Titans from Greek mythology?",
+        "a":  "Tantalum",
+        "b":  "Titanium",
+        "c":  "Thorium",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which astronomer discovered Neptune’s largest moon – Triton?",
+        "a":  "Edmond Halley",
+        "b":  "William Lassell",
+        "c":  "Tycho Brahe",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the Library of Alexandria famous for?",
+        "a":  "It was the first library in the world",
+        "b":  "It was a temple",
+        "c":  "It was the greatest center of knowledge in ancient times",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where is the Mariana Trench located?",
+        "a":  "Atlantic Ocean",
+        "b":  "Indian Ocean",
+        "c":  "Pacific Ocean",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does the term “isobar” mean in meteorology?",
+        "a":  "A line of equal pressure",
+        "b":  "A line of equal temperature",
+        "c":  "A line of equal humidity",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which of these minerals is the hardest after diamond?",
+        "a":  "Topaz",
+        "b":  "Corundum",
+        "c":  "Garnet",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the Library of Ashurbanipal famous for?",
+        "a":  "It was the first library in Europe",
+        "b":  "It was created in Egypt",
+        "c":  "It contained thousands of cuneiform tablets",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does the term “albedo” mean?",
+        "a":  "The ability of a surface to reflect radiation",
+        "b":  "The amount of oxygen in the atmosphere",
+        "c":  "The density of a planet",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which scientist formulated the three laws of motion?",
+        "a":  "Galileo",
+        "b":  "Isaac Newton",
+        "c":  "Michael Faraday",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is Easter Island famous for?",
+        "a":  "Pyramids",
+        "b":  "Coral reefs",
+        "c":  "Monumental moai statues",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does the term “phonetic alphabet” mean?",
+        "a":  "A system in which each symbol corresponds to a specific sound",
+        "b":  "A method of encrypting messages",
+        "c":  "A type of pictographic writing",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which city was the capital of the Byzantine Empire?",
+        "a":  "Athens",
+        "b":  "Constantinople",
+        "c":  "Rome",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was Icarus?",
+        "a":  "A Greek army commander",
+        "b":  "A sculptor",
+        "c":  "A hero who flew too close to the Sun",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does the term “megalith” mean?",
+        "a":  "A monument made of large stone blocks",
+        "b":  "A type of mineral",
+        "c":  "A device for collecting space data",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which country has the most time zones?",
+        "a":  "Russia",
+        "b":  "France",
+        "c":  "Canada",
+        "correct":  "B"
+    },
+    {
+        "q":  "What causes the characteristic sound of a V8 engine?",
+        "a":  "The type of fuel",
+        "b":  "The size of the car",
+        "c":  "The arrangement and operation of the engine’s cylinders",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why is the cheetah one of the fastest land animals?",
+        "a":  "Due to its special body and muscle structure",
+        "b":  "Due to its very large size",
+        "c":  "Due to its heavy bones",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which sport requires using stones pushed across ice?",
+        "a":  "Curling",
+        "b":  "Hockey",
+        "c":  "Speed skating",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is responsible for the exceptional strength of spider webs?",
+        "a":  "The large mass of fibers",
+        "b":  "Special properties of the proteins that form silk",
+        "c":  "The presence of metal in the structure",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which ocean current has the greatest influence on the climate of Western Europe?",
+        "a":  "Benguela Current",
+        "b":  "Labrador Current",
+        "c":  "Gulf Stream",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which brain structure is mainly responsible for memory consolidation?",
+        "a":  "Cerebellum",
+        "b":  "Hippocampus",
+        "c":  "Medulla oblongata",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which economic term describes a situation where one company dominates the entire market?",
+        "a":  "Monopoly",
+        "b":  "Inflation",
+        "c":  "Deficit",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which mineral is the main component of limestone?",
+        "a":  "Quartz",
+        "b":  "Gypsum",
+        "c":  "Calcite",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which element is the basis of steel production?",
+        "a":  "Copper",
+        "b":  "Iron",
+        "c":  "Aluminium",
+        "correct":  "B"
+    },
+    {
+        "q":  "What does “mimetic camouflage” mean in animals?",
+        "a":  "Increasing body size",
+        "b":  "Making warning sounds",
+        "c":  "Blending in with the surroundings",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does Avogadro’s number describe?",
+        "a":  "The boiling temperature of water",
+        "b":  "The mass of an electron",
+        "c":  "The number of particles in one mole of a substance",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which branch of mathematics studies the properties of shapes and space?",
+        "a":  "Geometry",
+        "b":  "Algebra",
+        "c":  "Statistics",
+        "correct":  "A"
+    },
+    {
+        "q":  "What does the term “ecological succession” mean?",
+        "a":  "Animal migration",
+        "b":  "Gradual change of an ecosystem over time",
+        "c":  "Plant reproduction",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which battle was a decisive victory of the Greek fleet over the Persians?",
+        "a":  "Thermopylae",
+        "b":  "Plataea",
+        "c":  "Salamis",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which psychological effect describes the tendency to judge people based on first impressions?",
+        "a":  "Halo effect",
+        "b":  "Placebo effect",
+        "c":  "Pygmalion effect",
+        "correct":  "A"
+    },
+    {
+        "q":  "What does the term “black hole” mean in astronomy?",
+        "a":  "A star without light",
+        "b":  "A region from which even light cannot escape",
+        "c":  "A cold planet without an atmosphere",
+        "correct":  "B"
+    },
+    {
+        "q":  "What does the term “NPC” mean in video games?",
+        "a":  "A player controlling a character",
+        "b":  "An online game mode",
+        "c":  "A character controlled by the computer",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which material is often used in expensive suits due to its exceptional quality?",
+        "a":  "Merino wool",
+        "b":  "Polyester",
+        "c":  "Acrylic",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which tennis tournament is played on grass courts?",
+        "a":  "Roland Garros",
+        "b":  "Wimbledon",
+        "c":  "US Open",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which fighting style focuses mainly on throws and grappling?",
+        "a":  "Judo",
+        "b":  "Karate",
+        "c":  "Taekwondo",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which airport is known as one of the busiest in the world by passenger numbers?",
+        "a":  "Heathrow",
+        "b":  "Atlanta Hartsfield-Jackson",
+        "c":  "Charles de Gaulle",
+        "correct":  "B"
+    },
+    {
+        "q":  "What does the term “spin-off” mean in films and TV series?",
+        "a":  "A remake of an older production",
+        "b":  "A documentary film",
+        "c":  "A production focused on a side character or storyline",
+        "correct":  "C"
+    },
+    {
+        "q":  "Which currency is used in South Korea?",
+        "a":  "Won",
+        "b":  "Yen",
+        "c":  "Yuan",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which brand created the Model T, one of the first mass-produced cars?",
+        "a":  "Toyota",
+        "b":  "Ford",
+        "c":  "Volkswagen",
+        "correct":  "B"
+    },
+    {
+        "q":  "What does the term “minimalism” mean in design?",
+        "a":  "Using only expensive materials",
+        "b":  "Designing without decorative functions",
+        "c":  "Simplicity of form and limiting unnecessary elements",
+        "correct":  "C"
+    },
+    {
+        "q":  "Who was Enzo Ferrari before creating his own car brand?",
+        "a":  "An aircraft engine designer",
+        "b":  "A racing driver",
+        "c":  "A motorcycle mechanic",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why are lights on passenger airplanes often dimmed during takeoff and landing?",
+        "a":  "To reduce fuel consumption",
+        "b":  "To make the engines work more efficiently",
+        "c":  "To allow passengers’ eyes to adjust faster in case of an emergency",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where is the famous Silicon Valley, which is a center of technology companies, located?",
+        "a":  "In California, United States",
+        "b":  "In Japan",
+        "c":  "In Germany",
+        "correct":  "A"
+    },
+    {
+        "q":  "What is the process called during which coffee loses some of its aroma during long storage?",
+        "a":  "Fermentation",
+        "b":  "Oxidation",
+        "c":  "Crystallization",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why is titanium valued in the aerospace industry?",
+        "a":  "It is the cheapest construction metal",
+        "b":  "It combines high strength with low weight",
+        "c":  "It conducts electricity very well",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where does the spice sumac come from?",
+        "a":  "From the root of a plant",
+        "b":  "From the fruits of the sumac shrub",
+        "c":  "From the seeds of a tree",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why is diamond one of the hardest natural materials?",
+        "a":  "It contains metal impurities",
+        "b":  "It is formed under high pressure",
+        "c":  "Carbon atoms create a very strong crystal structure",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the highest title in chess awarded by FIDE called?",
+        "a":  "Grandmaster",
+        "b":  "FIDE Master",
+        "c":  "National Master",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does traditional Manchego cheese come from?",
+        "a":  "France",
+        "b":  "Spain",
+        "c":  "Italy",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where is the deepest known point of the Atlantic Ocean located?",
+        "a":  "In the Mariana Trench",
+        "b":  "In the Tonga Trench",
+        "c":  "In the Puerto Rico Trench",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the phenomenon called when light changes direction while passing between different mediums?",
+        "a":  "Refraction of light",
+        "b":  "Dispersion",
+        "c":  "Interference",
+        "correct":  "A"
+    },
+    {
+        "q":  "Who was Auguste Escoffier?",
+        "a":  "An architect",
+        "b":  "One of the creators of modern French cuisine",
+        "c":  "A car designer",
+        "correct":  "B"
+    },
+    {
+        "q":  "Through what process are natural pearls formed?",
+        "a":  "Salt crystallization",
+        "b":  "Limestone hardening",
+        "c":  "Deposition of nacre around a foreign object",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the part of a watch responsible for storing energy in a mechanical watch called?",
+        "a":  "Mainspring",
+        "b":  "Balance wheel",
+        "c":  "Escapement",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do photographers use polarizing filters?",
+        "a":  "To extend exposure time",
+        "b":  "To reduce light reflections and increase color saturation",
+        "c":  "To increase the focal length of the lens",
+        "correct":  "B"
+    },
+    {
+        "q":  "By using which material do modern racing bicycles achieve very low weight?",
+        "a":  "Aircraft-grade aluminum",
+        "b":  "Magnesium alloys",
+        "c":  "Carbon fiber",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the smallest standard instrument in the violin family called?",
+        "a":  "Violin",
+        "b":  "Viola",
+        "c":  "Cello",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where is a dart (seam shaping element) located in clothing?",
+        "a":  "On the collar",
+        "b":  "In a place where it shapes the form of the fabric",
+        "c":  "Only near the cuff",
+        "correct":  "B"
+    },
+    {
+        "q":  "What does resonance in musical instruments indicate?",
+        "a":  "The quality of the wood",
+        "b":  "The length of the strings",
+        "c":  "The amplification of vibrations at a specific frequency",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where do divers get information about the amount of remaining air?",
+        "a":  "From a dive computer",
+        "b":  "From a pressure gauge",
+        "c":  "From a breathing regulator",
+        "correct":  "B"
+    },
+    {
+        "q":  "By adding which ingredient does glass gain crystal-like properties?",
+        "a":  "Aluminum oxide",
+        "b":  "Silica",
+        "c":  "Lead oxide",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where is the bow of a ship located?",
+        "a":  "In the middle part of the hull",
+        "b":  "At the back of the vessel",
+        "c":  "At the front of the vessel",
+        "correct":  "C"
+    },
+    {
+        "q":  "What unit is used to determine the purity of gold?",
+        "a":  "Karat",
+        "b":  "Ounce",
+        "c":  "Gram",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why can a magnetic compass indicate direction with a small error?",
+        "a":  "Due to changes in pressure",
+        "b":  "Due to magnetic declination",
+        "c":  "Due to air humidity",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where is the pantograph located on an electric train?",
+        "a":  "Under the carriage",
+        "b":  "In the driver’s cabin",
+        "c":  "On the roof of the vehicle",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the middle part of a bow that the archer holds called?",
+        "a":  "Grip",
+        "b":  "Bowstring",
+        "c":  "Limb",
+        "correct":  "A"
+    },
+    {
+        "q":  "From which wood are professional billiard tables often made?",
+        "a":  "Oak",
+        "b":  "Maple",
+        "c":  "Pine",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why is layering clothing recommended during long trekking trips?",
+        "a":  "To make the backpack lighter",
+        "b":  "To easily regulate thermal comfort",
+        "c":  "To dry faster after rain",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where was a barbican most often located in a medieval castle?",
+        "a":  "In the central courtyard",
+        "b":  "On the highest tower",
+        "c":  "In front of the main defensive gate",
+        "correct":  "C"
+    },
+    {
+        "q":  "What device is used to check the authenticity of diamonds based on thermal conductivity?",
+        "a":  "Diamond tester",
+        "b":  "Refractometer",
+        "c":  "Jeweler’s loupe",
+        "correct":  "A"
+    },
+    {
+        "q":  "Who was Johannes Hevelius?",
+        "a":  "A composer",
+        "b":  "An astronomer",
+        "c":  "An architect",
+        "correct":  "B"
+    },
+    {
+        "q":  "Which printing technique is used to produce most modern newspapers?",
+        "a":  "Typography",
+        "b":  "Screen printing",
+        "c":  "Offset printing",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do companies place everyday products at eye level in supermarkets?",
+        "a":  "Because it increases the chance of purchase",
+        "b":  "To make restocking easier",
+        "c":  "To take up less space",
+        "correct":  "A"
+    },
+    {
+        "q":  "In a fine dining restaurant, where is a napkin usually placed after temporarily leaving the table?",
+        "a":  "On the back of the chair",
+        "b":  "On the plate",
+        "c":  "On the seat of the chair",
+        "correct":  "C"
+    },
+    {
+        "q":  "What color is located exactly opposite blue on the classic color wheel?",
+        "a":  "Orange",
+        "b":  "Green",
+        "c":  "Purple",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which technology do companies use to identify products at self-checkout registers?",
+        "a":  "OCR",
+        "b":  "Barcodes",
+        "c":  "RFID in every product",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who is a sous-chef in a professional kitchen?",
+        "a":  "The restaurant owner",
+        "b":  "The dining room manager",
+        "c":  "The deputy head chef",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do most mattresses have two different usable sides?",
+        "a":  "To make them easier to move",
+        "b":  "To reduce their weight",
+        "c":  "To extend their durability and adjust firmness",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the person responsible for designing a brand’s visual identity called?",
+        "a":  "Brand designer",
+        "b":  "Accountant",
+        "c":  "Copywriter",
+        "correct":  "A"
+    },
+    {
+        "q":  "Through which process does cardboard gain resistance to moisture?",
+        "a":  "Aluminum lamination",
+        "b":  "Coloring",
+        "c":  "Coating with a protective layer",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why are banknotes usually made from cotton instead of ordinary paper?",
+        "a":  "To make them easier to fold",
+        "b":  "To make them lighter",
+        "c":  "To make them much more durable",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does the IKEA brand come from?",
+        "a":  "Denmark",
+        "b":  "Sweden",
+        "c":  "Finland",
+        "correct":  "B"
+    },
+    {
+        "q":  "What does a high conversion rate in an online store indicate?",
+        "a":  "High website traffic",
+        "b":  "A high number of views",
+        "c":  "A large percentage of visitors making purchases",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the thin protective layer placed on a smartphone screen called?",
+        "a":  "Tempered glass",
+        "b":  "OLED display",
+        "c":  "Digitizer",
+        "correct":  "A"
+    },
+    {
+        "q":  "Through what system do fast-food restaurants reduce order preparation time?",
+        "a":  "Cooking every product fresh on demand",
+        "b":  "Mise en place and partial prior organization of work",
+        "c":  "Only using automatic kitchen robots",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was Louis Braille?",
+        "a":  "The inventor of Morse code",
+        "b":  "The creator of writing for blind people",
+        "c":  "The creator of the typewriter",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where is the differential mechanism located in most rear-wheel-drive cars?",
+        "a":  "In the gearbox",
+        "b":  "Near the engine",
+        "c":  "Between the rear wheels",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the process of removing caffeine from coffee beans called?",
+        "a":  "Decaffeination",
+        "b":  "Pasteurization",
+        "c":  "Fermentation",
+        "correct":  "A"
+    },
+    {
+        "q":  "What does the SPF indicator on sunscreen products inform about?",
+        "a":  "Water resistance",
+        "b":  "The level of protection against UVB radiation",
+        "c":  "Vitamin D content",
+        "correct":  "B"
+    },
+    {
+        "q":  "Through what process is natural yogurt produced?",
+        "a":  "Distillation",
+        "b":  "Pasteurization",
+        "c":  "Lactic acid fermentation",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why is borosilicate glass used in laboratory equipment?",
+        "a":  "It is the cheapest to produce",
+        "b":  "It is completely unbreakable",
+        "c":  "It is resistant to sudden temperature changes",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the decorative way of folding napkins during elegant receptions called?",
+        "a":  "Napkin folding",
+        "b":  "Textile origami",
+        "c":  "Draping",
+        "correct":  "A"
+    },
+    {
+        "q":  "Who was Ferruccio Lamborghini before founding a company producing supercars?",
+        "a":  "A Formula 1 driver",
+        "b":  "A manufacturer of agricultural tractors",
+        "c":  "A motorcycle designer",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where is the player in the “catcher” position located during a baseball game?",
+        "a":  "At first base",
+        "b":  "In the outfield",
+        "c":  "Behind the batter",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the art of trimming miniature trees called?",
+        "a":  "Bonsai",
+        "b":  "Ikebana",
+        "c":  "Topiary",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do road bikes have downward-curved handlebars?",
+        "a":  "To make turning easier",
+        "b":  "To improve aerodynamics and allow different grips",
+        "c":  "To reduce the turning radius",
+        "correct":  "B"
+    },
+    {
+        "q":  "Through what phenomenon does a helium-filled balloon rise upward?",
+        "a":  "Centrifugal force",
+        "b":  "Magnetism",
+        "c":  "Buoyant force",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the thickest string on a standard bass guitar called?",
+        "a":  "E string",
+        "b":  "A string",
+        "c":  "D string",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which ingredient allows cosmetics to have anti-aging effects by stimulating skin renewal?",
+        "a":  "Glycerin",
+        "b":  "Hyaluronic acid",
+        "c":  "Retinol",
+        "correct":  "C"
+    },
+    {
+        "q":  "What part of a ship is responsible for changing the vessel’s direction?",
+        "a":  "Rudder",
+        "b":  "Mast",
+        "c":  "Keel",
+        "correct":  "A"
+    },
+    {
+        "q":  "What does film editing determine during the creation of a production?",
+        "a":  "Only special effects",
+        "b":  "The order and pace of presenting scenes",
+        "c":  "The choice of actors",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do athletes perform warm-ups before intense exercise?",
+        "a":  "To lose weight faster",
+        "b":  "To increase muscle mass",
+        "c":  "To prepare the musculoskeletal system for effort",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the brain area responsible, among other things, for movement coordination called?",
+        "a":  "Cerebellum",
+        "b":  "Hippocampus",
+        "c":  "Thalamus",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does traditional naan bread come from?",
+        "a":  "Mexico",
+        "b":  "South Asia",
+        "c":  "Greece",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why are museum exhibits often stored at controlled humidity levels?",
+        "a":  "To change their color",
+        "b":  "To reduce their weight",
+        "c":  "To limit material deterioration",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do electric guitars often have pickups instead of a resonating body?",
+        "a":  "To make them heavier",
+        "b":  "To eliminate the need for tuning",
+        "c":  "To convert string vibrations into an electrical signal",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the roof style called when all roof slopes meet at one point?",
+        "a":  "Pyramid roof",
+        "b":  "Mansard roof",
+        "c":  "Flat roof",
+        "correct":  "A"
+    },
+    {
+        "q":  "Which system allows devices to communicate wirelessly over a very short distance?",
+        "a":  "GPS",
+        "b":  "Bluetooth",
+        "c":  "Ethernet",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do stamp collectors use special albums with acid-free pages?",
+        "a":  "To protect paper from deterioration",
+        "b":  "To automatically increase the value of every stamp",
+        "c":  "To change the color of stamps",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where do passengers find the place marked with the symbol “gate” at an airport?",
+        "a":  "At the boarding gate for the airplane",
+        "b":  "At baggage claim",
+        "c":  "At customs control",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do gardeners use compost?",
+        "a":  "To increase seed size",
+        "b":  "To enrich soil with nutrients",
+        "c":  "To completely replace water",
+        "correct":  "B"
+    },
+    {
+        "q":  "What material is often used to make luxury coats due to its thermal insulation?",
+        "a":  "Nylon",
+        "b":  "Polyester",
+        "c":  "Cashmere",
+        "correct":  "C"
+    },
+    {
+        "q":  "Who is a comic book writer?",
+        "a":  "A person who creates the plot and dialogue",
+        "b":  "A person who prints comics",
+        "c":  "A person who sells comics",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do astronomers use observatories located high in mountains?",
+        "a":  "Because stars are closer there",
+        "b":  "Due to fewer atmospheric disturbances",
+        "c":  "Because telescopes only work at low temperatures",
+        "correct":  "B"
+    },
+    {
+        "q":  "What does lighting design determine in interior design?",
+        "a":  "Only the room temperature",
+        "b":  "The atmosphere and perception of the space",
+        "c":  "The size of furniture",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do film actors often record scenes in a different order than they appear in the movie?",
+        "a":  "To shorten the script",
+        "b":  "To change the plot",
+        "c":  "Due to production organization",
+        "correct":  "C"
+    },
+    {
+        "q":  "What language is the basis of many Romance languages?",
+        "a":  "Latin",
+        "b":  "Sanskrit",
+        "c":  "Hebrew",
+        "correct":  "A"
+    },
+    {
+        "q":  "Through which process can milk maintain freshness for a longer time?",
+        "a":  "Freezing",
+        "b":  "Drying",
+        "c":  "Pasteurization",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why does a bathroom mirror often become covered with fog after a hot shower?",
+        "a":  "Due to condensation of water vapor on a cool surface",
+        "b":  "Due to gases released from the glass",
+        "c":  "Due to a change in the mirror’s color",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does the characteristic smell of freshly cut grass come from?",
+        "a":  "From oxygen released by plants",
+        "b":  "From chemical substances released by damaged plants",
+        "c":  "From moisture in the soil",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do winter tires have better grip at low temperatures?",
+        "a":  "They are heavier than summer tires",
+        "b":  "They have a larger diameter",
+        "c":  "They are made from a compound that remains flexible in cold conditions",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the process of changing raw ingredients into finished food through the action of yeast called?",
+        "a":  "Fermentation",
+        "b":  "Filtration",
+        "c":  "Distillation",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does static electricity that sometimes appears when removing a sweater come from?",
+        "a":  "From the movement of electric charges between materials",
+        "b":  "From heating the clothing fibers",
+        "c":  "From evaporation of water from the skin",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where is the cabin filter located in a car?",
+        "a":  "In the air supply system leading into the car interior",
+        "b":  "In the engine",
+        "c":  "In the fuel tank",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why can a towel absorb water worse after many uses?",
+        "a":  "Due to buildup of detergent residues and dirt in the fibers",
+        "b":  "Due to shortening of the fibers",
+        "c":  "Due to a change in the material’s color",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does the characteristic smell of new clothes bought in a store come from?",
+        "a":  "From the natural smell of cotton",
+        "b":  "From residues of substances used during production and transport",
+        "c":  "From the material reacting with air",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do chips in a sealed package remain crunchy?",
+        "a":  "Due to the presence of sugar",
+        "b":  "Due to high packaging temperature",
+        "c":  "Due to limiting contact with moisture",
+        "correct":  "C"
+    },
+    {
+        "q":  "What is the process of checking text correctness before publication called?",
+        "a":  "Formatting",
+        "b":  "Scanning",
+        "c":  "Proofreading",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does the characteristic sound of mechanical keyboards come from?",
+        "a":  "From the construction of switches under the keys",
+        "b":  "From computer speakers",
+        "c":  "From the processor fan",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do leather shoes require regular care?",
+        "a":  "To increase their size",
+        "b":  "To prevent the leather from drying out and cracking",
+        "c":  "To change their shape",
+        "correct":  "B"
+    },
+    {
+        "q":  "Through what mechanism does a washing machine remove water from clothes during spinning?",
+        "a":  "By heating the drum",
+        "b":  "By filtering water through the fabric",
+        "c":  "By using centrifugal force",
+        "correct":  "C"
+    },
+    {
+        "q":  "What does the “night mode” setting on a phone help with?",
+        "a":  "Increasing internet speed",
+        "b":  "Always doubling battery life",
+        "c":  "Reducing the emission of certain screen light colors",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why can paper receipts fade over time?",
+        "a":  "Due to the effect of light and heat on thermal printing",
+        "b":  "Due to contact with water in the air",
+        "c":  "Due to natural aging of paper like wood",
+        "correct":  "A"
+    },
+    {
+        "q":  "Who is responsible for preparing flight schedules in large airlines?",
+        "a":  "The airplane pilot",
+        "b":  "An operations planner",
+        "c":  "A safety controller",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why does toothpaste often contain fluoride?",
+        "a":  "It helps strengthen enamel and protect against cavities",
+        "b":  "It gives toothpaste a white color",
+        "c":  "It increases temperature in the mouth",
+        "correct":  "A"
+    },
+    {
+        "q":  "How does freezing food work?",
+        "a":  "It completely removes water from the product",
+        "b":  "It destroys all microorganisms",
+        "c":  "It slows biological and chemical processes",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do food product labels include a nutrition facts table?",
+        "a":  "To inform about ingredient content and energy value",
+        "b":  "To determine the product price",
+        "c":  "To indicate where the packaging was produced",
+        "correct":  "A"
+    },
+    {
+        "q":  "How does a warranty card help when buying equipment?",
+        "a":  "It increases the device’s power",
+        "b":  "It allows repairs under specified conditions",
+        "c":  "It automatically lowers the product price",
+        "correct":  "B"
+    },
+    {
+        "q":  "What causes streaks on a poorly cleaned window?",
+        "a":  "Changes in glass temperature",
+        "b":  "Static electricity",
+        "c":  "Residues of water, detergents, or dirt",
+        "correct":  "C"
+    },
+    {
+        "q":  "Who specializes in evaluating and treating bite problems?",
+        "a":  "Orthodontist",
+        "b":  "Dermatologist",
+        "c":  "Neurologist",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do travel suitcases have wheels that rotate in many directions?",
+        "a":  "To increase their capacity",
+        "b":  "To make them easier to maneuver",
+        "c":  "To reduce luggage weight",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do laser printers use toner instead of ink?",
+        "a":  "Toner is always liquid",
+        "b":  "It uses fine powder applied to paper",
+        "c":  "It only prints photos",
+        "correct":  "B"
+    },
+    {
+        "q":  "What makes fresh bread crust crispy?",
+        "a":  "High sugar content",
+        "b":  "Salt presence",
+        "c":  "Proper crust structure from baking",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do road signs have different shapes?",
+        "a":  "To recognize them without reading text",
+        "b":  "To reduce production costs",
+        "c":  "To match the landscape",
+        "correct":  "A"
+    },
+    {
+        "q":  "How does a lithium-ion battery work?",
+        "a":  "Creates energy from air",
+        "b":  "Stores energy through combustion",
+        "c":  "Stores energy by moving lithium ions",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do courier packages have multiple protections?",
+        "a":  "To reduce transport damage risk",
+        "b":  "To increase package weight",
+        "c":  "To hide the product name",
+        "correct":  "A"
+    },
+    {
+        "q":  "What causes goosebumps?",
+        "a":  "Sudden skin temperature rise",
+        "b":  "Hair follicle muscle reaction to cold/emotions",
+        "c":  "Skin water loss",
+        "correct":  "B"
+    },
+    {
+        "q":  "What causes the blue color of the sky?",
+        "a":  "Doppler effect",
+        "b":  "Rayleigh scattering",
+        "c":  "Photoelectric effect",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why can honey last for a very long time?",
+        "a":  "No microorganisms exist in hives",
+        "b":  "Bees create preservatives",
+        "c":  "Low water content and antimicrobial properties",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why is diamond hard but can still be damaged?",
+        "a":  "Its structure softens with heat",
+        "b":  "It contains air bubbles",
+        "c":  "Hardness and toughness are different properties",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why can skyscrapers slightly sway in strong wind?",
+        "a":  "Flexible structures absorb wind energy",
+        "b":  "Steel changes temperature",
+        "c":  "Foundations are loose",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does the currency name “yen” come from?",
+        "a":  "Japanese word for gold",
+        "b":  "Old dynasty name",
+        "c":  "Japanese word meaning “round”",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why do tennis players use several rackets?",
+        "a":  "Strings can change after strong hits",
+        "b":  "Each racket is for a different ball",
+        "c":  "Rules require it",
+        "correct":  "A"
+    },
+    {
+        "q":  "How does muscle memory work?",
+        "a":  "Muscles store information",
+        "b":  "Nervous system stores movement patterns",
+        "c":  "Bones remember movements",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why are flamingos pink?",
+        "a":  "Skin pigment",
+        "b":  "Sunlight",
+        "c":  "Carotenoids in food",
+        "correct":  "C"
+    },
+    {
+        "q":  "What do megapixels indicate in a camera?",
+        "a":  "Lens quality",
+        "b":  "Number of image pixels",
+        "c":  "Optical zoom",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why does the Moon look bigger near the horizon?",
+        "a":  "Moon illusion",
+        "b":  "Atmospheric parallax",
+        "c":  "Doppler effect",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do instruments have resonance boxes?",
+        "a":  "Increase weight",
+        "b":  "Amplify vibrations and sound",
+        "c":  "Stabilize wood temperature",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why do cheetahs run fast only for short distances?",
+        "a":  "Energy limits and overheating",
+        "b":  "Muscles work briefly",
+        "c":  "Heart cannot work fast",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why can oil paintings last hundreds of years?",
+        "a":  "Oil paint never ages",
+        "b":  "Canvas never changes",
+        "c":  "Durable pigments and proper storage",
+        "correct":  "C"
+    },
+    {
+        "q":  "How is an echo created in mountains?",
+        "a":  "Air temperature changes",
+        "b":  "Light reflection",
+        "c":  "Sound wave reflection",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why can some trees live thousands of years?",
+        "a":  "Slow growth and protection mechanisms",
+        "b":  "Cells never age",
+        "c":  "They never get infections",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why is retinol used in anti-aging cosmetics?",
+        "a":  "Supports skin renewal and collagen production",
+        "b":  "Creates silicone-like layer",
+        "c":  "Increases skin oil",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why can tsunamis become huge near coasts?",
+        "a":  "Water temperature rises",
+        "b":  "Ocean salinity changes",
+        "c":  "Waves slow and water piles up",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why use SPF cream on cloudy days?",
+        "a":  "UV can pass through clouds",
+        "b":  "Clouds heat skin",
+        "c":  "It protects from cold",
+        "correct":  "A"
+    },
+    {
+        "q":  "How does a volcanic caldera form?",
+        "a":  "Lava burns the mountain",
+        "b":  "Ground collapses after magma chamber empties",
+        "c":  "Ash builds around crater",
+        "correct":  "B"
+    },
+    {
+        "q":  "What do colors on Japan’s flag symbolize?",
+        "a":  "Ancient emperors",
+        "b":  "Ocean location",
+        "c":  "The sun and its cultural meaning",
+        "correct":  "C"
+    },
+    {
+        "q":  "How does hyaluronic acid work in cosmetics?",
+        "a":  "Removes dead skin",
+        "b":  "Increases melanin",
+        "c":  "Holds water and hydrates skin",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where do natural tsunamis usually start?",
+        "a":  "Seafloor movement during earthquakes",
+        "b":  "Strong ocean winds",
+        "c":  "Melting glaciers",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why are volcanoes near tectonic plates active?",
+        "a":  "They are near oceans",
+        "b":  "Plate movement allows magma flow",
+        "c":  "Rocks are younger",
+        "correct":  "B"
+    },
+    {
+        "q":  "Why is volcanic ash dangerous for planes?",
+        "a":  "Changes window color",
+        "b":  "Can damage engines and systems",
+        "c":  "Increases gravity",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where is the highest active volcano?",
+        "a":  "Chile",
+        "b":  "Japan",
+        "c":  "Indonesia",
+        "correct":  "A"
+    },
+    {
+        "q":  "What unit measures engine power?",
+        "a":  "Horsepower",
+        "b":  "Hertz",
+        "c":  "Amps",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where is most Earth’s water found?",
+        "a":  "Lakes",
+        "b":  "Oceans",
+        "c":  "Glaciers",
+        "correct":  "B"
+    },
+    {
+        "q":  "What causes rust?",
+        "a":  "Salt",
+        "b":  "Heat",
+        "c":  "Oxygen and water",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where is the oldest operating university?",
+        "a":  "Bologna",
+        "b":  "Paris",
+        "c":  "Oxford",
+        "correct":  "A"
+    },
+    {
+        "q":  "What creates the umami taste?",
+        "a":  "Sugars",
+        "b":  "Amino acids like glutamate",
+        "c":  "Fruit acids",
+        "correct":  "B"
+    },
+    {
+        "q":  "How do penguins recognize chicks?",
+        "a":  "By voice",
+        "b":  "By eye color",
+        "c":  "By feather smell",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does vanilla come from?",
+        "a":  "Plant roots",
+        "b":  "Orchid fruits",
+        "c":  "Shrub leaves",
+        "correct":  "B"
+    },
+    {
+        "q":  "What is the science of fungi called?",
+        "a":  "Botany",
+        "b":  "Zoology",
+        "c":  "Mycology",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where are the largest coral reefs?",
+        "a":  "Warm shallow seas",
+        "b":  "Deep lakes",
+        "c":  "Cold oceans",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does matcha tea come from?",
+        "a":  "China",
+        "b":  "Japan",
+        "c":  "India",
+        "correct":  "B"
+    },
+    {
+        "q":  "Who was Archimedes?",
+        "a":  "Physicist and mathematician",
+        "b":  "Ancient Greek doctor",
+        "c":  "Roman emperor",
+        "correct":  "A"
+    },
+    {
+        "q":  "In what are food calories measured?",
+        "a":  "Amps",
+        "b":  "Volts",
+        "c":  "Kilocalories",
+        "correct":  "A"
+    },
+    {
+        "q":  "Why do ships have submerged hulls?",
+        "a":  "To displace water and float",
+        "b":  "To increase engine temperature",
+        "c":  "To reduce ship weight",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where does rice paper come from?",
+        "a":  "Always rice flour",
+        "b":  "Rice grains",
+        "c":  "Plant fibers, not necessarily rice",
+        "correct":  "C"
+    },
+    {
+        "q":  "Where does amber come from?",
+        "a":  "Hardened resin",
+        "b":  "Limestone deposits",
+        "c":  "Volcanic lava",
+        "correct":  "A"
+    },
+    {
+        "q":  "Where is the Gobi Desert?",
+        "a":  "Africa",
+        "b":  "Mongolia and China",
+        "c":  "Australia",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where does cinnamon come from?",
+        "a":  "Roots",
+        "b":  "Fruits",
+        "c":  "Tree bark",
+        "correct":  "C"
+    },
+    {
+        "q":  "Why is lead used as radiation shielding?",
+        "a":  "It is magnetic",
+        "b":  "It has high density",
+        "c":  "It does not conduct electricity",
+        "correct":  "B"
+    },
+    {
+        "q":  "Where is the world’s largest archipelago?",
+        "a":  "Philippines",
+        "b":  "Japan",
+        "c":  "Indonesia",
+        "correct":  "C"
+    }
+]
